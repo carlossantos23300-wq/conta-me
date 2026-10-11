@@ -328,6 +328,53 @@ h2.ask { margin-top: 6px; }
 .wk { display: flex; align-items: center; gap: 12px; min-height: 50px; padding: 6px 14px; border-radius: 18px; font-size: 16px; font-weight: 600; }
 .wk .amt { margin-left: auto; font-size: 14.5px; }
 .wk .cdot { width: 10px; height: 10px; }
+/* A caixa que percebe */
+.magicbtn { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 58px; padding: 0 18px; border-radius: 20px; text-align: left; font-size: 16px; font-weight: 600; color: var(--muted); background: var(--card); border: 1px solid color-mix(in srgb, var(--lime) 34%, var(--edge)); box-shadow: 0 0 0 4px color-mix(in srgb, var(--lime) 7%, transparent), var(--shadow); }
+.magicbtn svg { flex: none; color: var(--accent-text); }
+.magicbtn:active { transform: scale(.98); }
+.panel.magic { gap: 14px; border-color: color-mix(in srgb, var(--lime) 30%, var(--edge)); }
+.panel.magic .big { overflow-wrap: anywhere; }
+.mrow { display: flex; align-items: center; gap: 14px; }
+.mrow .text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; font-size: 19px; font-weight: 700; letter-spacing: -0.02em; overflow-wrap: anywhere; }
+.mrow .amt { font-size: 18px; font-weight: 800; white-space: nowrap; }
+/* Reparei que… */
+.ins { display: flex; gap: 10px; overflow-x: auto; margin: 0 -16px; padding: 0 16px 2px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.ins::-webkit-scrollbar { display: none; }
+.inc { flex: 0 0 80%; scroll-snap-align: center; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 16px; border-radius: 22px; text-align: left; color: var(--text); background: linear-gradient(160deg, color-mix(in srgb, var(--c) 20%, var(--card)), var(--card) 70%); border: 1px solid color-mix(in srgb, var(--c) 30%, transparent); }
+.inc:only-child { flex-basis: 100%; }
+.inc:active { transform: scale(.98); }
+.inc .hi { width: 34px; height: 34px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--on-cat); background: linear-gradient(150deg, rgba(255, 255, 255, .32) 0%, rgba(255, 255, 255, 0) 60%), var(--c); }
+.inc b { font-size: 17.5px; line-height: 1.22; font-weight: 700; letter-spacing: -0.02em; }
+.inc .small { font-size: 13.5px; line-height: 1.35; }
+/* O mês em história */
+.story { position: relative; overflow: hidden; background: radial-gradient(130% 70% at 0% 0%, color-mix(in srgb, var(--a) 46%, transparent), transparent 62%), radial-gradient(130% 70% at 100% 100%, color-mix(in srgb, var(--b) 42%, transparent), transparent 62%), var(--bg); }
+.sbar { position: relative; z-index: 3; display: flex; gap: 4px; padding: calc(env(safe-area-inset-top) + 14px) 16px 0; }
+.sbar i { flex: 1; height: 4px; border-radius: 2px; background: color-mix(in srgb, var(--text) 22%, transparent); }
+.sbar i.on { background: var(--text); }
+.story .close { position: absolute; z-index: 3; top: calc(env(safe-area-inset-top) + 30px); right: 10px; }
+.st { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 96px 26px calc(env(safe-area-inset-bottom) + 96px); }
+.st > * { animation: rise .55s cubic-bezier(.2, .8, .2, 1) both; }
+.st > :nth-child(2) { animation-delay: .08s; }
+.st > :nth-child(3) { animation-delay: .18s; }
+.st > :nth-child(4) { animation-delay: .28s; }
+.st > :nth-child(5) { animation-delay: .38s; }
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } }
+.story .eyebrow { color: color-mix(in srgb, var(--text) 72%, transparent); }
+.sbig { font-size: clamp(50px, 16.5vw, 84px); line-height: .98; font-weight: 800; letter-spacing: -0.05em; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.stitle { font-size: 24px; line-height: 1.2; font-weight: 700; letter-spacing: -0.025em; }
+.story .say { font-size: 17px; color: color-mix(in srgb, var(--text) 76%, transparent); }
+.snav { position: absolute; z-index: 1; top: 0; bottom: 0; background: none; border: 0; }
+.snav.prev { left: 0; width: 30%; }
+.snav.next { right: 0; width: 70%; }
+.shint { position: absolute; left: 0; right: 0; bottom: calc(env(safe-area-inset-bottom) + 26px); text-align: center; font-family: var(--mono); font-size: 11.5px; letter-spacing: .09em; text-transform: uppercase; color: color-mix(in srgb, var(--text) 50%, transparent); pointer-events: none; }
+.sbars { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+.sbars .r { display: grid; grid-template-columns: 104px 1fr auto; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; }
+.sbars .r > span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sbars .tr { height: 12px; border-radius: 6px; background: color-mix(in srgb, var(--text) 12%, transparent); }
+.sbars .tr i { display: block; height: 100%; border-radius: 6px; }
+.story .minis, .story .acts { position: relative; z-index: 2; }
+.story .acts { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.story .mini { background: color-mix(in srgb, var(--text) 8%, transparent); }
 /* O dia por horas, a escolha do plano e o mês de um hábito */
 .tlp { flex: none; display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--edge); font-size: 14.5px; font-weight: 600; white-space: nowrap; }
 .tlp b, .tm { font-family: 'DM Mono', ui-monospace, monospace; font-weight: 500; color: var(--accent-text); }
@@ -498,6 +545,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     ['tiles', 'Blocos de categorias'], ['frase', 'Frase do dia'], ['nw', 'Preciso ou quis']];
   MODS.push(['checks', 'Rotinas'], ['diary', 'Diário']);
   MODS.push(['plan', 'Planear e fechar o dia'], ['inbox', 'Caixa de entrada'], ['projs', 'Projetos'], ['tpls', 'Modelos'], ['habits', 'Hábitos'], ['bills', 'Contas a pagar']);
+  MODS.push(['magic', 'Caixa que percebe'], ['insights', 'Reparei que…']);
   // Blocos do ecrã Hoje, pela ordem em que aparecem se não mexeres.
   var ORDER = [['card', 'Cartão do mês'], ['tiles', 'Blocos de categorias'], ['todo', 'Devia fazer'], ['notes', 'Avisos'], ['semana', 'Botão da semana']];
   CIC.cam = 'M4 8h3l2-3h6l2 3h3v11H4zM12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z';
@@ -1216,9 +1264,9 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       var pk = shiftMonth(curKey(), -1), pv = sum(monthExpenses(pk)), ppv = sum(monthExpenses(shiftMonth(pk, -1)));
       var pname = MESES[parseInt(pk.split('-')[1], 10) - 1];
       if (pv) {
-        note += '<button class="note sub" data-a="openMonth" data-m="' + pk + '">' + icSvg('book', 22) +
+        note += '<button class="note sub" data-a="storyOpen" data-m="' + pk + '">' + icSvg('spark', 22) +
           '<span class="say"><strong>' + pname.charAt(0).toUpperCase() + pname.slice(1) + ' fechou em ' + money(pv) + '.</strong>' +
-          (ppv ? ' ' + (pv > ppv ? 'Mais ' : 'Menos ') + money(Math.abs(pv - ppv)) + ' que no mês antes.' : '') + '</span></button>';
+          (ppv ? ' ' + (pv > ppv ? 'Mais ' : 'Menos ') + money(Math.abs(pv - ppv)) + ' que no mês antes.' : '') + ' Toca para ver o mês em história.</span></button>';
       }
     }
     // O que sobrou do mês passado pode ir para um objetivo.
@@ -1233,6 +1281,13 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       note += '<button class="note warn" data-a="export">' + icSvg('clock', 22) +
         '<span class="say"><strong>' + (S.bkp ? 'Há ' + age + ' dias que não guardas uma cópia.' : 'Ainda não guardaste nenhuma cópia.') +
         '</strong> Toca para guardar o ficheiro.</span></button>';
+    }
+    // Uma coisa em que a app reparou, a rodar de dia para dia.
+    var seen = S.off.insights ? [] : insights();
+    if (seen.length) {
+      var one = seen[Math.floor(parseDay(today) / 864e5) % seen.length];
+      note += '<button class="note sub" data-a="nav" data-v="' + one.view + '">' + icSvg(one.icon, 22) +
+        '<span class="say"><strong>' + one.strong + '</strong> ' + one.text + '</span></button>';
     }
     // Desafio: dias deste mês em que não gastaste nada (os fixos não contam).
     if (S.challenge) {
@@ -1274,7 +1329,8 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       notes: note,
       semana: S.off.semana ? '' : '<button class="btn plain" data-a="nav" data-v="semana">Ver a semana</button>'
     };
-    return '<div class="screen">' + head + '<div class="pad after-hero">' + prompts +
+    return '<div class="screen">' + head + '<div class="pad after-hero">' +
+      (S.off.magic ? '' : '<button class="magicbtn" data-a="magicOpen">' + icSvg('spark', 20) + '<span>Escreve qualquer coisa…</span></button>') + prompts +
       S.order.map(function (id) { return blocks[id] || ''; }).join('') + '</div></div>' + tabs('hoje');
   }
 
@@ -1343,6 +1399,8 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
         (incTotal ? mini('Entrou', money(incTotal)) + mini('Saldo do mês', money(saldo), saldo >= 0 ? 'var(--done-text)' : '#FF7A59') : '') +
         (kindN || kindW ? mini('Precisava', money(kindN)) + mini('Quis', money(kindW)) : '') +
         (payC || payD ? mini('Cartão', money(payC)) + mini('Dinheiro', money(payD)) : '') + '</div>' : '') + '</section>' +
+      (list.length >= 3 ? '<button class="btn plain" data-a="storyOpen" data-m="' + key + '">' + icSvg('spark', 18) + ' ' + capFirst(MESES[parseInt(p[1], 10) - 1]) + ' em história</button>' : '') +
+      (isNow && !S.off.insights ? insightsHtml() : '') +
       chartHtml() +
       hub([['subs', 'Subscrições', nSubs ? money(subsMonthly()) + ' por mês' : 'o que pagas sempre', 'repeat', '#8B7BFF'],
         ['bills', 'Contas', S.bills.length ? S.bills.length + ' por pagar' : 'luz, água, IUC', 'note', '#FFA94D'],
@@ -2106,6 +2164,554 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       '<button class="btn" data-a="edOpen" data-k="bill">Nova conta</button></div></div>' + tabs('gastos');
   }
 
+  // ---------- a caixa que percebe o que escreves ----------
+  var WDN = ['domingo', 'segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado'];
+  var MNN = ['janeiro', 'fevereiro', 'marco', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+  // Palavras que denunciam a categoria de um gasto, quando o histórico não ajuda.
+  var CATWORDS = {
+    comida: 'cafe cafes almoco jantar lanche supermercado continente pingo lidl mercadona auchan aldi intermarche minipreco restaurante pizza hamburguer mcdonalds kfc sushi pastelaria padaria pao talho peixaria frutaria mercearia glovo takeaway snack gelado bolo sandes francesinha bifana tosta',
+    transportes: 'gasolina gasoleo combustivel passe uber bolt taxi metro comboio autocarro portagem portagens estacionamento parque carris oficina inspecao pneus voo viagem',
+    casa: 'renda luz agua gas internet condominio meo vodafone edp eletricidade ikea limpeza detergente moveis seguro',
+    lazer: 'cinema netflix spotify hbo disney jogo jogos bar concerto copo copos cerveja festa livro livros discoteca bilhete bilhetes museu playstation steam prenda',
+    saude: 'farmacia medico dentista consulta ginasio analises hospital oculos medicamentos psicologo fisioterapia cabeleireiro barbeiro'
+  };
+  function norm(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim(); }
+  function capFirst(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+  function whenF(d) {
+    var n = daysUntil(d);
+    return n === 0 ? 'hoje' : n === 1 ? 'amanhã' : n === -1 ? 'ontem' : DIAS3[parseDay(d).getDay()] + ', ' + shortDate(d);
+  }
+  // A categoria mais provável: primeiro o que já fizeste com o mesmo nome, depois as palavras conhecidas.
+  function guessCat(text) {
+    var k = norm(text), seen = {}, words = k.split(/[^a-z0-9]+/).filter(Boolean), i, id;
+    if (k) {
+      S.expenses.forEach(function (e) { if (!e.fixed && e.desc && norm(e.desc) === k) seen[e.cat] = (seen[e.cat] || 0) + 1; });
+      var top = Object.keys(seen).sort(function (a, b) { return seen[b] - seen[a]; })[0];
+      if (top && find(S.cats, top)) return top;
+    }
+    for (id in CATWORDS) {
+      var set = ' ' + CATWORDS[id] + ' ';
+      for (i = 0; i < words.length; i++) if (set.indexOf(' ' + words[i] + ' ') >= 0 && find(S.cats, id)) return id;
+    }
+    for (i = 0; i < S.cats.length; i++) if (words.indexOf(norm(S.cats[i].label)) >= 0) return S.cats[i].id;
+    return find(S.cats, 'outro') ? 'outro' : S.cats[0].id;
+  }
+  // De que dias fala uma pergunta: hoje, esta semana, o mês passado, setembro…
+  function periodOf(n) {
+    var now = new Date(), today = iso(now), y = now.getFullYear(), mon = (now.getDay() + 6) % 7, r, i;
+    if (/\bhoje\b/.test(n)) return { start: today, end: today, label: 'hoje' };
+    if (/\bontem\b/.test(n)) return { start: addDays(-1), end: addDays(-1), label: 'ontem' };
+    if (/\b(semana passada|ultima semana)\b/.test(n)) return { start: addDays(-mon - 7), end: addDays(-mon - 1), label: 'na semana passada' };
+    if (/\besta semana\b/.test(n)) return { start: addDays(-mon), end: today, label: 'esta semana' };
+    if (/\b(mes passado|ultimo mes)\b/.test(n)) { r = periodRange(shiftMonth(curKey(), -1)); return { start: r.start, end: r.end, label: 'no mês passado' }; }
+    if (/\bano passado\b/.test(n)) return { start: (y - 1) + '-01-01', end: (y - 1) + '-12-31', label: 'no ano passado' };
+    if (/\b(este ano|no ano)\b/.test(n)) return { start: y + '-01-01', end: today, label: 'este ano' };
+    for (i = 0; i < 12; i++) if (new RegExp('\\b' + MNN[i] + '\\b').test(n)) {
+      var yy = i > now.getMonth() ? y - 1 : y;
+      return { start: yy + '-' + pad(i + 1) + '-01', end: iso(new Date(yy, i + 1, 0)), label: 'em ' + MESES[i] };
+    }
+    if (/\b(sempre|no total|ate hoje)\b/.test(n)) return { start: '0000-00-00', end: today, label: 'desde o início' };
+    r = periodRange(curKey());
+    return { start: r.start, end: r.end, label: 'este mês' };
+  }
+  function resRow(attrs, chipHtml, title, sub, right) {
+    return '<div class="item mov"><button class="main" ' + attrs + '>' + chipHtml + '<span class="text"><span>' + esc(title) + '</span><span class="small">' + sub + '</span></span>' +
+      (right ? '<span class="amt">' + right + '</span>' : '') + '</button></div>';
+  }
+  function expRow(e) {
+    var cat = catOf(e.cat);
+    return resRow('data-a="editExp" data-id="' + esc(e.id) + '"', catIcon(cat), e.desc || cat.label, 'gasto · ' + when(e.date), money(-e.amount));
+  }
+  // Perguntas sobre os teus próprios dados, respondidas na hora.
+  function answer(n) {
+    var isQ = /^(quanto|quantos|quantas|qual|onde|em que)\b/.test(n);
+    if (!isQ && !/\?\s*$/.test(n)) return null;
+    var p = periodOf(n), list, v, t, c;
+    function inP(d) { return d >= p.start && d <= p.end; }
+    function A(eyebrow, big, line, rows) { return { kind: 'answer', eyebrow: eyebrow, big: big, line: line || '', rows: rows || '' }; }
+    if (/\b(sobra|sobram|resta|restam|posso gastar|tenho para gastar)\b/.test(n)) {
+      if (!S.budget) return A('Sem orçamento definido', '—', 'Define-o nas definições e eu digo-te quanto sobra.');
+      var spent = sum(monthExpenses(curKey())), left = S.budget - spent, pd = periodDays();
+      var perDay = Math.max(0, Math.floor((left - pendingFixed()) / pd.left));
+      if (/\b(por dia|hoje)\b/.test(n)) return A('Podes gastar por dia', money(perDay), 'Faltam ' + pd.left + ' dias para o mês fechar e sobram ' + money(left) + '.');
+      return left >= 0 ? A('Sobram este mês', money(left), 'De ' + money(S.budget) + '. Dá ' + money(perDay) + ' por dia até ao fim do mês.') :
+        A('Passaste o orçamento em', money(-left), 'O orçamento era ' + money(S.budget) + '.');
+    }
+    if (/\btarefas?\b/.test(n)) {
+      if (/\b(falta|faltam|tenho|por fazer|pendentes)\b/.test(n)) { v = todoSorted().length; return A('Por fazer agora', String(v), v === 1 ? 'tarefa à tua espera.' : 'tarefas à tua espera.'); }
+      v = S.log.filter(function (x) { return inP(x.date); }).length;
+      return A('Tarefas riscadas ' + p.label, String(v), v ? 'Boa. Cada uma conta.' : 'Ainda nenhuma. A primeira é a que custa mais.');
+    }
+    if (/\bsubscri/.test(n)) { v = subsMonthly(); return A('Subscrições', money(v), 'por mês. Num ano são ' + money(v * 12) + '.'); }
+    if (/\b(devem|deve-me|devem-me)\b/.test(n)) {
+      list = S.debts.filter(function (x) { return x.dir === 'in'; });
+      return A('Devem-te', money(sum(list)), list.length ? list.map(function (x) { return esc(x.who); }).join(', ') + '.' : 'Ninguém te deve nada.');
+    }
+    if (/\bdevo\b/.test(n)) {
+      list = S.debts.filter(function (x) { return x.dir === 'out'; });
+      return A('Tu deves', money(sum(list)), list.length ? 'A ' + list.map(function (x) { return esc(x.who); }).join(', ') + '.' : 'Não deves nada a ninguém.');
+    }
+    if (/\b(poupei|poupado|poupanca|poupancas|objetivos?)\b/.test(n)) {
+      v = S.goals.reduce(function (a, g) { return a + g.saved; }, 0);
+      return A('Tens posto de lado', money(v), S.goals.length ? 'Em ' + S.goals.length + (S.goals.length === 1 ? ' objetivo' : ' objetivos') + ', de ' +
+        money(S.goals.reduce(function (a, g) { return a + g.target; }, 0)) + ' no total.' : 'Ainda não criaste nenhum objetivo.');
+    }
+    if (/\b(entrou|recebi|ganhei|entradas)\b/.test(n)) return A('Entrou ' + p.label, money(sum(S.incomes.filter(function (e) { return inP(e.date); }))));
+    list = S.expenses.filter(function (e) { return inP(e.date); });
+    if (/\bmaior (gasto|despesa)\b/.test(n)) {
+      if (!list.length) return A('O maior gasto ' + p.label, '—', 'Não há gastos nesses dias.');
+      var top = list.reduce(function (a, e) { return e.amount > a.amount ? e : a; });
+      return A('O maior gasto ' + p.label, money(top.amount), esc(top.desc || catOf(top.cat).label) + ' · ' + when(top.date), expRow(top));
+    }
+    if (/\b(onde|em que)\b.*\bmais\b/.test(n)) {
+      c = catTotals(list)[0];
+      return c ? A('Onde mais gastaste ' + p.label, esc(c.cat.label), money(c.v) + ' de ' + money(sum(list)) + '.') : A('Onde mais gastaste ' + p.label, '—', 'Não há gastos nesses dias.');
+    }
+    if (/\bgast/.test(n)) {
+      // O que sobra depois de tirar a pergunta e os dias: uma categoria ou o nome de um gasto.
+      t = n.replace(/\?/g, ' ').replace(new RegExp('\\b(' + MNN.join('|') + '|hoje|ontem|esta semana|semana passada|ultima semana|este mes|mes passado|ultimo mes|este ano|ano passado|no ano|sempre|no total|ate hoje)\\b', 'g'), ' ')
+        .replace(/\b(quanto|quantos|quantas|e que|eu|ja|gastei|gasto|gastos|gastou-se|gastamos|foi|tenho|dinheiro|euros|se|que|em|no|na|nos|nas|com|de|do|da|dos|das|o|a|os|as|este|esta|ate|agora)\b/g, ' ')
+        .replace(/\s+/g, ' ').trim();
+      if (t) {
+        c = S.cats.filter(function (x) { var l = norm(x.label); return l === t || l.indexOf(t) === 0 || t.indexOf(l) === 0; })[0];
+        list = list.filter(function (e) { return c ? e.cat === c.id : norm(e.desc).indexOf(t) >= 0; });
+      }
+      list.sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+      // Sem categoria, mostra o nome como o escreveste nos gastos (com os acentos).
+      var shownT = c ? c.label.toLowerCase() : list.length ? list[0].desc.toLowerCase() : t;
+      return A('Gastaste ' + (t ? 'em ' + esc(shownT) + ' ' : '') + p.label, money(sum(list)),
+        list.length ? list.length + (list.length === 1 ? ' gasto.' : ' gastos.') + (list.length > 4 ? ' Os últimos:' : '') : 'Não encontrei nenhum gasto assim.',
+        list.slice(0, 4).map(expRow).join(''));
+    }
+    return isQ ? A('Não percebi a pergunta', '?', 'Experimenta “quanto gastei em comida este mês?” ou “quanto sobra?”.') : null;
+  }
+  // Lê uma frase solta e decide o que é: gasto, entrada, conta, subscrição, dívida, tarefa, compra, nota ou data.
+  // "as" força um tipo quando a app adivinhou mal.
+  function understand(raw, as) {
+    var o = String(raw).normalize('NFC').replace(/\s+/g, ' ').trim();
+    if (!o) return null;
+    var n = o.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+    if (n.length !== o.length) n = o.toLowerCase();
+    var now = new Date(), today = iso(now), wd0 = now.getDay(), m;
+    if (!as) {
+      var q = answer(n);
+      if (q) return q;
+      if ((m = /^nota\s*[:\-]?\s+(.+)$/i.exec(o))) return { kind: 'note', text: m[1] };
+    }
+    if (as === 'note') return { kind: 'note', text: o.replace(/^nota\s*[:\-]?\s+/i, '') };
+    if (as === 'shop') return { kind: 'shop', text: capFirst(o.replace(/^comprar\s+/i, '')) };
+    // Procura um padrão no texto sem acentos e apaga-o das duas versões, para o que sobrar ser a descrição.
+    function cut(x) {
+      var blank = new Array(x[0].length + 1).join(' ');
+      n = n.slice(0, x.index) + blank + n.slice(x.index + x[0].length);
+      o = o.slice(0, x.index) + blank + o.slice(x.index + x[0].length);
+      return x;
+    }
+    function take(re) {
+      var x = re.exec(n);
+      return x ? cut(x) : null;
+    }
+    function rest() {
+      var s = o.replace(/\s+/g, ' ').replace(/^[\s,.;:\-–]+|[\s,.;:\-–]+$/g, '');
+      for (var i = 0; i < 2; i++) s = s.replace(/\s+(de|do|da|em|no|na|para|às|as|a|até|o|e|por|com|pelas)$/i, '');
+      return capFirst(s.trim());
+    }
+    function mkDate(d, mo, y) {
+      d = parseInt(d, 10); mo = parseInt(mo, 10); y = y ? parseInt(y, 10) : now.getFullYear();
+      if (y < 100) y += 2000;
+      if (!(d >= 1 && d <= 31 && mo >= 1 && mo <= 12)) return '';
+      return y + '-' + pad(mo) + '-' + pad(Math.min(d, new Date(y, mo, 0).getDate()));
+    }
+    function mkTime(h, mi, part) {
+      h = parseInt(h, 10); mi = parseInt(mi || '0', 10);
+      if ((part === 'tarde' || part === 'noite') && h < 12) h += 12;
+      return h <= 23 && mi <= 59 ? pad(h) + ':' + pad(mi) : '';
+    }
+    // Repetição
+    var rep = '', days = [], x;
+    if (take(/\b(todos os dias|diariamente|cada dia)\b/)) rep = 'd';
+    else if (take(/\b(dias uteis|de segunda a sexta)\b/)) rep = 'u';
+    else if ((x = take(new RegExp('\\btod[oa]s (?:os|as) (' + WDN.join('|') + ')s?(?:-feiras?)?\\b')))) { rep = 'w'; days = [WDN.indexOf(x[1])]; }
+    else if (take(/\b(todas as semanas|semanalmente|cada semana)\b/)) { rep = 'w'; days = [wd0]; }
+    var MONTHLY = /\b(todos os meses|por mes|mensal(?:mente)?|cada mes|ao mes)\b/, monthly = MONTHLY.test(n);
+    // Data
+    var until = !!take(/\bate (?:ao |a |o |as )?(?=dia \d|\d{1,2}\/|\d{1,2} de |amanha|depois de amanha|hoje|segunda|terca|quarta|quinta|sexta|sabado|domingo|fim d|para a semana)/);
+    var due = '', floating = false, off = null;
+    if (take(/\bdepois de amanha\b/)) off = 2;
+    else if (take(/\bamanha\b/)) off = 1;
+    else if (take(/\banteontem\b/)) off = -2;
+    else if (take(/\bontem\b/)) off = -1;
+    else if (take(/\bhoje\b/)) off = 0;
+    else if ((x = take(/\bdaqui a (\d{1,2}) dias?\b/))) off = parseInt(x[1], 10);
+    else if (take(/\bdaqui a (uma|1) semana\b/)) off = 7;
+    else if (take(/\b(para a|na proxima|a proxima|proxima) semana\b/)) off = wd0 === 0 ? 1 : 8 - wd0;
+    else if (take(/\b(no |este |ao )?fim de semana\b/)) off = wd0 === 6 || wd0 === 0 ? 0 : 6 - wd0;
+    else if (take(/\b(no |ao )?fim do mes\b/)) due = iso(new Date(now.getFullYear(), now.getMonth() + 1, 0));
+    else if ((x = take(/\b(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?\b/))) due = mkDate(x[1], x[2], x[3]);
+    else if ((x = take(new RegExp('\\b(?:no |ao )?(?:dia )?(\\d{1,2}) de (' + MNN.join('|') + ')\\b')))) due = mkDate(x[1], MNN.indexOf(x[2]) + 1);
+    else if ((x = take(/\b(?:no |ao )?dia (\d{1,2})\b/))) { due = mkDate(x[1], now.getMonth() + 1); floating = true; }
+    else if ((x = take(new RegExp('\\b(?:na |no |esta |este |proxim[ao] )?(' + WDN.join('|') + ')(?:-feira)?\\b')))) off = (WDN.indexOf(x[1]) - wd0 + 7) % 7 || 7;
+    if (off !== null) due = addDays(off);
+    // Só o dia do mês: se já passou, é o do mês que vem.
+    function forward() {
+      if (!floating || due >= today) return;
+      var d = parseInt(due.slice(8), 10), nm = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+      due = mkDate(d, nm.getMonth() + 1, nm.getFullYear());
+    }
+    // Hora e duração
+    var time = '', est = 0;
+    if ((x = take(/\b(?:as |pelas |a partir das )?(\d{1,2})(?::|h)(\d{2})\b(?: da (manha|tarde|noite))?/))) time = mkTime(x[1], x[2], x[3]);        // 15:30, 15h30
+    else if ((x = take(/\b(?:as|pelas|a partir das) (\d{1,2}) ?(?:h|horas?)\b(?: da (manha|tarde|noite))?/))) time = mkTime(x[1], 0, x[2]);    // às 15h, às 15 horas
+    else if ((x = take(/\b(?:as|pelas) (\d{1,2}) da (manha|tarde|noite)\b/))) time = mkTime(x[1], 0, x[2]);                                   // às 3 da tarde
+    // "às 15" sem mais nada: só conta como hora se for uma hora plausível ou vier no fim ("pagar as 3 contas" não é).
+    else if ((x = /\b(?:as|pelas) (\d{1,2})(?![\d.,:h])/.exec(n)) && (parseInt(x[1], 10) >= 7 || /^\s*$/.test(n.slice(x.index + x[0].length)))) { cut(x); time = mkTime(x[1], 0); }
+    else if ((x = take(/\b(\d{1,2}) ?h\b(?: da (manha|tarde|noite))?/))) {                                                                     // 15h; "2h" é duração
+      if (!x[2] && parseInt(x[1], 10) < 6) est = parseInt(x[1], 10) * 60; else time = mkTime(x[1], 0, x[2]);
+    }
+    if ((x = take(/\b(\d{1,3}) ?min(?:utos?)?\b/))) est = Math.min(600, parseInt(x[1], 10));
+    else if (take(/\bmeia hora\b/)) est = 30;
+    // Dinheiro: com símbolo, com vírgula, ou um número sozinho no fim
+    var amount = 0;
+    if (as !== 'task' && !rep) {
+      x = take(/(\d{1,6}(?:[.,]\d{1,2})?) ?(?:€|eur(?:os?)?\b|paus\b|r\$|\$|£|kz\b)/) || take(/(?:€|r\$|\$|£) ?(\d{1,6}(?:[.,]\d{1,2})?)/) ||
+        take(/(?:^| )(\d{1,6}[.,]\d{1,2})(?= |$)/) || take(/(?:^| )(\d{1,5}) *$/);
+      // Com palavras de dinheiro por perto ("recebi", "devo", "cartão", "por mês"), um número no meio também conta.
+      if (!x && (monthly || /\b(recebi|ordenado|salario|mesada|reembolso|entrou|ganhei|subsidio|devo|devem?-me|emprestei|emprestou-me|cartao|mb ?way|multibanco|dinheiro|paguei|custou|gastei)\b/.test(n))) x = take(/(?:^| )(\d{1,6})(?= |$)/);
+      if (x) amount = Math.round(parseFloat(x[1].replace(',', '.')) * 100);
+    }
+    if (amount > 0) {
+      var pay = take(/\b(com cartao|cartao|por mb ?way|mb ?way|multibanco)\b/) ? 'c' : take(/\b(em dinheiro|dinheiro|numerario)\b/) ? 'd' : '';
+      take(/\b(paguei|gastei|custou-me|custou)\b/);
+      function who() { return capFirst(rest().replace(/^(ao|à|a|o|aos|às|para o|para a)\s+/i, '')) || 'Alguém'; }
+      if (take(/\bdevem?-me\b/) || take(/\bemprestei\b/)) return { kind: 'debt', dir: 'in', who: who(), amount: amount };
+      if (take(/^ *devo\b/) || take(/\bemprestou-me\b/)) return { kind: 'debt', dir: 'out', who: who(), amount: amount };
+      var past = due && due <= today ? due : today;
+      if (/^\s*\+/.test(o) || /\b(recebi|ordenado|salario|mesada|reembolso|entrou|ganhei|subsidio)\b/.test(n)) {
+        take(/\+/); take(/\b(recebi|entrou|ganhei)\b/);
+        if (monthly) take(MONTHLY);
+        return { kind: 'income', amount: amount, desc: rest(), date: past, every: monthly };
+      }
+      var name;
+      if (monthly) {
+        take(MONTHLY); take(/\/ ?mes\b/);
+        name = rest();
+        var cat = guessCat(name);
+        return { kind: 'sub', desc: name, amount: amount, cat: cat, day: due ? parseInt(due.slice(8), 10) : now.getDate(), fixo: cat === 'casa' };
+      }
+      forward();
+      if (due && (until || due > today)) { name = rest() || 'Conta'; return { kind: 'bill', name: name.slice(0, 30), amount: amount, due: due, cat: guessCat(name) }; }
+      // "paguei 8 de estacionamento" fica só "Estacionamento".
+      name = capFirst(rest().replace(/^(de|do|da|em|no|na)\s+/i, ''));
+      return { kind: 'expense', amount: amount, desc: name, cat: guessCat(name), date: past, pay: pay };
+    }
+    var pri = !!take(/\b(urgente|importante)\b/);
+    if (/!\s*$/.test(n)) { pri = true; take(/!+\s*$/); }
+    if (!as && due && /\b(aniversario|anos d[aoe]s?|faz anos)\b/.test(n)) return { kind: 'date', name: rest(), day: parseInt(due.slice(8), 10), month: parseInt(due.slice(5, 7), 10) };
+    if (!as && !due && !time && !rep && /^ *comprar /.test(n)) return { kind: 'shop', text: capFirst(rest().replace(/^comprar\s+/i, '')) };
+    take(/^ *(lembrar-me de|lembrar de|lembrar-me|lembrar|nao esquecer de|nao esquecer|tenho de|tenho que|preciso de)\b/);
+    forward();
+    var text = rest();
+    if (!text) return null;
+    return { kind: 'task', text: text, due: rep ? '' : due, time: time, rep: rep, days: days, pri: pri, est: est };
+  }
+  // O que a app percebeu, em forma de cartão: desenho, título, linha pequena, valor e texto do botão.
+  function magicCard(u) {
+    var cat;
+    if (u.kind === 'expense') {
+      cat = catOf(u.cat);
+      return { chip: catIcon(cat), title: u.desc || cat.label, sub: 'gasto em ' + esc(cat.label.toLowerCase()) + ' · ' + when(u.date) + (u.pay ? ' · ' + (u.pay === 'c' ? 'cartão' : 'dinheiro') : ''),
+        right: money(-u.amount), btn: 'Guardar gasto' };
+    }
+    if (u.kind === 'income') return { chip: chip('#3DDBA4', 'plus'), title: u.desc || 'Entrada', sub: 'entrada · ' + when(u.date) + (u.every ? ' · repete todos os meses' : ''), right: '+' + money(u.amount), btn: 'Guardar entrada' };
+    if (u.kind === 'bill') return { chip: chip('#FFA94D', 'note'), title: u.name, sub: 'conta a pagar · até ' + whenF(u.due), right: money(u.amount), btn: 'Guardar conta a pagar' };
+    if (u.kind === 'sub') return { chip: chip('#8B7BFF', 'repeat'), title: u.desc || 'Subscrição', sub: (u.fixo ? 'gasto fixo' : 'subscrição') + ' · todos os meses, dia ' + u.day, right: money(u.amount), btn: u.fixo ? 'Guardar gasto fixo' : 'Guardar subscrição' };
+    if (u.kind === 'debt') return { chip: chip(u.dir === 'in' ? '#3DDBA4' : '#FF7A59', u.dir === 'in' ? 'plus' : 'minus'), title: u.who, sub: u.dir === 'in' ? 'deve-te' : 'deves-lhe', right: money(u.amount), btn: 'Guardar em A acertar' };
+    if (u.kind === 'shop') return { chip: chip('#5CC8FF', 'cart'), title: u.text, sub: 'lista de compras', right: '', btn: 'Juntar às compras' };
+    if (u.kind === 'note') return { chip: chip('#FF8AD1', 'pen'), title: u.text, sub: 'nota', right: '', btn: 'Guardar nota' };
+    if (u.kind === 'date') return { chip: chip('#FFD23F', 'gift'), title: u.name, sub: 'todos os anos · ' + u.day + ' ' + MES3[u.month - 1], right: '', btn: 'Guardar data' };
+    var parts = ['tarefa'];
+    if (u.rep) parts.push(u.rep === 'd' ? 'todos os dias' : u.rep === 'u' ? 'dias úteis' : WEEK[u.days[0]]);
+    if (u.due) parts.push(whenF(u.due));
+    if (u.time) parts.push('às ' + u.time);
+    if (u.est) parts.push(estText(u.est));
+    if (u.pri) parts.push('<span style="color:#FF7A59">urgente</span>');
+    return { chip: chip('#3DDBA4', 'check'), title: u.text, sub: parts.join(' · '), right: '', btn: 'Guardar tarefa' };
+  }
+  // Procura em tudo o que já está na app.
+  function magicSearch(text) {
+    var k = norm(text), out = [];
+    if (k.length < 2) return '';
+    function hit(s) { return norm(s).indexOf(k) >= 0; }
+    function id(x) { return ' data-id="' + esc(x.id) + '"'; }
+    S.tasks.forEach(function (t) { if (hit(t.text)) out.push(resRow('data-a="editTask"' + id(t), chip('#3DDBA4', 'check'), t.text, t.done ? 'tarefa feita' : 'tarefa por fazer')); });
+    S.expenses.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }).filter(function (e) { return hit(e.desc) || hit(catOf(e.cat).label); }).slice(0, 4).forEach(function (e) { out.push(expRow(e)); });
+    S.bills.forEach(function (b) { if (hit(b.name)) out.push(resRow('data-a="edOpen" data-k="bill"' + id(b), chip('#FFA94D', 'note'), b.name, 'conta a pagar · ' + billText(b).text, money(b.amount))); });
+    S.fixed.forEach(function (f) { if (hit(f.desc)) out.push(resRow('data-a="' + (isSub(f) ? 'editSub' : 'editFixed') + '"' + id(f), chip('#8B7BFF', 'repeat'), f.desc, isSub(f) ? 'subscrição' : 'gasto fixo', money(f.amount))); });
+    S.notes.forEach(function (x) { if (hit(x.text)) out.push(resRow('data-a="edOpen" data-k="note"' + id(x), chip('#FF8AD1', 'pen'), x.text.split('\n')[0].slice(0, 60), 'nota')); });
+    S.shop.forEach(function (x) { if (hit(x.text)) out.push(resRow('data-a="nav" data-v="shop"', chip('#5CC8FF', 'cart'), x.text, x.done ? 'compra já feita' : 'lista de compras')); });
+    S.wishes.forEach(function (x) { if (hit(x.name)) out.push(resRow('data-a="edOpen" data-k="wish"' + id(x), chip('#FF8AD1', 'spark'), x.name, 'lista de desejos', x.price ? money(x.price) : '')); });
+    S.debts.forEach(function (x) { if (hit(x.who) || hit(x.note)) out.push(resRow('data-a="edOpen" data-k="debt"' + id(x), chip(x.dir === 'in' ? '#3DDBA4' : '#FF7A59', 'swap'), x.who, x.dir === 'in' ? 'deve-te' : 'deves-lhe', money(x.amount))); });
+    S.goals.forEach(function (x) { if (hit(x.name)) out.push(resRow('data-a="edOpen" data-k="goal"' + id(x), chip('#C6F432', 'target'), x.name, 'objetivo', money(x.saved))); });
+    S.dates.forEach(function (x) { if (hit(x.name)) out.push(resRow('data-a="edOpen" data-k="date"' + id(x), chip('#FFD23F', 'gift'), x.name, 'data · ' + x.day + ' ' + MES3[x.month - 1])); });
+    S.projects.forEach(function (x) { if (hit(x.name)) out.push(resRow('data-a="projOpen"' + id(x), chip('#5CC8FF', 'target'), x.name, 'projeto')); });
+    S.inbox.forEach(function (x) { if (hit(x.text)) out.push(resRow('data-a="nav" data-v="inbox"', chip('#C6F432', 'bag'), x.text, 'caixa de entrada')); });
+    Object.keys(S.diary).forEach(function (d) { if (hit(S.diary[d])) out.push(resRow('data-a="nav" data-v="diary"', chip('#FFA94D', 'book'), S.diary[d], 'diário · ' + when(d))); });
+    return out.slice(0, 12).join('');
+  }
+  function magicOut() {
+    var text = ui.magic || '', html = '';
+    if (!text.trim()) {
+      html = '<div class="small" style="padding:0 4px">Experimenta:</div><div class="chips">' +
+        ['café 1,20', 'dentista sexta às 15h', 'luz 45 até dia 20', 'comprar leite', 'quanto gastei em comida?', 'netflix 13,99 todos os meses'].map(function (e) {
+          return '<button class="chip" data-a="magicEx" data-t="' + esc(e) + '">' + esc(e) + '</button>';
+        }).join('') + '</div>' + muted('Gastos, tarefas, contas, compras, notas e perguntas. No iPhone podes ditar: toca no microfone do teclado.');
+      if (ui.magicLog && ui.magicLog.length) {
+        html += '<section class="wkday"><div class="eyebrow"><b>Acabaste de apontar</b></div>' + ui.magicLog.map(function (l) {
+          return '<div class="wk">' + ICON.done.replace(/"24"/g, '"20"') + '<span>' + esc(l) + '</span></div>';
+        }).join('') + '</section>';
+      }
+      return html;
+    }
+    var u = understand(text, ui.magicAs);
+    if (u && u.kind === 'answer') {
+      return '<section class="panel magic"><div class="eyebrow">' + u.eyebrow + '</div><div class="big">' + u.big + '</div>' +
+        (u.line ? '<div class="say">' + u.line + '</div>' : '') + '</section>' + u.rows;
+    }
+    if (u) {
+      var c = magicCard(u);
+      html = '<section class="panel magic"><div class="eyebrow">Percebi isto</div>' +
+        '<div class="mrow">' + c.chip + '<span class="text"><span>' + esc(c.title) + '</span><span class="small">' + c.sub + '</span></span>' +
+        (c.right ? '<span class="amt">' + c.right + '</span>' : '') + '</div>' +
+        '<button class="btn" data-a="magicSave">' + c.btn + '</button>' +
+        '<div class="chips"><span class="small" style="align-self:center;padding:0 4px">Não era isto?</span>' +
+        [['task', 'É uma tarefa'], ['shop', 'É uma compra'], ['note', 'É uma nota']].filter(function (k) { return k[0] !== u.kind; }).map(function (k) {
+          return '<button class="chip" data-a="magicAs" data-k="' + k[0] + '">' + k[1] + '</button>';
+        }).join('') + (ui.magicAs ? '<button class="chip" data-a="magicAs" data-k="">Adivinha tu</button>' : '') + '</div></section>';
+    }
+    var found = magicSearch(text);
+    if (found) html += '<section class="list"><div class="row-head"><h2 class="h2">Já cá está</h2></div>' + found + '</section>';
+    return html;
+  }
+  function viewMagic() {
+    return '<div class="screen"><header class="head"><div class="eyebrow">Escreve ou dita. Eu arrumo.</div><h1 class="title">O que foi?</h1></header>' +
+      '<div class="pad"><form id="magic"><label class="sr" for="magicin">Escreve o que quiseres</label>' +
+      '<input class="input" id="magicin" type="text" autocomplete="off" enterkeyhint="done" placeholder="café 1,20 · dentista sexta às 15h" value="' + esc(ui.magic || '') + '"></form>' +
+      '<div id="magicout" class="list">' + magicOut() + '</div></div></div>' + tabs('hoje');
+  }
+
+  // ---------- a app repara em coisas ----------
+  function insights() {
+    var out = [], now = new Date(), d30 = addDays(-30);
+    function add(icon, color, strong, text, view) { out.push({ icon: icon, color: color, strong: strong, text: text, view: view }); }
+    // Um gasto pequeno que se repete muito
+    var groups = {};
+    S.expenses.forEach(function (e) {
+      if (e.fixed || !e.desc || e.date < d30) return;
+      var k = norm(e.desc);
+      groups[k] = groups[k] || { n: 0, v: 0, name: e.desc };
+      groups[k].n++; groups[k].v += e.amount;
+    });
+    var rep = Object.keys(groups).map(function (k) { return groups[k]; }).filter(function (g) { return g.n >= 4; }).sort(function (a, b) { return b.v - a.v; })[0];
+    if (rep) add('repeat', '#8B7BFF', esc(rep.name) + ': ' + rep.n + ' vezes em 30 dias.', 'Já vai em ' + money(rep.v) + '. Num ano são cerca de ' + money(Math.round(rep.v * 12 / 100) * 100) + '.', 'gastos');
+    // Uma categoria bem acima ou abaixo do mês passado, pela mesma altura
+    var pd = periodDays(), cur = monthExpenses(curKey()).filter(function (e) { return !e.fixed; }), pk = shiftMonth(curKey(), -1), pr = periodRange(pk);
+    var c0 = parseDay(pr.start); c0.setDate(c0.getDate() + pd.gone - 1);
+    var cut = iso(c0), prevAll = monthExpenses(pk).filter(function (e) { return !e.fixed; });
+    var prevSame = prevAll.filter(function (e) { return e.date <= cut; }), best = null;
+    S.cats.forEach(function (cat) {
+      var a = sum(cur.filter(function (e) { return e.cat === cat.id; })), b = sum(prevSame.filter(function (e) { return e.cat === cat.id; })), diff = a - b;
+      if (b >= 1000 && Math.abs(diff) >= 1000 && Math.abs(diff) / b >= 0.25 && (!best || Math.abs(diff) > Math.abs(best.diff))) best = { cat: cat, diff: diff, pct: Math.round(Math.abs(diff) / b * 100) };
+    });
+    if (best) add(best.cat.icon, best.cat.color, esc(best.cat.label) + ' vai ' + best.pct + '% ' + (best.diff > 0 ? 'acima' : 'abaixo') + ' do mês passado.',
+      (best.diff > 0 ? 'Mais ' : 'Menos ') + money(Math.abs(best.diff)) + ' do que tinhas gasto por esta altura.', 'gastos');
+    // O ritmo por dia contra o mês passado
+    var prevDays = Math.round((parseDay(pr.end) - parseDay(pr.start)) / 864e5) + 1;
+    var perNow = pd.gone >= 5 ? Math.round(sum(cur) / pd.gone) : 0, perPrev = Math.round(sum(prevAll) / prevDays);
+    if (perNow && perPrev && Math.abs(perNow - perPrev) / perPrev >= 0.15) add('wallet', '#FFA94D', 'Estás a gastar ' + money(perNow) + ' por dia.',
+      (perNow < perPrev ? 'Menos ' : 'Mais ') + money(Math.abs(perNow - perPrev)) + ' por dia do que no mês passado, sem contar com os fixos.', 'gastos');
+    // O dia da semana mais caro
+    var d56 = addDays(-56), wd = [0, 0, 0, 0, 0, 0, 0];
+    S.expenses.forEach(function (e) { if (!e.fixed && e.date >= d56) wd[parseDay(e.date).getDay()] += e.amount; });
+    var tot = wd.reduce(function (a, b) { return a + b; }, 0), mx = Math.max.apply(null, wd), mi = wd.indexOf(mx);
+    if (tot >= 5000 && mx >= tot * 0.28) add('cal', '#5CC8FF', ['O domingo', 'A segunda', 'A terça', 'A quarta', 'A quinta', 'A sexta', 'O sábado'][mi] + ' é o teu dia mais caro.',
+      'Nas últimas 8 semanas foi nesse dia ' + Math.round(mx / tot * 100) + '% do que gastaste.', 'stats');
+    // Dias seguidos sem gastar
+    var days = {}, quiet = 0, dq = new Date();
+    S.expenses.forEach(function (e) { if (!e.fixed) days[e.date] = 1; });
+    if (S.expenses.length) while (quiet < 60 && !days[iso(dq)]) { quiet++; dq.setDate(dq.getDate() - 1); }
+    if (quiet >= 3 && quiet < 60) add('star', '#C6F432', quiet + ' dias seguidos sem gastar.', 'Sem contar com os fixos. Continua.', 'cal');
+    // Quanto pesam as subscrições num ano
+    var subs = S.fixed.filter(isSub);
+    if (subs.length >= 2) {
+      var yr = subs.reduce(function (a, f) { return a + (f.period === 'a' ? f.amount : f.amount * 12); }, 0);
+      var top = subs.slice().sort(function (a, b) { return (b.period === 'a' ? b.amount / 12 : b.amount) - (a.period === 'a' ? a.amount / 12 : a.amount); })[0];
+      add('repeat', '#8B7BFF', 'As subscrições levam ' + money(yr) + ' por ano.', 'São ' + subs.length + '. A mais cara é ' + esc(top.desc || 'sem nome') + '.', 'subs');
+    }
+    // Quando é que um objetivo fica completo
+    S.goals.some(function (g) {
+      if (!g.auto || g.saved >= g.target) return false;
+      var months = Math.ceil((g.target - g.saved) / g.auto), d = new Date(now.getFullYear(), now.getMonth() + months, 1);
+      add('target', '#C6F432', esc(g.name) + ' fica completo em ' + MESES[d.getMonth()] + ' de ' + d.getFullYear() + '.',
+        'A pôr ' + money(g.auto) + ' de lado por mês, ' + (months === 1 ? 'falta 1 mês.' : 'faltam ' + months + ' meses.'), 'goals');
+      return true;
+    });
+    // Um desejo que cabe no que vai sobrar
+    var proj = forecast();
+    if (S.budget && proj && proj < S.budget) {
+      var room = S.budget - proj;
+      var w = S.wishes.filter(function (x) { return x.price && x.price <= room && -daysUntil(x.at) >= 30; })[0];
+      if (w) add('spark', '#FF8AD1', esc(w.name) + ' cabe no que sobra este mês.', 'Custa ' + money(w.price) + ' e a previsão é sobrarem ' + money(room) + '. Já esperaste ' + -daysUntil(w.at) + ' dias.', 'wishes');
+    }
+    // O dia em que riscas mais tarefas
+    if (S.log.length >= 10) {
+      var lw = [0, 0, 0, 0, 0, 0, 0];
+      S.log.forEach(function (l) { lw[parseDay(l.date).getDay()]++; });
+      var bi = lw.indexOf(Math.max.apply(null, lw));
+      add('check', '#3DDBA4', 'É ' + ['ao domingo', 'à segunda', 'à terça', 'à quarta', 'à quinta', 'à sexta', 'ao sábado'][bi] + ' que riscas mais tarefas.',
+        lw[bi] + ' das ' + S.log.length + ' que já fizeste.', 'hist');
+    }
+    return out;
+  }
+  function insightsHtml() {
+    var list = insights();
+    if (!list.length) return '';
+    return '<section class="list"><div class="row-head"><h2 class="h2">Reparei que…</h2><span class="small">' + list.length + (list.length === 1 ? ' coisa' : ' coisas') + '</span></div>' +
+      '<div class="ins">' + list.map(function (x) {
+        return '<button class="inc" data-a="nav" data-v="' + x.view + '" style="--c:' + x.color + '"><span class="hi">' + icSvg(x.icon, 18) + '</span><b>' + x.strong + '</b><span class="small">' + x.text + '</span></button>';
+      }).join('') + '</div></section>';
+  }
+
+  // ---------- o mês contado em história ----------
+  function storySlides(key) {
+    var r = periodRange(key), today = iso(new Date()), end = r.end < today ? r.end : today;
+    var list = monthExpenses(key), prev = monthExpenses(shiftMonth(key, -1));
+    var mi = parseInt(key.split('-')[1], 10) - 1, name = MESES[mi], pname = MESES[(mi + 11) % 12];
+    var total = sum(list), ptotal = sum(prev), out = [], open = key === curKey();
+    var COL = [['#C6F432', '#8B7BFF'], ['#FF7A59', '#FFD23F'], ['#8B7BFF', '#5CC8FF'], ['#FF8AD1', '#FF7A59'], ['#5CC8FF', '#3DDBA4'], ['#FFD23F', '#FF8AD1'], ['#3DDBA4', '#C6F432'], ['#8B7BFF', '#FF8AD1'], ['#C6F432', '#5CC8FF']];
+    function slide(eyebrow, big, title, line, extra, n) {
+      var c = COL[out.length % COL.length];
+      out.push({ a: c[0], b: c[1], eyebrow: eyebrow, big: big, title: title || '', line: line || '', extra: extra || '', n: n || 0 });
+    }
+    slide('conta-me apresenta', capFirst(name), open ? 'O teu mês até agora.' : 'O teu mês, do princípio ao fim.', 'Toca no lado direito para avançar.');
+    var left = S.budget - total;
+    slide('Saíram da tua conta', money(total), S.budget ? Math.round(total / S.budget * 100) + '% do orçamento.' + (left >= 0 ? (open ? ' Sobram ' : ' Sobraram ') + money(left) + '.' : ' Passaste ' + money(-left) + '.') : '',
+      ptotal ? (total <= ptotal ? 'Menos ' : 'Mais ') + money(Math.abs(total - ptotal)) + ' do que em ' + pname + '.' : '', '', total);
+    var tot = catTotals(list);
+    if (tot.length) {
+      slide('Para onde foi', esc(tot[0].cat.label), money(tot[0].v) + ' · ' + Math.round(tot[0].v / total * 100) + '% de tudo.', '',
+        '<div class="sbars">' + tot.slice(0, 4).map(function (t) {
+          return '<div class="r"><span>' + esc(t.cat.label) + '</span><span class="tr"><i style="width:' + Math.max(4, Math.round(t.v / tot[0].v * 100)) + '%;background:' + t.cat.color + '"></i></span><span>' + bare(money(t.v)) + '</span></div>';
+        }).join('') + '</div>');
+    }
+    var nDays = Math.round((parseDay(end) - parseDay(r.start)) / 864e5) + 1;
+    if (list.length) {
+      var big = list.reduce(function (a, e) { return e.amount > a.amount ? e : a; });
+      slide('O maior de todos', money(big.amount), esc(big.desc || catOf(big.cat).label) + ', ' + shortDate(big.date) + '.',
+        'Foram ' + list.length + (list.length === 1 ? ' gasto' : ' gastos') + ' no mês, em média ' + money(Math.round(total / nDays)) + ' por dia.', '', big.amount);
+    }
+    var byDay = {}, quiet = 0, topDay = '';
+    list.forEach(function (e) { if (!e.fixed) byDay[e.date] = (byDay[e.date] || 0) + e.amount; });
+    Object.keys(byDay).forEach(function (d) { if (!topDay || byDay[d] > byDay[topDay]) topDay = d; });
+    for (var d = parseDay(r.start); iso(d) <= end; d.setDate(d.getDate() + 1)) if (!byDay[iso(d)]) quiet++;
+    if (topDay) {
+      var td = parseDay(topDay);
+      slide('O dia mais caro', capFirst(['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'][td.getDay()]) + ', ' + td.getDate(), money(byDay[topDay]) + ' num só dia.',
+        quiet ? 'Em compensação, ' + (quiet === 1 ? 'houve 1 dia' : 'houve ' + quiet + ' dias') + ' sem gastares nada.' : '');
+    }
+    var groups = {};
+    list.forEach(function (e) {
+      if (e.fixed || !e.desc) return;
+      var k = norm(e.desc);
+      groups[k] = groups[k] || { n: 0, v: 0, name: e.desc };
+      groups[k].n++; groups[k].v += e.amount;
+    });
+    var classic = Object.keys(groups).map(function (k) { return groups[k]; }).filter(function (g) { return g.n >= 3; }).sort(function (a, b) { return b.n - a.n; })[0];
+    if (classic) slide('O teu clássico', esc(classic.name), classic.n + ' vezes, ' + money(classic.v) + ' ao todo.', 'É o gasto que mais repetiste.');
+    var logs = S.log.filter(function (l) { return l.date >= r.start && l.date <= end; });
+    if (logs.length) {
+      var perDay = {}, bestDay = '';
+      logs.forEach(function (l) { perDay[l.date] = (perDay[l.date] || 0) + 1; });
+      Object.keys(perDay).forEach(function (k) { if (!bestDay || perDay[k] > perDay[bestDay]) bestDay = k; });
+      var habit = null;
+      S.tasks.forEach(function (t) {
+        if (!t.rep) return;
+        var k = t.hist.filter(function (h) { return h >= r.start && h <= end; }).length;
+        if (k >= 3 && (!habit || k > habit.k)) habit = { k: k, text: t.text };
+      });
+      slide('Do lado das tarefas', String(logs.length), logs.length === 1 ? 'tarefa riscada.' : 'tarefas riscadas.',
+        'O dia em que mais fizeste foi ' + shortDate(bestDay) + ', com ' + perDay[bestDay] + '.' + (habit ? ' Hábito mais fiel: ' + esc(habit.text) + ', ' + habit.k + ' dias.' : ''));
+    }
+    var inc = sum(S.incomes.filter(function (e) { return pkey(e.date) === key; }));
+    var verdict = open ? 'Ainda vai a meio.' : !S.budget ? 'Mês fechado.' : left >= 0 ? 'Mês ganho.' : 'Mês apertado. O próximo é teu.';
+    if (inc) slide('No fim das contas', (inc - total < 0 ? '−' : '+') + money(Math.abs(inc - total)), 'Entraram ' + money(inc) + ' e saíram ' + money(total) + '.', inc >= total ? 'Ficou dinheiro do teu lado.' : 'Saiu mais do que entrou.');
+    var c = COL[out.length % COL.length];
+    out.push({ final: true, a: c[0], b: c[1] });
+    return { name: name, slides: out, stats: { total: total, top: tot[0] || null, tasks: logs.length, quiet: quiet, verdict: verdict } };
+  }
+  function viewStory() {
+    var st = ui.story;
+    if (!st) { ui.view = 'gastos'; return viewGastos(); }
+    var d = storySlides(st.key), n = d.slides.length, i = Math.min(st.i, n - 1), s = d.slides[i], body;
+    var bar = d.slides.map(function (x, k) { return '<i' + (k <= i ? ' class="on"' : '') + '></i>'; }).join('');
+    if (s.final) {
+      var rows = [['Saíram', money(d.stats.total)]];
+      if (d.stats.top) rows.push(['Onde mais foi', esc(d.stats.top.cat.label)]);
+      if (d.stats.tasks) rows.push(['Tarefas riscadas', d.stats.tasks]);
+      rows.push(['Dias sem gastar', d.stats.quiet]);
+      body = '<div class="eyebrow">' + capFirst(d.name) + ' em resumo</div><div class="sbig">' + d.stats.verdict + '</div>' +
+        '<div class="minis">' + rows.map(function (x) { return mini(x[0], x[1]); }).join('') + '</div>' +
+        '<div class="acts"><button class="btn" data-a="storyShare">Partilhar como imagem</button><button class="btn plain" data-a="storyClose">Fechar</button></div>';
+    } else {
+      body = '<div class="eyebrow">' + s.eyebrow + '</div><div class="sbig"' + (s.n ? ' data-n="' + s.n + '"' : '') + '>' + s.big + '</div>' +
+        (s.title ? '<div class="stitle">' + s.title + '</div>' : '') + (s.line ? '<div class="say">' + s.line + '</div>' : '') + s.extra;
+    }
+    return '<div class="screen story" style="--a:' + s.a + ';--b:' + s.b + '"><div class="sbar" aria-hidden="true">' + bar + '</div>' +
+      '<button class="close" data-a="storyClose" aria-label="Fechar">' + ICON.close + '</button>' +
+      '<div class="st">' + body + '</div>' +
+      '<button class="snav prev" data-a="storyPrev" aria-label="Anterior"></button>' +
+      (s.final ? '' : '<button class="snav next" data-a="storyNext" aria-label="Seguinte"></button><div class="shint">' + (i === 0 ? 'toca para começar' : 'toca para continuar') + '</div>') + '</div>';
+  }
+  // O resumo do mês desenhado numa imagem, para partilhar.
+  function storyImage(key, cb) {
+    var d = storySlides(key), s = d.stats, W = 1080, H = 1350, F = '"Bricolage Grotesque", system-ui, sans-serif';
+    var c = document.createElement('canvas');
+    c.width = W; c.height = H;
+    var x = c.getContext('2d');
+    function glow(cx, cy, rad, rgb, a) {
+      var g = x.createRadialGradient(cx, cy, 0, cx, cy, rad);
+      g.addColorStop(0, 'rgba(' + rgb + ',' + a + ')'); g.addColorStop(1, 'rgba(' + rgb + ',0)');
+      x.fillStyle = g; x.fillRect(0, 0, W, H);
+    }
+    function draw() {
+      x.fillStyle = '#0B0C10'; x.fillRect(0, 0, W, H);
+      glow(140, 100, 900, '198,244,50', 0.4); glow(W - 60, H - 160, 950, '139,123,255', 0.5);
+      // Logótipo
+      var lx = 80, ly = 84, ls = 92, lr = 28;
+      x.fillStyle = '#C6F432'; x.beginPath();
+      x.moveTo(lx + lr, ly); x.arcTo(lx + ls, ly, lx + ls, ly + ls, lr); x.arcTo(lx + ls, ly + ls, lx, ly + ls, lr); x.arcTo(lx, ly + ls, lx, ly, lr); x.arcTo(lx, ly, lx + ls, ly, lr); x.fill();
+      x.strokeStyle = '#0F1115'; x.lineWidth = 11; x.lineCap = 'round'; x.lineJoin = 'round'; x.beginPath();
+      x.moveTo(lx + 26, ly + 48); x.lineTo(lx + 41, ly + 63); x.lineTo(lx + 67, ly + 31); x.stroke();
+      x.fillStyle = '#F4F5F7'; x.font = '700 46px ' + F; x.fillText('conta-me', 196, 146);
+      x.fillStyle = 'rgba(244,245,247,.62)'; x.font = '500 30px "DM Mono", ui-monospace, monospace'; x.fillText('O MEU MÊS', 82, 340);
+      x.fillStyle = '#C6F432'; x.font = '800 156px ' + F; x.fillText(capFirst(d.name), 74, 490, W - 150);
+      x.fillStyle = '#F4F5F7'; x.font = '800 116px ' + F; x.fillText(money(s.total), 76, 668, W - 150);
+      x.fillStyle = 'rgba(244,245,247,.62)'; x.font = '500 36px ' + F; x.fillText('saíram este mês', 82, 726);
+      var rows = [], y = 860;
+      if (s.top) rows.push(['ONDE MAIS FOI', s.top.cat.label + ' · ' + money(s.top.v)]);
+      if (s.tasks) rows.push(['TAREFAS RISCADAS', String(s.tasks)]);
+      rows.push(['DIAS SEM GASTAR', String(s.quiet)]);
+      rows.forEach(function (r) {
+        x.fillStyle = 'rgba(244,245,247,.55)'; x.font = '500 26px "DM Mono", ui-monospace, monospace'; x.fillText(r[0], 82, y);
+        x.fillStyle = '#F4F5F7'; x.font = '700 52px ' + F; x.fillText(r[1], 80, y + 58, W - 160);
+        y += 128;
+      });
+      x.fillStyle = '#C6F432'; x.font = '700 58px ' + F; x.fillText(s.verdict, 80, H - 90, W - 160);
+      c.toBlob(function (b) { cb(b ? new File([b], 'conta-me-' + key + '.png', { type: 'image/png' }) : null); }, 'image/png');
+    }
+    if (document.fonts && document.fonts.load) Promise.all([document.fonts.load('800 150px "Bricolage Grotesque"'), document.fonts.load('500 30px "DM Mono"')]).then(draw, draw);
+    else draw();
+  }
+
   function viewDebts() {
     var inn = sum(S.debts.filter(function (x) { return x.dir === 'in'; })), out = sum(S.debts.filter(function (x) { return x.dir === 'out'; }));
     var rows = S.debts.map(function (x) {
@@ -2261,6 +2867,11 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
         'Toca na bolinha para riscar. Os três pontinhos abrem a tarefa: passos, lista, urgência, foco e temporizador.',
         'Os atalhos levam à caixa de entrada, projetos, hábitos, modelos, compras, notas, histórico, datas, rotinas e diário.',
         'Dentro da tarefa podes adiá-la, dar-lhe hora, dizer quanto demora e pô-la num projeto.']) +
+      sec('A caixa que percebe', ['No topo do ecrã Hoje, toca em “Escreve qualquer coisa”. Escreve ou dita como falas: “café 1,20”, “dentista sexta às 15h”, “luz 45 até dia 20”, “comprar leite”.',
+        'A app mostra o que percebeu antes de guardar. Se adivinhar mal, corriges com um toque.',
+        'Também responde a perguntas (“quanto gastei em comida este mês?”, “quanto sobra?”) e procura em tudo o que já lá está.']) +
+      sec('O mês em história', ['No ecrã Gastos, o botão “em história” conta o mês em meia dúzia de ecrãs. No fim podes partilhar uma imagem.',
+        'Em “Reparei que…” a app mostra padrões que encontrou sozinha nos teus dados.']) +
       sec('Organizar o dia', ['De manhã, o ecrã Hoje convida-te a escolher as três tarefas que contam. Ficam só essas à vista até as acabares.',
         'Depois das 19h, “Fechar o dia” mostra o que fizeste e passa para amanhã o que ficou.',
         'Ao domingo aparece a revisão da semana. Também a encontras no fundo de “Ver a semana”.',
@@ -2420,7 +3031,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
   var VIEWS = { hoje: viewHoje, gastos: viewGastos, fazer: viewFazer, form: viewForm, def: viewDef, subs: viewSubs, semana: viewSemana, cat: viewCat, task: viewTask, pin: viewPin,
     goals: viewGoals, debts: viewDebts, shop: viewShop, notes: viewNotes, stats: viewStats, ed: viewEd, hist: viewHist, dates: viewDates,
     wishes: viewWishes, cal: viewCal, checks: viewChecks, check: viewCheck, diary: viewDiary, timer: viewTimer, help: viewHelp, sweep: viewSweep,
-    plan: viewPlan, close: viewClose, review: viewReview, stale: viewStale, projs: viewProjs, proj: viewProj, tpls: viewTpls, habits: viewHabits, inbox: viewInbox, bills: viewBills };
+    plan: viewPlan, close: viewClose, review: viewReview, stale: viewStale, projs: viewProjs, proj: viewProj, tpls: viewTpls, habits: viewHabits, inbox: viewInbox, bills: viewBills, magic: viewMagic, story: viewStory };
   // Cores do tema, e o brilho do topo conforme a hora.
   function applyTheme() {
     var t = THEMES.filter(function (x) { return x[0] === S.theme; })[0] || THEMES[0], h = new Date().getHours();
@@ -2788,6 +3399,106 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       Array.prototype.forEach.call(root.querySelectorAll('[data-a="taskProj"]'), function (b) { b.setAttribute('aria-pressed', b === el); });
     },
     taskNoTime: function () { ui.taskForm.time = ''; var i = document.getElementById('ttime'); if (i) i.value = ''; },
+    magicOpen: function () {
+      ui.view = 'magic'; ui.magic = ''; ui.magicAs = '';
+      render();
+      var i = document.getElementById('magicin');
+      if (i) i.focus();
+    },
+    magicEx: function (el) {
+      ui.magic = el.dataset.t; ui.magicAs = '';
+      var i = document.getElementById('magicin');
+      if (i) { i.value = ui.magic; i.focus(); }
+      document.getElementById('magicout').innerHTML = magicOut();
+    },
+    magicAs: function (el) { ui.magicAs = el.dataset.k; document.getElementById('magicout').innerHTML = magicOut(); },
+    magicSave: function () {
+      var u = understand(ui.magic || '', ui.magicAs), today = iso(new Date()), key, id = uid(), label, inc = null;
+      if (!u || u.kind === 'answer') return;
+      if (u.kind === 'expense') {
+        key = 'expenses';
+        S.expenses.push({ id: id, amount: u.amount, cat: u.cat, desc: u.desc, date: u.date, fixed: '', pay: u.pay, kind: '', photo: false });
+        // Arredonda para a unidade seguinte e manda a diferença para o objetivo escolhido.
+        var rg = S.roundTo && find(S.goals, S.roundTo), diff = (100 - u.amount % 100) % 100;
+        if (rg && diff && rg.saved < rg.target) rg.saved += diff;
+        ui.lastCat = u.cat;
+        label = (u.desc || catOf(u.cat).label) + ' · ' + money(u.amount);
+      } else if (u.kind === 'income') {
+        key = 'incomes';
+        inc = { id: id, amount: u.amount, desc: u.desc, date: u.date, fixed: '' };
+        S.incomes.push(inc);
+        if (u.every) everySync(inc, true);
+        label = (u.desc || 'Entrada') + ' · +' + money(u.amount);
+      } else if (u.kind === 'bill') {
+        key = 'bills';
+        S.bills.push({ id: id, name: u.name, amount: u.amount, due: u.due, cat: u.cat, rep: false });
+        label = u.name + ' · até ' + shortDate(u.due);
+      } else if (u.kind === 'sub') {
+        key = 'fixed';
+        S.fixed.push({ id: id, desc: u.desc, amount: u.amount, cat: u.cat, day: Math.min(31, Math.max(1, u.day)), last: '', kind: u.fixo ? 'fixo' : 'sub', period: 'm', month: 1 });
+        applyFixed();
+        label = (u.desc || 'Subscrição') + ' · ' + money(u.amount) + ' por mês';
+      } else if (u.kind === 'debt') {
+        key = 'debts';
+        S.debts.unshift({ id: id, who: u.who.slice(0, 30), amount: u.amount, dir: u.dir, note: '' });
+        label = u.who + (u.dir === 'in' ? ' deve-te ' : ': deves ') + money(u.amount);
+      } else if (u.kind === 'shop') {
+        key = 'shop';
+        S.shop.unshift({ id: id, text: u.text.slice(0, 80), done: false });
+        label = 'Compras · ' + u.text;
+      } else if (u.kind === 'note') {
+        key = 'notes';
+        S.notes.unshift({ id: id, text: u.text.slice(0, 4000), at: today });
+        label = 'Nota · ' + u.text.slice(0, 40);
+      } else if (u.kind === 'date') {
+        key = 'dates';
+        S.dates.unshift({ id: id, name: u.name.slice(0, 40), day: u.day, month: u.month });
+        label = u.name + ' · todos os anos';
+      } else {
+        key = 'tasks';
+        id = newTask(u.text, { due: u.due, time: u.time, rep: u.rep, days: u.days.length ? u.days : [new Date().getDay()], pri: u.pri, est: u.est }).id;
+        label = u.text + (u.due ? ' · ' + whenF(u.due) : '') + (u.time ? ' · ' + u.time : '');
+      }
+      save(); blip([520, 780]);
+      ui.magicLog = [label].concat(ui.magicLog || []).slice(0, 6);
+      ui.magic = ''; ui.magicAs = '';
+      var input = document.getElementById('magicin');
+      if (input) { input.value = ''; input.focus(); }
+      document.getElementById('magicout').innerHTML = magicOut();
+      toast('Guardado.', function () {
+        S[key] = S[key].filter(function (x) { return x.id !== id; });
+        if (key === 'fixed') S.expenses = S.expenses.filter(function (e) { return e.fixed !== id; });
+        if (inc && inc.fixed) S.incFixed = S.incFixed.filter(function (r) { return r.id !== inc.fixed; });
+        ui.magicLog = (ui.magicLog || []).slice(1);
+      });
+    },
+    storyOpen: function (el) {
+      ui.story = { key: el.dataset.m || shiftMonth(curKey(), -1), i: 0, back: ui.view, file: null };
+      ui.view = 'story'; render();
+    },
+    storyNext: function () {
+      var st = ui.story, n = storySlides(st.key).slides.length;
+      if (st.i >= n - 1) return;
+      st.i++;
+      render(true); countUp();
+      // No último ecrã, a imagem fica já pronta para o botão de partilhar responder ao toque.
+      if (st.i === n - 1 && !st.file) storyImage(st.key, function (f) { if (ui.story === st) st.file = f; });
+    },
+    storyPrev: function () { var st = ui.story; if (st.i > 0) { st.i--; render(true); countUp(); } },
+    storyClose: function () { ui.view = (ui.story && ui.story.back) || 'gastos'; ui.story = null; render(); },
+    storyShare: function () {
+      var st = ui.story;
+      function go(f) {
+        if (!f) return;
+        try {
+          if (navigator.canShare && navigator.canShare({ files: [f] })) { navigator.share({ files: [f], title: 'conta-me' }).catch(function () {}); return; }
+        } catch (e) {}
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(f); a.download = f.name;
+        document.body.appendChild(a); a.click(); a.remove();
+      }
+      if (st.file) go(st.file); else storyImage(st.key, go);
+    },
     need: function (el) {
       var f = ui.form;
       f.kind = f.kind === el.dataset.k ? '' : el.dataset.k;
@@ -3209,6 +3920,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       document.getElementById('shopin').focus();
       return;
     }
+    if (ev.target.id === 'magic') { ev.preventDefault(); act.magicSave(); return; }
     if (ev.target.id === 'projadd') {
       ev.preventDefault();
       var pt = document.getElementById('projin').value.trim();
@@ -3256,6 +3968,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     if (id === 'fday' && ui.form) ui.form.day = ev.target.value.replace(/\D/g, '');
     if (id === 'cname' && ui.catForm) ui.catForm.label = ev.target.value;
     if (id === 'tname' && ui.taskForm) ui.taskForm.text = ev.target.value;
+    if (id === 'magicin') { ui.magic = ev.target.value; ui.magicAs = ''; document.getElementById('magicout').innerHTML = magicOut(); }
     if (id === 'tgoal' && ui.taskForm) ui.taskForm.goal = parseInt(ev.target.value, 10) || 0;
     if (id === 'diaryin') {
       var dk = iso(new Date()), dv = ev.target.value.trim().slice(0, 200);
