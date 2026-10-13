@@ -328,6 +328,50 @@ h2.ask { margin-top: 6px; }
 .wk { display: flex; align-items: center; gap: 12px; min-height: 50px; padding: 6px 14px; border-radius: 18px; font-size: 16px; font-weight: 600; }
 .wk .amt { margin-left: auto; font-size: 14.5px; }
 .wk .cdot { width: 10px; height: 10px; }
+/* Medalhas */
+.medals { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.medal { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 8px; border-radius: 20px; text-align: center; background: var(--card); border: 1px solid var(--edge); }
+.medal b { font-size: 13px; line-height: 1.2; font-weight: 700; }
+.medal .small { font-size: 11px; line-height: 1.25; }
+.medal:not(.on) b { color: var(--muted); }
+.mi { width: 48px; height: 48px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center; color: var(--ring); background: var(--card-2); border: 2px dashed var(--ring); }
+.medal.on { border-color: color-mix(in srgb, var(--c) 40%, transparent); background: linear-gradient(170deg, color-mix(in srgb, var(--c) 20%, var(--card)), var(--card) 75%); }
+.medal.on .mi, .medalpop .mi { color: var(--on-cat); border: 0; background: linear-gradient(150deg, rgba(255, 255, 255, .42), rgba(255, 255, 255, 0) 60%), var(--c); box-shadow: 0 8px 18px -8px var(--c); }
+.medalpop { position: fixed; z-index: 60; top: calc(env(safe-area-inset-top) + 10px); left: 12px; right: 12px; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 22px; text-align: left; color: var(--text); background: var(--card); border: 1px solid color-mix(in srgb, #FFD23F 50%, transparent); box-shadow: 0 20px 44px -14px rgba(0, 0, 0, .65); animation: popdown .5s cubic-bezier(.2, .9, .2, 1) both; }
+.medalpop b { display: block; font-size: 15.5px; font-weight: 700; }
+.medalpop .mi { width: 42px; height: 42px; }
+@keyframes popdown { from { opacity: 0; transform: translateY(-30px) scale(.96); } }
+/* O que faço agora? */
+.panel.nowc { gap: 14px; border-color: color-mix(in srgb, var(--lime) 30%, var(--edge)); }
+.nowt { font-size: 30px; line-height: 1.1; font-weight: 800; letter-spacing: -0.035em; overflow-wrap: anywhere; }
+/* O ritmo do mês */
+.pace { display: block; width: 100%; height: auto; overflow: visible; --pc: var(--lime); }
+.pace.over { --pc: #FF7A59; }
+.pace .g0 { stop-color: var(--pc); stop-opacity: .34; }
+.pace .g1 { stop-color: var(--pc); stop-opacity: 0; }
+.pace .real { fill: none; stroke: var(--pc); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.pace .ideal { stroke: color-mix(in srgb, var(--text) 45%, transparent); stroke-width: 1.5; stroke-dasharray: 5 5; }
+.pace .cap { stroke: color-mix(in srgb, var(--text) 16%, transparent); stroke-width: 1; }
+.pace .proj { stroke: var(--pc); stroke-width: 2.2; stroke-dasharray: 1 6; stroke-linecap: round; }
+.pace .dot { fill: var(--pc); stroke: var(--card); stroke-width: 2.5; }
+.pace .ax { font-family: var(--mono); font-size: 9.5px; fill: var(--muted); }
+/* O ano em quadradinhos */
+.yearg { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.ym { display: flex; flex-direction: column; gap: 7px; padding: 10px; border-radius: 16px; text-align: left; color: var(--text); background: var(--card); border: 1px solid var(--edge); }
+.ym:disabled { opacity: 1; }
+.yl { display: flex; justify-content: space-between; align-items: baseline; font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.yl b { font-size: 13px; font-weight: 700; color: var(--text); text-transform: capitalize; }
+.yg { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.yg i { position: relative; aspect-ratio: 1; border-radius: 3px; overflow: hidden; background: var(--card-2); }
+.yg i::before { content: ''; position: absolute; inset: 0; background: var(--lime); opacity: var(--h, 0); }
+.yg i.e { background: none; }
+.yg i.f { opacity: .4; }
+.ybars { display: flex; align-items: flex-end; gap: 5px; height: 120px; margin-top: 8px; }
+.ybars span { flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10px; text-transform: uppercase; color: color-mix(in srgb, var(--text) 60%, transparent); }
+.ybars i { width: 100%; min-height: 2px; border-radius: 5px; background: color-mix(in srgb, var(--text) 28%, transparent); }
+.ybars .top i { background: var(--lime); }
+/* Importar do banco */
+.item.off { opacity: .45; }
 /* A caixa que percebe */
 .magicbtn { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 58px; padding: 0 18px; border-radius: 20px; text-align: left; font-size: 16px; font-weight: 600; color: var(--muted); background: var(--card); border: 1px solid color-mix(in srgb, var(--lime) 34%, var(--edge)); box-shadow: 0 0 0 4px color-mix(in srgb, var(--lime) 7%, transparent), var(--shadow); }
 .magicbtn svg { flex: none; color: var(--accent-text); }
@@ -567,7 +611,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
   // ---------- dados ----------
   function blank() {
     return { budget: 0, name: '', theme: '', font: '', corners: '', challenge: 0, hide: false, mute: false, start: '', wage: 0, off: {}, dates: [],
-      bkp: '', since: '', swept: '', incFixed: [], projects: [], tpls: [], inbox: [], bills: [], planned: '', closed: '', weekly: '',
+      bkp: '', since: '', swept: '', incFixed: [], medals: {}, projects: [], tpls: [], inbox: [], bills: [], planned: '', closed: '', weekly: '',
       cur: '€', cycle: 1, roundTo: '', wishes: [], checks: [], diary: {}, order: ORDER.map(function (o) { return o[0]; }), expenses: [], incomes: [], tasks: [], fixed: [], goals: [], debts: [], shop: [], notes: [], lists: [], log: [],
       cats: DEFAULT_CATS.map(function (c) { return { id: c.id, label: c.label, color: c.color, icon: c.icon }; }) };
   }
@@ -671,6 +715,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     b.bills = arr(d.bills).filter(function (x) { return x && x.name && DATE.test(x.due); }).map(function (x) {
       return { id: String(x.id), name: String(x.name).slice(0, 30), amount: cents(x.amount), due: x.due, cat: cid(x.cat), rep: !!x.rep };
     });
+    if (d.medals && typeof d.medals === 'object') Object.keys(d.medals).forEach(function (k) { if (DATE.test(d.medals[k])) b.medals[k] = d.medals[k]; });
     b.planned = DATE.test(d.planned) ? d.planned : '';
     b.closed = DATE.test(d.closed) ? d.closed : '';
     b.weekly = DATE.test(d.weekly) ? d.weekly : '';
@@ -706,8 +751,11 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
   function load() {
     try { return clean(JSON.parse(localStorage.getItem(KEY))); } catch (e) { return blank(); }
   }
+  var medalsOn = false;
   function save() {
     try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {}
+    // Cada vez que algo muda, pode ter caído uma medalha.
+    if (medalsOn) checkMedals();
   }
 
   // Cópias automáticas: uma por dia, guardam-se as últimas 7.
@@ -1325,7 +1373,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
         (c.foot ? '<div class="say">' + c.foot + '</div>' : '') + '</button>',
       tiles: S.off.tiles ? '' : catTiles(curKey()),
       todo: '<section class="list"><div class="row-head"><h2 class="h2">Devia fazer</h2>' +
-        '<button class="linkbtn" data-a="nav" data-v="fazer">ver tudo</button></div>' + strip + load + list + '</section>',
+        '<button class="linkbtn" data-a="nav" data-v="fazer">ver tudo</button></div>' + strip + load + list + (n > 1 ? '<button class="btn plain" data-a="nowOpen">O que faço agora?</button>' : '') + '</section>',
       notes: note,
       semana: S.off.semana ? '' : '<button class="btn plain" data-a="nav" data-v="semana">Ver a semana</button>'
     };
@@ -1401,13 +1449,16 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
         (payC || payD ? mini('Cartão', money(payC)) + mini('Dinheiro', money(payD)) : '') + '</div>' : '') + '</section>' +
       (list.length >= 3 ? '<button class="btn plain" data-a="storyOpen" data-m="' + key + '">' + icSvg('spark', 18) + ' ' + capFirst(MESES[parseInt(p[1], 10) - 1]) + ' em história</button>' : '') +
       (isNow && !S.off.insights ? insightsHtml() : '') +
+      paceHtml(key, isNow) +
       chartHtml() +
       hub([['subs', 'Subscrições', nSubs ? money(subsMonthly()) + ' por mês' : 'o que pagas sempre', 'repeat', '#8B7BFF'],
         ['bills', 'Contas', S.bills.length ? S.bills.length + ' por pagar' : 'luz, água, IUC', 'note', '#FFA94D'],
         ['goals', 'Objetivos', S.goals.length ? goalsPct() + '% do caminho' : 'para o que poupas', 'target', '#C6F432'],
         ['debts', 'A acertar', debtsText(), 'swap', '#FF7A59'],
         ['cal', 'Calendário', 'o mês dia a dia', 'cal', '#5CC8FF'],
-        ['wishes', 'Desejos', S.wishes.length ? S.wishes.length + (S.wishes.length === 1 ? ' coisa · ' : ' coisas · ') + money(wishTotal) : 'o que queres comprar', 'spark', '#FF8AD1']]) +
+        ['wishes', 'Desejos', S.wishes.length ? S.wishes.length + (S.wishes.length === 1 ? ' coisa · ' : ' coisas · ') + money(wishTotal) : 'o que queres comprar', 'spark', '#FF8AD1'],
+        ['year', 'O ano', 'cada dia, um quadrado', 'cal', '#C6F432'],
+        ['bank', 'Importar', 'o extrato do banco', 'down', '#3DDBA4']]) +
       '<section class="list"><div class="row-head"><h2 class="h2">Movimentos</h2>' +
       '<button class="linkbtn" data-a="newExp">+ novo</button></div>' +
       (ui.filter ? '<div><button class="chip" data-a="filter" data-id="" style="border-color:' + catOf(ui.filter).color + '"><span class="cdot" style="background:' + catOf(ui.filter).color + '"></span>Só ' + esc(catOf(ui.filter).label) + ' · ver tudo</button></div>' : '') +
@@ -1441,7 +1492,8 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       (S.tasks.length ? '<div class="bar" style="margin-top:10px" aria-hidden="true"><i style="width:' + Math.round(done.length / S.tasks.length * 100) + '%;background:#3DDBA4"></i></div>' : '') +
       '</header>' +
       '<div class="pad">' +
-      hub([['inbox', 'Caixa', S.inbox.length ? S.inbox.length + ' por arrumar' : 'aponta sem pensar', 'bag', '#C6F432'],
+      hub([['now', 'Agora', 'eu escolho por ti', 'clock', '#FFD23F'],
+        ['inbox', 'Caixa', S.inbox.length ? S.inbox.length + ' por arrumar' : 'aponta sem pensar', 'bag', '#C6F432'],
         ['projs', 'Projetos', S.projects.length ? S.projects.length + (S.projects.length === 1 ? ' a andar' : ' a andar') : 'coisas grandes', 'target', '#5CC8FF'],
         ['habits', 'Hábitos', 'o mês dia a dia', 'star', '#8B7BFF'],
         ['tpls', 'Modelos', S.tpls.length ? S.tpls.length + (S.tpls.length === 1 ? ' guardado' : ' guardados') : 'tarefas de uma vez', 'spark', '#FF8AD1'],
@@ -1627,6 +1679,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       '<header class="head"><div class="eyebrow">À tua maneira</div><h1 class="title">Definições</h1></header>' +
       '<div class="pad">' +
       '<div class="list">' + step('data-a="nav" data-v="stats"', '#5CC8FF', 'star', 'Os teus números', 'totais, médias e sequências') +
+      step('data-a="nav" data-v="medals"', '#FFD23F', 'gift', 'Medalhas', Object.keys(S.medals).length + ' de ' + medalList().length + ' ganhas') +
       step('data-a="nav" data-v="help"', '#C6F432', 'book', 'Como usar a app', 'onde está cada coisa') + '</div>' +
       // Tu: nome, orçamento e desafio.
       '<section class="sect"><h2 class="h2">Tu</h2>' +
@@ -2169,8 +2222,8 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
   var MNN = ['janeiro', 'fevereiro', 'marco', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
   // Palavras que denunciam a categoria de um gasto, quando o histórico não ajuda.
   var CATWORDS = {
-    comida: 'cafe cafes almoco jantar lanche supermercado continente pingo lidl mercadona auchan aldi intermarche minipreco restaurante pizza hamburguer mcdonalds kfc sushi pastelaria padaria pao talho peixaria frutaria mercearia glovo takeaway snack gelado bolo sandes francesinha bifana tosta',
-    transportes: 'gasolina gasoleo combustivel passe uber bolt taxi metro comboio autocarro portagem portagens estacionamento parque carris oficina inspecao pneus voo viagem',
+    comida: 'cafe cafes almoco jantar lanche supermercado continente pingo lidl mercadona auchan aldi intermarche minipreco restaurante pizza hamburguer mcdonalds kfc sushi pastelaria padaria pao talho peixaria frutaria mercearia glovo takeaway snack gelado bolo sandes francesinha bifana tosta eats mcdonald burger starbucks padaria',
+    transportes: 'gasolina gasoleo combustivel passe uber bolt taxi metro comboio autocarro portagem portagens estacionamento parque carris oficina inspecao pneus voo viagem galp bp repsol prio cepsa brisa ryanair tap flixbus',
     casa: 'renda luz agua gas internet condominio meo vodafone edp eletricidade ikea limpeza detergente moveis seguro',
     lazer: 'cinema netflix spotify hbo disney jogo jogos bar concerto copo copos cerveja festa livro livros discoteca bilhete bilhetes museu playstation steam prenda',
     saude: 'farmacia medico dentista consulta ginasio analises hospital oculos medicamentos psicologo fisioterapia cabeleireiro barbeiro'
@@ -2464,13 +2517,18 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       html = '<div class="small" style="padding:0 4px">Experimenta:</div><div class="chips">' +
         ['café 1,20', 'dentista sexta às 15h', 'luz 45 até dia 20', 'comprar leite', 'quanto gastei em comida?', 'netflix 13,99 todos os meses'].map(function (e) {
           return '<button class="chip" data-a="magicEx" data-t="' + esc(e) + '">' + esc(e) + '</button>';
-        }).join('') + '</div>' + muted('Gastos, tarefas, contas, compras, notas e perguntas. No iPhone podes ditar: toca no microfone do teclado.');
+        }).join('') + '</div>' + muted('Gastos, tarefas, contas, compras, notas e perguntas. No iPhone podes ditar: toca no microfone do teclado.') +
+        muted('Várias de uma vez? Separa com ponto e vírgula, ou cola uma lista inteira.');
       if (ui.magicLog && ui.magicLog.length) {
         html += '<section class="wkday"><div class="eyebrow"><b>Acabaste de apontar</b></div>' + ui.magicLog.map(function (l) {
           return '<div class="wk">' + ICON.done.replace(/"24"/g, '"20"') + '<span>' + esc(l) + '</span></div>';
         }).join('') + '</section>';
       }
       return html;
+    }
+    if (magicParts(text).length > 1) {
+      var many = magicItems(text);
+      if (many.length > 1) return magicMulti(many);
     }
     var u = understand(text, ui.magicAs);
     if (u && u.kind === 'answer') {
@@ -2583,6 +2641,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
 
   // ---------- o mês contado em história ----------
   function storySlides(key) {
+    if (/^\d{4}$/.test(key)) return yearSlides(key);
     var r = periodRange(key), today = iso(new Date()), end = r.end < today ? r.end : today;
     var list = monthExpenses(key), prev = monthExpenses(shiftMonth(key, -1));
     var mi = parseInt(key.split('-')[1], 10) - 1, name = MESES[mi], pname = MESES[(mi + 11) % 12];
@@ -2692,10 +2751,10 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       x.strokeStyle = '#0F1115'; x.lineWidth = 11; x.lineCap = 'round'; x.lineJoin = 'round'; x.beginPath();
       x.moveTo(lx + 26, ly + 48); x.lineTo(lx + 41, ly + 63); x.lineTo(lx + 67, ly + 31); x.stroke();
       x.fillStyle = '#F4F5F7'; x.font = '700 46px ' + F; x.fillText('conta-me', 196, 146);
-      x.fillStyle = 'rgba(244,245,247,.62)'; x.font = '500 30px "DM Mono", ui-monospace, monospace'; x.fillText('O MEU MÊS', 82, 340);
+      x.fillStyle = 'rgba(244,245,247,.62)'; x.font = '500 30px "DM Mono", ui-monospace, monospace'; x.fillText(d.kicker || 'O MEU MÊS', 82, 340);
       x.fillStyle = '#C6F432'; x.font = '800 156px ' + F; x.fillText(capFirst(d.name), 74, 490, W - 150);
       x.fillStyle = '#F4F5F7'; x.font = '800 116px ' + F; x.fillText(money(s.total), 76, 668, W - 150);
-      x.fillStyle = 'rgba(244,245,247,.62)'; x.font = '500 36px ' + F; x.fillText('saíram este mês', 82, 726);
+      x.fillStyle = 'rgba(244,245,247,.62)'; x.font = '500 36px ' + F; x.fillText(d.sub || 'saíram este mês', 82, 726);
       var rows = [], y = 860;
       if (s.top) rows.push(['ONDE MAIS FOI', s.top.cat.label + ' · ' + money(s.top.v)]);
       if (s.tasks) rows.push(['TAREFAS RISCADAS', String(s.tasks)]);
@@ -2710,6 +2769,498 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     }
     if (document.fonts && document.fonts.load) Promise.all([document.fonts.load('800 150px "Bricolage Grotesque"'), document.fonts.load('500 30px "DM Mono"')]).then(draw, draw);
     else draw();
+  }
+
+  // ---------- medalhas ----------
+  // A maior sequência de dias sem gastos (fora os fixos), desde o primeiro gasto.
+  // Só contam os intervalos entre dois dias com gastos: assim, dias em que simplesmente não apontaste nada
+  // (antes de começares, ou depois do último registo) não passam por dias poupados.
+  function maxQuiet() {
+    var days = {}, best = 0;
+    S.expenses.forEach(function (e) { if (!e.fixed) days[e.date] = 1; });
+    Object.keys(days).sort().forEach(function (d, i, all) {
+      if (i) best = Math.max(best, Math.round((parseDay(d) - parseDay(all[i - 1])) / 864e5) - 1);
+    });
+    return best;
+  }
+  // Quantos meses já fecharam abaixo do orçamento.
+  function wonMonths() {
+    if (!S.budget) return 0;
+    var tot = {}, cur = curKey(), n = 0;
+    S.expenses.forEach(function (e) { var k = pkey(e.date); tot[k] = (tot[k] || 0) + e.amount; });
+    Object.keys(tot).forEach(function (k) { if (k < cur && tot[k] <= S.budget) n++; });
+    return n;
+  }
+  function medalList() {
+    var nExp = S.expenses.length, nLog = S.log.length;
+    var best = S.tasks.reduce(function (n, t) { return Math.max(n, t.best || 0, t.streak || 0); }, 0);
+    var saved = Math.floor(S.goals.reduce(function (n, g) { return n + g.saved; }, 0) / 100);
+    var goals = S.goals.filter(function (g) { return g.saved >= g.target; }).length, quiet = maxQuiet(), won = wonMonths();
+    function m(id, name, how, icon, color, have, need) { return { id: id, name: name, how: how, icon: icon, color: color, have: Math.min(have, need), need: need, ok: have >= need }; }
+    return [
+      m('e1', 'Primeiro passo', 'Apontar o primeiro gasto', 'wallet', '#C6F432', nExp, 1),
+      m('e50', 'Olho no dinheiro', '50 gastos apontados', 'wallet', '#C6F432', nExp, 50),
+      m('e200', 'Nada me escapa', '200 gastos apontados', 'wallet', '#C6F432', nExp, 200),
+      m('t10', 'A despachar', '10 tarefas riscadas', 'check', '#3DDBA4', nLog, 10),
+      m('t50', 'Máquina', '50 tarefas riscadas', 'check', '#3DDBA4', nLog, 50),
+      m('t200', 'Imparável', '200 tarefas riscadas', 'check', '#3DDBA4', nLog, 200),
+      m('s7', 'Semana certinha', 'Um hábito 7 dias seguidos', 'repeat', '#8B7BFF', best, 7),
+      m('s30', 'Já é rotina', 'Um hábito 30 dias seguidos', 'repeat', '#8B7BFF', best, 30),
+      m('q3', 'Mãos nos bolsos', '3 dias seguidos sem gastar', 'star', '#FFD23F', quiet, 3),
+      m('q7', 'Semana em branco', '7 dias seguidos sem gastar', 'star', '#FFD23F', quiet, 7),
+      m('w1', 'Mês ganho', 'Fechar um mês abaixo do orçamento', 'target', '#5CC8FF', won, 1),
+      m('w3', 'Três meses ganhos', 'Três meses abaixo do orçamento', 'target', '#5CC8FF', won, 3),
+      m('g1', 'Objetivo cumprido', 'Chegar ao fim de um objetivo', 'gift', '#FF8AD1', goals, 1),
+      m('p100', 'Mealheiro', 'Pôr 100 de lado nos objetivos', 'gift', '#FF8AD1', saved, 100),
+      m('d7', 'Sete linhas', '7 dias com diário', 'book', '#FFA94D', Object.keys(S.diary).length, 7),
+      m('b1', 'Prevenido', 'Guardar uma cópia dos dados', 'note', '#FFA94D', S.bkp ? 1 : 0, 1),
+      m('pl', 'Dia com plano', 'Planear um dia de manhã', 'cal', '#5CC8FF', S.planned ? 1 : 0, 1),
+      m('cl', 'Dia arrumado', 'Fechar um dia à noite', 'clock', '#8B7BFF', S.closed ? 1 : 0, 1)
+    ];
+  }
+  // Aviso no topo do ecrã quando ganhas uma medalha. Fica fora da app, para não desaparecer quando o ecrã muda.
+  function medalPop(list) {
+    var el = document.createElement('button');
+    el.className = 'medalpop';
+    el.innerHTML = '<span class="mi" style="--c:' + list[0].color + '">' + icSvg(list[0].icon, 22) + '</span><span><b>' + (list.length === 1 ? 'Medalha nova' : list.length + ' medalhas novas') +
+      '</b><span class="small">' + esc(list.map(function (x) { return x.name; }).join(', ')) + '</span></span>';
+    el.onclick = function () { el.remove(); if (!ui.locked) { ui.view = 'medals'; render(); } };
+    document.body.appendChild(el);
+    setTimeout(function () { el.remove(); }, 4500);
+  }
+  // Marca as medalhas acabadas de ganhar. Em silêncio ao abrir a app; com festa quando é a meio do uso.
+  function checkMedals(silent) {
+    var fresh = [], today = iso(new Date());
+    medalList().forEach(function (x) { if (x.ok && !S.medals[x.id]) { S.medals[x.id] = today; fresh.push(x); } });
+    if (!fresh.length) return;
+    try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {}
+    if (silent) return;
+    confetti(); blip([660, 880, 1100]); medalPop(fresh);
+  }
+  function viewMedals() {
+    var list = medalList(), n = list.filter(function (x) { return S.medals[x.id]; }).length;
+    return '<div class="screen"><header class="head"><div class="eyebrow">' + n + ' de ' + list.length + ' ganhas</div><h1 class="title">Medalhas</h1>' +
+      '<div class="bar" style="margin-top:10px" aria-hidden="true"><i style="width:' + Math.round(n / list.length * 100) + '%;background:#FFD23F"></i></div></header>' +
+      '<div class="pad"><div class="medals">' + list.map(function (x) {
+        var got = S.medals[x.id];
+        return '<div class="medal' + (got ? ' on' : '') + '" style="--c:' + x.color + '"><span class="mi">' + icSvg(x.icon, 24) + '</span><b>' + x.name + '</b>' +
+          '<span class="small">' + (got ? when(got) : x.how + (x.need > 1 ? ' · ' + x.have + '/' + x.need : '')) + '</span></div>';
+      }).join('') + '</div><button class="btn plain" data-a="nav" data-v="def">Voltar às definições</button></div></div>' + tabs('');
+  }
+
+  // ---------- o que faço agora? ----------
+  // As tarefas que cabem no tempo que tens, por ordem de quanto faz sentido pegar nelas já, cada uma com a razão principal.
+  function nowPicks(mins) {
+    var now = new Date(), today = iso(now), nowM = now.getHours() * 60 + now.getMinutes();
+    return todayTodo().filter(function (t) { return !mins || !t.est || t.est <= mins; }).map(function (t) {
+      var rs = [], late = t.due && t.due < today ? -daysUntil(t.due) : 0, idle = -daysUntil(t.touch);
+      if (t.time) {
+        var tm = parseInt(t.time.slice(0, 2), 10) * 60 + parseInt(t.time.slice(3), 10) - nowM;
+        if (tm <= 120 && tm > -90) rs.push([60, tm <= 0 ? 'Era para as ' + t.time + '.' : 'Tem hora marcada: ' + t.time + '.']);
+      }
+      if (t.focus === today) rs.push([50, 'É uma das que escolheste para hoje.']);
+      if (late) rs.push([40 + Math.min(20, late * 2), 'Está atrasada ' + (late === 1 ? '1 dia.' : late + ' dias.')]);
+      if (t.due === today) rs.push([35, 'O prazo é hoje.']);
+      if (t.pri) rs.push([30, 'Marcaste-a como urgente.']);
+      if (t.rep) rs.push([12, 'Faz parte da tua rotina' + (t.streak >= 2 ? ' e vais em ' + t.streak + ' seguidos.' : '.')]);
+      if (!t.rep && idle >= 14) rs.push([10 + Math.min(10, Math.round(idle / 4)), 'Está parada há ' + idle + ' dias.']);
+      if (mins && t.est) rs.push([8 + (t.est === mins ? 6 : 0), 'Cabe no tempo que tens.']);
+      if (!rs.length) rs.push([1, 'Está na lista à espera.']);
+      rs.sort(function (a, b) { return b[0] - a[0]; });
+      return { t: t, score: rs.reduce(function (n, r) { return n + r[0]; }, 0), why: rs[0][1] };
+    }).sort(function (a, b) { return b.score - a.score; });
+  }
+  function viewNow() {
+    var st = ui.now || (ui.now = { mins: 0, skip: 0 }), picks = nowPicks(st.mins), p = picks.length ? picks[st.skip % picks.length] : null;
+    var chips = '<div class="chips rep" role="group" aria-label="Tempo que tens">' + [[15, '15 min'], [30, '30 min'], [60, '1 hora'], [0, 'Tanto faz']].map(function (c) {
+      return '<button class="chip" data-a="nowTime" data-m="' + c[0] + '" aria-pressed="' + (st.mins === c[0]) + '">' + c[1] + '</button>';
+    }).join('') + '</div>';
+    var card = '<div class="empty">' + (todayTodo().length ? 'Nada cabe nesse tempo. Experimenta com mais.' : 'Não tens nada por fazer. Vai dar uma volta.') + '</div>';
+    if (p) {
+      var id = esc(p.t.id);
+      card = '<section class="panel nowc"><div class="eyebrow">Faz esta</div><div class="nowt">' + esc(p.t.text) + '</div>' +
+        '<div class="say">' + p.why + (p.t.est ? ' Demora cerca de ' + estText(p.t.est) + '.' : '') + '</div>' +
+        '<button class="btn" data-a="nowGo" data-id="' + id + '">Começar agora, com temporizador</button>' +
+        '<div class="pair"><button class="btn plain" data-a="nowDone" data-id="' + id + '" style="flex:1">Já está feita</button>' +
+        (picks.length > 1 ? '<button class="btn plain" data-a="nowSkip" style="flex:1">Outra</button>' : '') + '</div>' +
+        (p.t.rep ? '' : '<button class="linkbtn" data-a="nowLater" data-id="' + id + '" style="padding:4px 0;align-self:center">fica para amanhã</button>') + '</section>' +
+        '<div class="small" style="text-align:center">' + (picks.length === 1 ? 'É a única que cabe.' : 'Escolhida entre ' + picks.length + ' possíveis.') + '</div>';
+    }
+    return '<div class="screen"><header class="head"><div class="eyebrow">Eu escolho por ti</div><h1 class="title">O que faço agora?</h1></header>' +
+      '<div class="pad">' + muted('Quanto tempo tens?') + chips + card + '</div></div>' + tabs('hoje');
+  }
+
+  // ---------- o ritmo do mês ----------
+  // Gasto acumulado dia a dia, contra a linha do ritmo certo para o orçamento e a previsão até ao fim.
+  function paceHtml(key, isNow) {
+    var r = periodRange(key), today = iso(new Date()), list = monthExpenses(key);
+    if (list.length < 2) return '';
+    var total = Math.round((parseDay(r.end) - parseDay(r.start)) / 864e5) + 1, byDay = {}, pts = [], cum = 0, last = 0;
+    list.forEach(function (e) { byDay[e.date] = (byDay[e.date] || 0) + e.amount; });
+    for (var d = parseDay(r.start), i = 0; i < total; i++, d.setDate(d.getDate() + 1)) {
+      var k = iso(d);
+      if (isNow && k > today) break;
+      cum += byDay[k] || 0; pts.push(cum); last = i;
+    }
+    var proj = isNow ? forecast() : 0, top = Math.max(cum, S.budget, proj, 1) * 1.1;
+    var W = 320, H = 150, L = 4, R = 4, T = 12, B = 22;
+    function X(n) { return (L + (total > 1 ? n / (total - 1) : 0) * (W - L - R)).toFixed(1); }
+    function Y(v) { return (T + (1 - v / top) * (H - T - B)).toFixed(1); }
+    var line = pts.map(function (v, n) { return (n ? 'L' : 'M') + X(n) + ' ' + Y(v); }).join(' ');
+    var over = S.budget && (proj || cum) > S.budget;
+    var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" class="pace' + (over ? ' over' : '') + '" role="img" aria-label="Gasto acumulado ao longo do mês">' +
+      '<defs><linearGradient id="paceg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="g0"/><stop offset="1" class="g1"/></linearGradient></defs>' +
+      (S.budget ? '<line x1="' + L + '" y1="' + Y(S.budget) + '" x2="' + (W - R) + '" y2="' + Y(S.budget) + '" class="cap"/>' +
+        '<line x1="' + X(0) + '" y1="' + Y(0) + '" x2="' + X(total - 1) + '" y2="' + Y(S.budget) + '" class="ideal"/>' +
+        '<text x="' + L + '" y="' + (parseFloat(Y(S.budget)) - 5) + '" class="ax">orçamento</text>' : '') +
+      '<path d="' + line + ' L' + X(last) + ' ' + Y(0) + ' L' + X(0) + ' ' + Y(0) + ' Z" fill="url(#paceg)"/><path d="' + line + '" class="real"/>' +
+      (proj && last < total - 1 ? '<line x1="' + X(last) + '" y1="' + Y(cum) + '" x2="' + X(total - 1) + '" y2="' + Y(proj) + '" class="proj"/>' : '') +
+      '<circle cx="' + X(last) + '" cy="' + Y(cum) + '" r="4.5" class="dot"/>' +
+      '<text x="' + L + '" y="' + (H - 5) + '" class="ax">' + shortDate(r.start) + '</text><text x="' + (W - R) + '" y="' + (H - 5) + '" text-anchor="end" class="ax">' + shortDate(r.end) + '</text></svg>';
+    var say = 'O que foi saindo, dia a dia.';
+    if (S.budget && isNow) {
+      var diff = cum - Math.round(S.budget * (last + 1) / total);
+      say = diff <= 0 ? 'Estás <strong style="color:var(--done-text)">' + money(-diff) + ' abaixo</strong> do ritmo certo para hoje.' :
+        'Estás <strong style="color:#FF7A59">' + money(diff) + ' acima</strong> do ritmo certo para hoje.';
+    } else if (S.budget) say = cum <= S.budget ? 'Acabou ' + money(S.budget - cum) + ' abaixo do orçamento.' : 'Acabou ' + money(cum - S.budget) + ' acima do orçamento.';
+    return '<section class="panel"><h2 class="h2">O ritmo do mês</h2>' + svg + '<div class="say">' + say + '</div>' +
+      (S.budget ? '<div class="small">Linha cheia: o que gastaste. Tracejado: o ritmo certo.' + (proj && last < total - 1 ? ' Pontos: para onde vais.' : '') + '</div>' : '') + '</section>';
+  }
+
+  // ---------- o ano em quadradinhos ----------
+  function viewYear() {
+    var now = new Date(), cy = now.getFullYear(), y = ui.year || cy, ys = String(y), tasks = ui.yearMode === 't', today = iso(now);
+    var byDay = {}, perMonth = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], total = 0;
+    if (tasks) S.log.forEach(function (l) { if (l.date.slice(0, 4) !== ys) return; byDay[l.date] = (byDay[l.date] || 0) + 1; perMonth[parseInt(l.date.slice(5, 7), 10) - 1]++; total++; });
+    else S.expenses.forEach(function (e) {
+      if (e.date.slice(0, 4) !== ys) return;
+      perMonth[parseInt(e.date.slice(5, 7), 10) - 1] += e.amount; total += e.amount;
+      if (!e.fixed) byDay[e.date] = (byDay[e.date] || 0) + e.amount;      // os fixos não pintam o dia, senão o dia 1 ganhava sempre
+    });
+    // A cor vai até ao valor que 90% dos dias não passam, para um dia fora do normal não apagar os outros.
+    var vals = Object.keys(byDay).map(function (k) { return byDay[k]; }).sort(function (a, b) { return a - b; });
+    var max = vals.length ? vals[Math.floor((vals.length - 1) * 0.9)] || 1 : 1, topDay = '';
+    Object.keys(byDay).forEach(function (k) { if (!topDay || byDay[k] > byDay[topDay]) topDay = k; });
+    var months = MESES.map(function (name, m) {
+      var n = new Date(y, m + 1, 0).getDate(), lead = (new Date(y, m, 1).getDay() + 6) % 7, cells = '', i;
+      for (i = 0; i < lead; i++) cells += '<i class="e"></i>';
+      for (i = 1; i <= n; i++) {
+        var k = ys + '-' + pad(m + 1) + '-' + pad(i), v = byDay[k] || 0;
+        cells += '<i' + (k > today ? ' class="f"' : v ? ' style="--h:' + Math.max(0.2, Math.min(1, v / max)).toFixed(2) + '"' : '') + '></i>';
+      }
+      var label = perMonth[m] ? (tasks ? perMonth[m] : Math.round(perMonth[m] / 100)) : '';
+      return '<button class="ym"' + (tasks ? ' disabled' : ' data-a="openMonth" data-m="' + ys + '-' + pad(m + 1) + '"') + '><span class="yl"><b>' + MES3[m] + '</b><span>' + label + '</span></span><span class="yg">' + cells + '</span></button>';
+    }).join('');
+    var used = perMonth.filter(function (v) { return v > 0; }).length || 1, nDays = Object.keys(byDay).length;
+    var stats = tasks ?
+      mini('Riscadas em ' + ys, total) + mini('Dias com tarefas feitas', nDays) + (topDay ? mini('Melhor dia', shortDate(topDay) + ' · ' + byDay[topDay]) : '') + mini('Média por mês', Math.round(total / used)) :
+      mini('Total de ' + ys, money(total)) + mini('Média por mês', money(Math.round(total / used))) + (topDay ? mini('Dia mais caro', shortDate(topDay)) : '') + mini('Dias em que gastaste', nDays);
+    return '<div class="screen"><header class="head"><div class="eyebrow">Cada quadrado é um dia</div><h1 class="title">O teu ano</h1></header><div class="pad">' +
+      '<div class="month"><button data-a="yearMove" data-by="-1" aria-label="Ano anterior">' + ICON.prev + '</button><div class="h2">' + ys + '</div>' +
+      '<button data-a="yearMove" data-by="1" aria-label="Ano seguinte"' + (y >= cy ? ' disabled' : '') + '>' + ICON.next + '</button></div>' +
+      '<div style="text-align:center"><div class="seg" role="group" aria-label="O que mostrar">' +
+      '<button data-a="yearMode" data-k="g" aria-pressed="' + !tasks + '">Gastos</button><button data-a="yearMode" data-k="t" aria-pressed="' + tasks + '">Tarefas</button></div></div>' +
+      '<div class="yearg">' + months + '</div>' +
+      '<div class="small" style="text-align:center">' + (tasks ? 'Quanto mais forte, mais tarefas riscaste nesse dia.' : 'Quanto mais forte, mais gastaste nesse dia. Toca num mês para o abrir.') + '</div>' +
+      (total ? '<section class="panel"><div class="minis">' + stats + '</div></section>' : '') +
+      (S.expenses.some(function (e) { return e.date.slice(0, 4) === ys; }) ? '<button class="btn" data-a="storyOpen" data-m="' + ys + '">' + ys + ' em história</button>' : '') +
+      '</div></div>' + tabs('gastos');
+  }
+  // A história de um ano inteiro, no mesmo formato da do mês.
+  function yearSlides(y) {
+    var now = new Date(), open = String(now.getFullYear()) === y, today = iso(now), out = [];
+    var list = S.expenses.filter(function (e) { return e.date.slice(0, 4) === y; }), total = sum(list);
+    var COL = [['#C6F432', '#8B7BFF'], ['#FF7A59', '#FFD23F'], ['#8B7BFF', '#5CC8FF'], ['#FF8AD1', '#FF7A59'], ['#5CC8FF', '#3DDBA4'], ['#FFD23F', '#FF8AD1'], ['#3DDBA4', '#C6F432'], ['#8B7BFF', '#FF8AD1']];
+    function slide(eyebrow, big, title, line, extra, n) {
+      var c = COL[out.length % COL.length];
+      out.push({ a: c[0], b: c[1], eyebrow: eyebrow, big: big, title: title || '', line: line || '', extra: extra || '', n: n || 0 });
+    }
+    var mt = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], byDay = {}, groups = {};
+    list.forEach(function (e) {
+      mt[parseInt(e.date.slice(5, 7), 10) - 1] += e.amount;
+      if (e.fixed) return;
+      byDay[e.date] = 1;
+      if (!e.desc) return;
+      var k = norm(e.desc);
+      groups[k] = groups[k] || { n: 0, v: 0, name: e.desc };
+      groups[k].n++; groups[k].v += e.amount;
+    });
+    var used = mt.filter(function (v) { return v > 0; }).length || 1, hi = mt.indexOf(Math.max.apply(null, mt)), lo = -1;
+    // O mês que ainda vai a meio não entra na corrida do mais leve.
+    mt.forEach(function (v, i) { if (v > 0 && !(open && i === now.getMonth()) && (lo < 0 || v < mt[lo])) lo = i; });
+    slide('conta-me apresenta', y, open ? 'O teu ano até agora.' : 'O teu ano inteiro.', 'Toca no lado direito para avançar.');
+    slide('Saíram da tua conta', money(total), 'Em média ' + money(Math.round(total / used)) + ' por mês.', list.length + (list.length === 1 ? ' gasto apontado.' : ' gastos apontados.'), '', total);
+    if (used > 1) slide('O mês mais caro', capFirst(MESES[hi]), money(mt[hi]) + '.', lo >= 0 && lo !== hi ? 'O mais leve foi ' + MESES[lo] + ', com ' + money(mt[lo]) + '.' : '',
+      '<div class="ybars">' + mt.map(function (v, i) { return '<span' + (i === hi ? ' class="top"' : '') + '><i style="height:' + Math.round(v / mt[hi] * 100) + '%"></i>' + MES3[i].charAt(0) + '</span>'; }).join('') + '</div>');
+    var tot = catTotals(list);
+    if (tot.length) slide('Para onde foi', esc(tot[0].cat.label), money(tot[0].v) + ' · ' + Math.round(tot[0].v / total * 100) + '% de tudo.', '',
+      '<div class="sbars">' + tot.slice(0, 4).map(function (t) {
+        return '<div class="r"><span>' + esc(t.cat.label) + '</span><span class="tr"><i style="width:' + Math.max(4, Math.round(t.v / tot[0].v * 100)) + '%;background:' + t.cat.color + '"></i></span><span>' + Math.round(t.v / 100) + '</span></div>';
+      }).join('') + '</div>');
+    if (list.length) {
+      var big = list.reduce(function (a, e) { return e.amount > a.amount ? e : a; });
+      slide('O maior de todos', money(big.amount), esc(big.desc || catOf(big.cat).label) + ', ' + shortDate(big.date) + '.', '', '', big.amount);
+    }
+    var classic = Object.keys(groups).map(function (k) { return groups[k]; }).filter(function (g) { return g.n >= 5; }).sort(function (a, b) { return b.n - a.n; })[0];
+    if (classic) slide('O teu clássico', esc(classic.name), classic.n + ' vezes, ' + money(classic.v) + ' ao todo.', 'É o gasto que mais repetiste no ano.');
+    var logs = S.log.filter(function (l) { return l.date.slice(0, 4) === y; });
+    if (logs.length) {
+      var lm = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+      logs.forEach(function (l) { lm[parseInt(l.date.slice(5, 7), 10) - 1]++; });
+      var bm = lm.indexOf(Math.max.apply(null, lm));
+      slide('Do lado das tarefas', String(logs.length), logs.length === 1 ? 'tarefa riscada.' : 'tarefas riscadas.', 'O mês em que mais fizeste foi ' + MESES[bm] + ', com ' + lm[bm] + '.');
+    }
+    var quiet = 0, endDay = open ? today : y + '-12-31', first = Object.keys(byDay).sort()[0];
+    if (first) for (var d = parseDay(first); iso(d) <= endDay; d.setDate(d.getDate() + 1)) if (!byDay[iso(d)]) quiet++;
+    var c = COL[out.length % COL.length];
+    out.push({ final: true, a: c[0], b: c[1] });
+    return { name: y, kicker: 'O MEU ANO', sub: open ? 'saíram até agora' : 'saíram este ano', slides: out,
+      stats: { total: total, top: tot[0] || null, tasks: logs.length, quiet: quiet, verdict: open ? 'Ainda há ano pela frente.' : 'Ano fechado.' } };
+  }
+
+  // ---------- importar o extrato do banco ----------
+  function splitCsv(line, sep) {
+    var out = [], cur = '', q = false;
+    for (var i = 0; i < line.length; i++) {
+      var ch = line.charAt(i);
+      if (ch === '"') { if (q && line.charAt(i + 1) === '"') { cur += '"'; i++; } else q = !q; }
+      else if (ch === sep && !q) { out.push(cur); cur = ''; }
+      else cur += ch;
+    }
+    out.push(cur);
+    return out.map(function (s) { return s.trim(); });
+  }
+  // Datas como 01-10-2026, 1/10/26 ou 2026-10-01 (com ou sem horas a seguir).
+  function bankDate(s) {
+    function ok(y, mo, d) { y = +y; mo = +mo; d = +d; return y < 2000 || y > 2100 || mo < 1 || mo > 12 || d < 1 || d > 31 ? '' : y + '-' + pad(mo) + '-' + pad(d); }
+    var m = /^(\d{4})[-\/.](\d{1,2})[-\/.](\d{1,2})(?!\d)/.exec(s);
+    if (m) return ok(m[1], m[2], m[3]);
+    m = /^(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{4}|\d{2})(?!\d)/.exec(s);
+    return m ? ok(m[3].length === 2 ? '20' + m[3] : m[3], m[2], m[1]) : '';
+  }
+  // Valores como -12,50 · 1.234,56 · 1,234.56 · 12,50- · (12,50). Devolve cêntimos com sinal, ou null se não for um valor.
+  function bankAmt(s) {
+    var t = String(s).replace(/eur/gi, '').replace(/[€$£\s ]/g, ''), neg = /^\(.*\)$/.test(t) || /^-/.test(t) || /-$/.test(t);
+    t = t.replace(/[()+\-]/g, '');
+    if (!/^\d[\d.,]*$/.test(t)) return null;
+    var m = /[.,](\d{1,2})$/.exec(t);
+    var whole = (m ? t.slice(0, m.index) : t).replace(/[.,]/g, ''), v = parseInt(whole || '0', 10) * 100 + (m ? parseInt((m[1] + '0').slice(0, 2), 10) : 0);
+    return isFinite(v) ? (neg ? -v : v) : null;
+  }
+  // "COMPRA 8234 CONTINENTE MATOSINHOS" fica "Continente matosinhos".
+  function bankDesc(s) {
+    s = String(s).replace(/\s+/g, ' ').trim()
+      .replace(/^(compras?|pagamento de servi[cç]os|pagamento|pag\.? ?serv\.?|pag\.?|pgt\.?|pagam\.?|trf\.?|transf\.?)\s+(\d{2,}\s+)?/i, '')
+      .replace(/\s+\d{6,}.*$/, '');
+    return capFirst(s.toLowerCase()).slice(0, 40);
+  }
+  // Lê o texto de um extrato (CSV, texto com tabulações ou tabela HTML) e devolve os movimentos que encontrou.
+  function parseBank(text) {
+    var rows, c;
+    if (/^\s*PK/.test(text) || text.indexOf('\u0000') >= 0) return { rows: [], err: 'Esse ficheiro é um Excel a sério. No site do banco, escolhe exportar em CSV.' };
+    if (/<tr[\s>]/i.test(text.slice(0, 20000))) {
+      var doc = new DOMParser().parseFromString(text, 'text/html');
+      rows = Array.prototype.map.call(doc.querySelectorAll('tr'), function (tr) {
+        return Array.prototype.map.call(tr.children, function (x) { return x.textContent.replace(/\s+/g, ' ').trim(); });
+      });
+    } else {
+      var lines = text.replace(/^﻿/, '').replace(/\r\n?/g, '\n').split('\n').filter(function (l) { return l.trim(); });
+      var sep = ';', sepN = 0;
+      // A vírgula só ganha se aparecer bem mais do que os outros, porque também serve de casa decimal.
+      [';', '\t', '|', ','].forEach(function (s) {
+        var n = 0;
+        lines.slice(0, 40).forEach(function (l) { n += l.split(s).length - 1; });
+        if (n > sepN * (s === ',' ? 1.5 : 1)) { sep = s; sepN = n; }
+      });
+      rows = lines.map(function (l) { return splitCsv(l, sep); });
+    }
+    // Só interessam as linhas com uma data. A última linha sem data antes delas é o cabeçalho.
+    // A coluna da data é aquela onde a data aparece mais vezes; assim, uma linha solta do topo ("Data de início; 01-10-2026") não engana.
+    var firstDate = rows.map(function (r) { for (var i = 0; i < r.length; i++) if (bankDate(r[i])) return i; return -1; }), seen = {}, dateCol = -1;
+    firstDate.forEach(function (i) { if (i >= 0) seen[i] = (seen[i] || 0) + 1; });
+    Object.keys(seen).forEach(function (k) { if (dateCol < 0 || seen[k] > seen[dateCol]) dateCol = parseInt(k, 10); });
+    var data = [], header = null;
+    rows.forEach(function (r, k) {
+      var full = r.filter(Boolean).length >= 3;
+      if (firstDate[k] === dateCol && full) data.push(r);
+      else if (!data.length && full && firstDate[k] < 0) header = r;
+    });
+    if (!data.length) return { rows: [], err: 'Não encontrei movimentos com data. Confirma que é o extrato em CSV.' };
+    var nc = Math.max.apply(null, data.map(function (r) { return r.length; })), st = [];
+    for (c = 0; c < nc; c++) {
+      var s = { d: 0, n: 0, ne: 0, len: 0, dc: 0 };
+      data.forEach(function (r) {
+        var v = r[c] || '';
+        if (!v) return;
+        s.ne++;
+        if (bankDate(v)) s.d++;
+        else if (bankAmt(v) !== null) s.n++;
+        else { s.len += v.length; if (/^(d|c|deb|cred|d[ée]bito|cr[ée]dito)\.?$/i.test(v)) s.dc++; }
+      });
+      st.push(s);
+    }
+    function isNum(i) { return st[i] && st[i].n > 0 && st[i].n >= st[i].ne * 0.9; }
+    function isText(i) { return st[i] && st[i].len > 0 && st[i].d + st[i].n < st[i].ne * 0.5; }
+    // Procura uma coluna pelo nome do cabeçalho, desde que o conteúdo seja do tipo certo.
+    function H(re, pred) {
+      if (!header) return -1;
+      for (var i = 0; i < header.length; i++) if (re.test(norm(header[i])) && pred(i)) return i;
+      return -1;
+    }
+    var descCol = H(/descri|descritivo|designa|movimento|detalhe|details|narrative/, isText);
+    if (descCol < 0) for (c = 0; c < nc; c++) if (isText(c) && st[c].dc < st[c].ne * 0.8 && (descCol < 0 || st[c].len > st[descCol].len)) descCol = c;
+    var debitCol = H(/debito|debit\b|saidas?\b/, isNum), creditCol = H(/credito|credit\b|entradas?\b/, isNum);
+    var amtCol = H(/montante|valor|importancia|amount|quantia/, isNum), typeCol = -1, balance = {};
+    if (header) header.forEach(function (h, i) { if (/saldo|balance/.test(norm(h))) balance[i] = 1; });
+    for (c = 0; c < nc; c++) if (st[c].dc >= data.length * 0.8) typeCol = c;
+    if (debitCol < 0 && creditCol < 0 && amtCol < 0) {
+      // Sem cabeçalho que ajude: duas colunas de valores que nunca estão cheias ao mesmo tempo são débito e crédito; senão, a primeira coluna de valores.
+      var cand = [];
+      for (c = 0; c < nc; c++) if (c !== dateCol && c !== descCol && !balance[c] && isNum(c)) cand.push(c);
+      for (c = 0; c + 1 < cand.length && debitCol < 0; c++) {
+        var a = cand[c], b = cand[c + 1];
+        var both = data.filter(function (r) { return r[a] && r[b]; }).length;
+        if (!both && st[a].ne + st[b].ne >= data.length * 0.9) { debitCol = a; creditCol = b; }
+      }
+      if (debitCol < 0) amtCol = cand.length ? cand[0] : -1;
+    }
+    if (dateCol < 0 || (debitCol < 0 && creditCol < 0 && amtCol < 0)) return { rows: [], err: 'Encontrei as datas, mas não percebi qual é a coluna dos valores.' };
+    var signed = amtCol >= 0 && data.some(function (r) { var v = bankAmt(r[amtCol] || ''); return v !== null && v < 0; });
+    var today = iso(new Date()), out = [];
+    data.forEach(function (r) {
+      var date = bankDate(r[dateCol] || ''), v = 0, inc = false, x;
+      if (amtCol >= 0) {
+        x = bankAmt(r[amtCol] || '');
+        if (x) { v = Math.abs(x); inc = typeCol >= 0 ? /^c/i.test(r[typeCol] || '') : signed && x > 0; }
+      } else {
+        x = debitCol >= 0 ? bankAmt(r[debitCol] || '') : null;
+        if (x) v = Math.abs(x);
+        else { x = creditCol >= 0 ? bankAmt(r[creditCol] || '') : null; if (x) { v = Math.abs(x); inc = true; } }
+      }
+      if (!date || !v || date > today) return;
+      var desc = bankDesc(descCol >= 0 ? r[descCol] || '' : '');
+      var dup = (inc ? S.incomes : S.expenses).some(function (e) { return e.date === date && e.amount === v; });
+      out.push({ date: date, desc: desc, amount: v, inc: inc, cat: inc ? '' : guessCat(desc), on: !dup, dup: dup });
+    });
+    out.sort(function (p, q) { return p.date < q.date ? 1 : p.date > q.date ? -1 : 0; });
+    return { rows: out, err: out.length ? '' : 'Não encontrei movimentos com valor neste ficheiro.',
+      note: amtCol >= 0 && !signed && typeCol < 0 ? 'Os valores vinham todos sem sinal, por isso contei tudo como gasto.' : '' };
+  }
+  function bankLoad(text) {
+    var res = parseBank(text);
+    ui.bank = res;
+    ui.view = 'bank'; render();
+  }
+  function viewBank() {
+    var b = ui.bank;
+    if (!b || !b.rows.length) {
+      return '<div class="screen"><header class="head"><div class="eyebrow">Sem escrever um a um</div><h1 class="title">Importar do banco</h1></header><div class="pad">' +
+        muted('No site ou na app do teu banco, exporta os movimentos em CSV e escolhe aqui o ficheiro. Eu leio as datas, os nomes e os valores, adivinho as categorias e mostro-te tudo antes de guardar.') +
+        (b && b.err ? '<div class="note warn"><span class="say"><strong>Não deu.</strong> ' + esc(b.err) + '</span></div>' : '') +
+        '<button class="btn" data-a="bankPick">Escolher ficheiro</button>' +
+        '<input class="sr" type="file" id="bankfile" accept=".csv,.txt,.tsv,.xls,text/csv,text/plain" aria-label="Ficheiro do banco" tabindex="-1">' +
+        '<div class="field"><label class="lbl" for="bankpaste">Ou cola aqui as linhas do extrato</label>' +
+        '<textarea class="input" id="bankpaste" placeholder="01-10-2026;COMPRA CONTINENTE;-23,45"></textarea></div>' +
+        '<button class="btn plain" data-a="bankPaste">Ler o que colei</button>' +
+        '<div class="small">O ficheiro é lido aqui mesmo, no teu telemóvel. Não vai para lado nenhum.</div></div></div>' + tabs('gastos');
+    }
+    var on = b.rows.filter(function (r) { return r.on; }), nInc = on.filter(function (r) { return r.inc; }).length, dups = b.rows.filter(function (r) { return r.dup; }).length;
+    var rows = b.rows.slice(0, 300).map(function (r, i) {
+      var cat = r.inc ? null : catOf(r.cat);
+      return '<div class="item mov' + (r.on ? '' : ' off') + '"><button class="main" data-a="bankToggle" data-i="' + i + '" aria-pressed="' + r.on + '" style="padding-right:0">' +
+        (r.on ? ICON.done : '<span class="ring"></span>') + '<span class="text"><span>' + esc(r.desc || 'Sem nome') + '</span><span class="small">' + shortDate(r.date) + ' · ' +
+        (r.inc ? 'entrada' : esc(cat.label.toLowerCase())) + (r.dup ? ' · <span style="color:#FF7A59">já cá está?</span>' : '') + '</span></span>' +
+        '<span class="amt"' + (r.inc ? ' style="color:var(--done-text)"' : '') + '>' + (r.inc ? '+' : '−') + bare(money(r.amount)) + '</span></button>' +
+        (r.inc ? '<span style="width:14px"></span>' : '<button class="x" data-a="bankCat" data-i="' + i + '" aria-label="Mudar a categoria de ' + esc(r.desc) + '"><span class="cdot" style="width:16px;height:16px;background:' + cat.color + '"></span></button>') + '</div>';
+    }).join('');
+    return '<div class="screen"><header class="head"><div class="eyebrow">' + b.rows.length + ' movimentos encontrados</div><h1 class="title">Confere e importa</h1></header><div class="pad">' +
+      muted('Toca numa linha para a deixar de fora. Toca na bolinha de cor para mudar a categoria: muda em todas as que têm o mesmo nome.' +
+        (dups ? (dups === 1 ? ' Deixei de fora 1 que parece já estar na app.' : ' Deixei de fora ' + dups + ' que parecem já estar na app.') : '') + (b.note ? ' ' + esc(b.note) : '')) +
+      '<div class="pair"><button class="btn plain" data-a="bankCancel" style="flex:1">Cancelar</button>' +
+      '<button class="btn" data-a="bankImport" style="flex:2"' + (on.length ? '' : ' disabled') + '>Importar ' + on.length + '</button></div>' +
+      '<div class="small" style="text-align:center">' + (on.length - nInc) + (on.length - nInc === 1 ? ' gasto e ' : ' gastos e ') + nInc + (nInc === 1 ? ' entrada, ' : ' entradas, ') + money(sum(on.filter(function (r) { return !r.inc; }))) + ' em gastos.</div>' +
+      '<section class="list">' + rows + '</section></div></div>' + tabs('gastos');
+  }
+
+  // ---------- várias coisas de uma vez na caixa ----------
+  function magicParts(text) { return String(text).split(/[;\n]+/).map(function (s) { return s.trim(); }).filter(Boolean); }
+  function magicItems(text) {
+    return magicParts(text).map(function (p) { return understand(p, ''); }).filter(function (u) { return u && u.kind !== 'answer'; });
+  }
+  function magicMulti(items) {
+    return '<section class="panel magic"><div class="eyebrow">Percebi ' + items.length + ' coisas</div>' + items.map(function (u) {
+      var c = magicCard(u);
+      return '<div class="mrow">' + c.chip + '<span class="text"><span>' + esc(c.title) + '</span><span class="small">' + c.sub + '</span></span>' +
+        (c.right ? '<span class="amt">' + c.right + '</span>' : '') + '</div>';
+    }).join('') + '<button class="btn" data-a="magicSaveAll">Guardar as ' + items.length + '</button></section>';
+  }
+  // Cria na app o que a caixa percebeu. Devolve onde ficou, para se poder desfazer.
+  function magicCreate(u) {
+    var today = iso(new Date()), key, id = uid(), label, inc = null;
+    if (u.kind === 'expense') {
+      key = 'expenses';
+      S.expenses.push({ id: id, amount: u.amount, cat: u.cat, desc: u.desc, date: u.date, fixed: '', pay: u.pay, kind: '', photo: false });
+      // Arredonda para a unidade seguinte e manda a diferença para o objetivo escolhido.
+      var rg = S.roundTo && find(S.goals, S.roundTo), diff = (100 - u.amount % 100) % 100;
+      if (rg && diff && rg.saved < rg.target) rg.saved += diff;
+      ui.lastCat = u.cat;
+      label = (u.desc || catOf(u.cat).label) + ' · ' + money(u.amount);
+    } else if (u.kind === 'income') {
+      key = 'incomes';
+      inc = { id: id, amount: u.amount, desc: u.desc, date: u.date, fixed: '' };
+      S.incomes.push(inc);
+      if (u.every) everySync(inc, true);
+      label = (u.desc || 'Entrada') + ' · +' + money(u.amount);
+    } else if (u.kind === 'bill') {
+      key = 'bills';
+      S.bills.push({ id: id, name: u.name, amount: u.amount, due: u.due, cat: u.cat, rep: false });
+      label = u.name + ' · até ' + shortDate(u.due);
+    } else if (u.kind === 'sub') {
+      key = 'fixed';
+      S.fixed.push({ id: id, desc: u.desc, amount: u.amount, cat: u.cat, day: Math.min(31, Math.max(1, u.day)), last: '', kind: u.fixo ? 'fixo' : 'sub', period: 'm', month: 1 });
+      applyFixed();
+      label = (u.desc || 'Subscrição') + ' · ' + money(u.amount) + ' por mês';
+    } else if (u.kind === 'debt') {
+      key = 'debts';
+      S.debts.unshift({ id: id, who: u.who.slice(0, 30), amount: u.amount, dir: u.dir, note: '' });
+      label = u.who + (u.dir === 'in' ? ' deve-te ' : ': deves ') + money(u.amount);
+    } else if (u.kind === 'shop') {
+      key = 'shop';
+      S.shop.unshift({ id: id, text: u.text.slice(0, 80), done: false });
+      label = 'Compras · ' + u.text;
+    } else if (u.kind === 'note') {
+      key = 'notes';
+      S.notes.unshift({ id: id, text: u.text.slice(0, 4000), at: today });
+      label = 'Nota · ' + u.text.slice(0, 40);
+    } else if (u.kind === 'date') {
+      key = 'dates';
+      S.dates.unshift({ id: id, name: u.name.slice(0, 40), day: u.day, month: u.month });
+      label = u.name + ' · todos os anos';
+    } else {
+      key = 'tasks';
+      id = newTask(u.text, { due: u.due, time: u.time, rep: u.rep, days: u.days.length ? u.days : [new Date().getDay()], pri: u.pri, est: u.est }).id;
+      label = u.text + (u.due ? ' · ' + whenF(u.due) : '') + (u.time ? ' · ' + u.time : '');
+    }
+    return { key: key, id: id, label: label, inc: inc };
+  }
+  function magicUndo(c) {
+    S[c.key] = S[c.key].filter(function (x) { return x.id !== c.id; });
+    if (c.key === 'fixed') S.expenses = S.expenses.filter(function (e) { return e.fixed !== c.id; });
+    if (c.inc && c.inc.fixed) S.incFixed = S.incFixed.filter(function (r) { return r.id !== c.inc.fixed; });
+  }
+  // Depois de guardar: caixa limpa e pronta para a próxima.
+  function magicAfter(made) {
+    save(); blip([520, 780]);
+    ui.magicLog = made.map(function (c) { return c.label; }).reverse().concat(ui.magicLog || []).slice(0, 8);
+    ui.magic = ''; ui.magicAs = '';
+    var input = document.getElementById('magicin');
+    if (input) { input.value = ''; input.focus(); }
+    var out = document.getElementById('magicout');
+    if (out) out.innerHTML = magicOut();
+    toast(made.length === 1 ? 'Guardado.' : made.length + ' coisas guardadas.', function () {
+      made.forEach(magicUndo);
+      ui.magicLog = (ui.magicLog || []).slice(made.length);
+    });
   }
 
   function viewDebts() {
@@ -2872,6 +3423,12 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
         'Também responde a perguntas (“quanto gastei em comida este mês?”, “quanto sobra?”) e procura em tudo o que já lá está.']) +
       sec('O mês em história', ['No ecrã Gastos, o botão “em história” conta o mês em meia dúzia de ecrãs. No fim podes partilhar uma imagem.',
         'Em “Reparei que…” a app mostra padrões que encontrou sozinha nos teus dados.']) +
+      sec('Menos trabalho', ['“O que faço agora?” (no ecrã Hoje) escolhe uma tarefa por ti conforme o tempo que tens, e arranca o temporizador.',
+        'Em Gastos → Importar, lês o extrato do banco em CSV de uma vez, com as categorias já adivinhadas.',
+        'Na caixa do ecrã Hoje podes apontar várias coisas de uma vez, separadas por ponto e vírgula.']) +
+      sec('Ver de longe', ['Em Gastos, “O ritmo do mês” mostra se estás acima ou abaixo do ritmo certo para o orçamento.',
+        'Em Gastos → O ano, cada dia do ano é um quadrado. No fundo, o ano em história.',
+        'As medalhas estão nas definições. Ganham-se sozinhas, a usar a app.']) +
       sec('Organizar o dia', ['De manhã, o ecrã Hoje convida-te a escolher as três tarefas que contam. Ficam só essas à vista até as acabares.',
         'Depois das 19h, “Fechar o dia” mostra o que fizeste e passa para amanhã o que ficou.',
         'Ao domingo aparece a revisão da semana. Também a encontras no fundo de “Ver a semana”.',
@@ -2997,7 +3554,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       stat(nMonths ? money(Math.round(total / nMonths)) : '—', 'média por mês') + stat(top ? esc(top.cat.label) : '—', 'onde mais gastas') +
       stat(money(sum(S.incomes)), 'entradas registadas') + stat(quiet, quiet === 1 ? 'dia seguido sem gastar' : 'dias seguidos sem gastar') +
       stat(doneTasks, 'tarefas riscadas') + stat(best, 'melhor sequência de dias') +
-      '</div>' + year + week + '<button class="btn plain" data-a="nav" data-v="def">Voltar às definições</button></div></div>' + tabs('');
+      '</div>' + year + week + '<button class="btn plain" data-a="nav" data-v="year">O ano em quadradinhos</button><button class="btn plain" data-a="nav" data-v="def">Voltar às definições</button></div></div>' + tabs('');
   }
 
   function viewPin() {
@@ -3031,7 +3588,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
   var VIEWS = { hoje: viewHoje, gastos: viewGastos, fazer: viewFazer, form: viewForm, def: viewDef, subs: viewSubs, semana: viewSemana, cat: viewCat, task: viewTask, pin: viewPin,
     goals: viewGoals, debts: viewDebts, shop: viewShop, notes: viewNotes, stats: viewStats, ed: viewEd, hist: viewHist, dates: viewDates,
     wishes: viewWishes, cal: viewCal, checks: viewChecks, check: viewCheck, diary: viewDiary, timer: viewTimer, help: viewHelp, sweep: viewSweep,
-    plan: viewPlan, close: viewClose, review: viewReview, stale: viewStale, projs: viewProjs, proj: viewProj, tpls: viewTpls, habits: viewHabits, inbox: viewInbox, bills: viewBills, magic: viewMagic, story: viewStory };
+    plan: viewPlan, close: viewClose, review: viewReview, stale: viewStale, projs: viewProjs, proj: viewProj, tpls: viewTpls, habits: viewHabits, inbox: viewInbox, bills: viewBills, magic: viewMagic, story: viewStory, medals: viewMedals, now: viewNow, year: viewYear, bank: viewBank };
   // Cores do tema, e o brilho do topo conforme a hora.
   function applyTheme() {
     var t = THEMES.filter(function (x) { return x[0] === S.theme; })[0] || THEMES[0], h = new Date().getHours();
@@ -3413,64 +3970,9 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     },
     magicAs: function (el) { ui.magicAs = el.dataset.k; document.getElementById('magicout').innerHTML = magicOut(); },
     magicSave: function () {
-      var u = understand(ui.magic || '', ui.magicAs), today = iso(new Date()), key, id = uid(), label, inc = null;
+      var u = understand(ui.magic || '', ui.magicAs);
       if (!u || u.kind === 'answer') return;
-      if (u.kind === 'expense') {
-        key = 'expenses';
-        S.expenses.push({ id: id, amount: u.amount, cat: u.cat, desc: u.desc, date: u.date, fixed: '', pay: u.pay, kind: '', photo: false });
-        // Arredonda para a unidade seguinte e manda a diferença para o objetivo escolhido.
-        var rg = S.roundTo && find(S.goals, S.roundTo), diff = (100 - u.amount % 100) % 100;
-        if (rg && diff && rg.saved < rg.target) rg.saved += diff;
-        ui.lastCat = u.cat;
-        label = (u.desc || catOf(u.cat).label) + ' · ' + money(u.amount);
-      } else if (u.kind === 'income') {
-        key = 'incomes';
-        inc = { id: id, amount: u.amount, desc: u.desc, date: u.date, fixed: '' };
-        S.incomes.push(inc);
-        if (u.every) everySync(inc, true);
-        label = (u.desc || 'Entrada') + ' · +' + money(u.amount);
-      } else if (u.kind === 'bill') {
-        key = 'bills';
-        S.bills.push({ id: id, name: u.name, amount: u.amount, due: u.due, cat: u.cat, rep: false });
-        label = u.name + ' · até ' + shortDate(u.due);
-      } else if (u.kind === 'sub') {
-        key = 'fixed';
-        S.fixed.push({ id: id, desc: u.desc, amount: u.amount, cat: u.cat, day: Math.min(31, Math.max(1, u.day)), last: '', kind: u.fixo ? 'fixo' : 'sub', period: 'm', month: 1 });
-        applyFixed();
-        label = (u.desc || 'Subscrição') + ' · ' + money(u.amount) + ' por mês';
-      } else if (u.kind === 'debt') {
-        key = 'debts';
-        S.debts.unshift({ id: id, who: u.who.slice(0, 30), amount: u.amount, dir: u.dir, note: '' });
-        label = u.who + (u.dir === 'in' ? ' deve-te ' : ': deves ') + money(u.amount);
-      } else if (u.kind === 'shop') {
-        key = 'shop';
-        S.shop.unshift({ id: id, text: u.text.slice(0, 80), done: false });
-        label = 'Compras · ' + u.text;
-      } else if (u.kind === 'note') {
-        key = 'notes';
-        S.notes.unshift({ id: id, text: u.text.slice(0, 4000), at: today });
-        label = 'Nota · ' + u.text.slice(0, 40);
-      } else if (u.kind === 'date') {
-        key = 'dates';
-        S.dates.unshift({ id: id, name: u.name.slice(0, 40), day: u.day, month: u.month });
-        label = u.name + ' · todos os anos';
-      } else {
-        key = 'tasks';
-        id = newTask(u.text, { due: u.due, time: u.time, rep: u.rep, days: u.days.length ? u.days : [new Date().getDay()], pri: u.pri, est: u.est }).id;
-        label = u.text + (u.due ? ' · ' + whenF(u.due) : '') + (u.time ? ' · ' + u.time : '');
-      }
-      save(); blip([520, 780]);
-      ui.magicLog = [label].concat(ui.magicLog || []).slice(0, 6);
-      ui.magic = ''; ui.magicAs = '';
-      var input = document.getElementById('magicin');
-      if (input) { input.value = ''; input.focus(); }
-      document.getElementById('magicout').innerHTML = magicOut();
-      toast('Guardado.', function () {
-        S[key] = S[key].filter(function (x) { return x.id !== id; });
-        if (key === 'fixed') S.expenses = S.expenses.filter(function (e) { return e.fixed !== id; });
-        if (inc && inc.fixed) S.incFixed = S.incFixed.filter(function (r) { return r.id !== inc.fixed; });
-        ui.magicLog = (ui.magicLog || []).slice(1);
-      });
+      magicAfter([magicCreate(u)]);
     },
     storyOpen: function (el) {
       ui.story = { key: el.dataset.m || shiftMonth(curKey(), -1), i: 0, back: ui.view, file: null };
@@ -3498,6 +4000,67 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
         document.body.appendChild(a); a.click(); a.remove();
       }
       if (st.file) go(st.file); else storyImage(st.key, go);
+    },
+    nowOpen: function () { ui.now = { mins: 0, skip: 0 }; ui.view = 'now'; render(); },
+    nowTime: function (el) { ui.now.mins = parseInt(el.dataset.m, 10) || 0; ui.now.skip = 0; render(true); },
+    nowSkip: function () { ui.now.skip++; render(true); },
+    nowGo: function (el) {
+      var t = find(S.tasks, el.dataset.id);
+      if (!t) return;
+      var dur = t.est && t.est <= 15 ? 15 : t.est >= 45 ? 45 : 25;
+      ui.timer = { id: t.id, text: t.text, dur: dur, left: dur * 60000, end: Date.now() + dur * 60000, done: false };
+      blip([520]);
+      ui.view = 'timer'; render();
+    },
+    nowDone: function (el) { act.toggle({ dataset: { id: el.dataset.id }, closest: function () { return null; } }); },
+    nowLater: function (el) {
+      var t = find(S.tasks, el.dataset.id);
+      if (!t) return;
+      snooze(t, 't');
+      save(); render(true);
+    },
+    yearMove: function (el) { ui.year = (ui.year || new Date().getFullYear()) + parseInt(el.dataset.by, 10); render(true); },
+    yearMode: function (el) { ui.yearMode = el.dataset.k; render(true); },
+    bankPick: function () { var f = document.getElementById('bankfile'); if (f) f.click(); },
+    bankPaste: function () {
+      var t = document.getElementById('bankpaste');
+      if (t && t.value.trim()) bankLoad(t.value);
+    },
+    bankToggle: function (el) { var r = ui.bank.rows[parseInt(el.dataset.i, 10)]; if (r) { r.on = !r.on; render(true); } },
+    bankCat: function (el) {
+      var r = ui.bank.rows[parseInt(el.dataset.i, 10)];
+      if (!r) return;
+      var i = 0;
+      S.cats.forEach(function (c, k) { if (c.id === r.cat) i = k; });
+      var next = S.cats[(i + 1) % S.cats.length].id, name = r.desc;
+      ui.bank.rows.forEach(function (x) { if (!x.inc && x.desc === name) x.cat = next; });
+      render(true);
+    },
+    bankCancel: function () { ui.bank = null; render(); },
+    bankImport: function () {
+      var on = ui.bank.rows.filter(function (r) { return r.on; }), ids = {}, last = '';
+      if (!on.length) return;
+      on.forEach(function (r) {
+        var id = uid();
+        ids[id] = 1;
+        if (r.inc) S.incomes.push({ id: id, amount: r.amount, desc: r.desc, date: r.date, fixed: '' });
+        else {
+          S.expenses.push({ id: id, amount: r.amount, cat: r.cat, desc: r.desc, date: r.date, fixed: '', pay: 'c', kind: '', photo: false });
+          if (r.date > last) last = r.date;
+        }
+      });
+      save(); blip([520, 780]);
+      ui.bank = null; ui.view = 'gastos'; ui.filter = null;
+      ui.month = last ? pkey(last) : curKey();
+      render();
+      toast(on.length === 1 ? '1 movimento importado.' : on.length + ' movimentos importados.', function () {
+        S.expenses = S.expenses.filter(function (e) { return !ids[e.id]; });
+        S.incomes = S.incomes.filter(function (e) { return !ids[e.id]; });
+      });
+    },
+    magicSaveAll: function () {
+      var items = magicItems(ui.magic || '');
+      if (items.length) magicAfter(items.map(magicCreate));
     },
     need: function (el) {
       var f = ui.form;
@@ -3952,6 +4515,18 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     document.getElementById('nova').focus();
   });
 
+  // Colar uma lista na caixa: cada linha passa a ser uma coisa.
+  root.addEventListener('paste', function (ev) {
+    if (ev.target.id !== 'magicin') return;
+    var t = ((ev.clipboardData || window.clipboardData).getData('text') || '').trim();
+    if (!/\n/.test(t)) return;
+    ev.preventDefault();
+    var joined = t.split(/\n+/).map(function (s) { return s.trim(); }).filter(Boolean).join('; ');
+    ev.target.value = (ev.target.value.trim() ? ev.target.value.trim() + '; ' : '') + joined;
+    ui.magic = ev.target.value; ui.magicAs = '';
+    document.getElementById('magicout').innerHTML = magicOut();
+  });
+
   root.addEventListener('focusin', function (ev) {
     if (ev.target.id !== 'nova' || ui.addOpen) return;
     ui.addOpen = true;
@@ -4031,6 +4606,17 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       };
       reader.readAsText(ev.target.files[0]);
     }
+    // Extrato do banco: muitos vêm em Windows-1252 e não em UTF-8, por isso tenta um e depois o outro.
+    if (ev.target.id === 'bankfile' && ev.target.files[0]) {
+      var br = new FileReader();
+      br.onload = function () {
+        var buf = new Uint8Array(br.result), text;
+        if (buf[0] === 0xFF && buf[1] === 0xFE) text = new TextDecoder('utf-16le').decode(buf);
+        else try { text = new TextDecoder('utf-8', { fatal: true }).decode(buf); } catch (e) { text = new TextDecoder('windows-1252').decode(buf); }
+        bankLoad(text);
+      };
+      br.readAsArrayBuffer(ev.target.files[0]);
+    }
     if (ev.target.id === 'fdate' && ui.form) ui.form.date = ev.target.value;
     if (ev.target.id === 'tdue' && ui.taskForm) ui.taskForm.due = ev.target.value;
     if (ev.target.id === 'ttime' && ui.taskForm) ui.taskForm.time = ev.target.value;
@@ -4042,6 +4628,9 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
   applyGoals();
   applyIncomes();
   rollTasks();
+  // As medalhas que já tinhas ganho antes de existirem entram em silêncio; as seguintes fazem festa.
+  checkMedals(true);
+  medalsOn = true;
   // Dia a partir do qual se contam os 30 dias do aviso da cópia: o do primeiro gasto, ou hoje.
   if (!S.since) {
     S.since = S.expenses.reduce(function (m, e) { return e.date < m ? e.date : m; }, iso(new Date()));
