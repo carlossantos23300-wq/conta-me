@@ -1,6 +1,7 @@
 // Guarda a app no iPhone para abrir sem internet.
 const CACHE = 'contame-v1';
-const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icon-180.png', 'icon-512.png'];
+// jsqr.js é o leitor de códigos QR das faturas: fica guardado para a câmara funcionar sem rede.
+const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icon-180.png', 'icon-512.png', 'jsqr.js'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));

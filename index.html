@@ -328,6 +328,41 @@ h2.ask { margin-top: 6px; }
 .wk { display: flex; align-items: center; gap: 12px; min-height: 50px; padding: 6px 14px; border-radius: 18px; font-size: 16px; font-weight: 600; }
 .wk .amt { margin-left: auto; font-size: 14.5px; }
 .wk .cdot { width: 10px; height: 10px; }
+/* Dinheiro da semana */
+.weekp { width: 100%; text-align: left; color: var(--text); gap: 10px; padding: 16px 18px; border-radius: 24px; }
+.weekp > span { display: block; }
+.weekp .wkbig { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.weekp .wkbig b { font-size: 30px; font-weight: 800; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.weekp:active { transform: scale(.985); }
+/* Agenda do mês */
+.cd .dots { display: flex; justify-content: center; gap: 2px; min-height: 7px; }
+.cd .dots u, .legend u { width: 6px; height: 6px; border-radius: 50%; text-decoration: none; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 12px; font-size: 12px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend u { width: 8px; height: 8px; }
+button.wk { width: 100%; color: var(--text); font-family: inherit; text-align: left; }
+button.wk:active { transform: scale(.985); }
+/* Ler a fatura pela câmara */
+.magicrow { display: flex; gap: 8px; }
+.magicrow .magicbtn { flex: 1; min-width: 0; }
+.scanbtn { flex: none; width: 58px; min-height: 58px; border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--accent-text); background: var(--card); border: 1px solid color-mix(in srgb, var(--lime) 34%, var(--edge)); box-shadow: 0 0 0 4px color-mix(in srgb, var(--lime) 7%, transparent), var(--shadow); }
+.scanbtn:active { transform: scale(.95); }
+.screen.scan { position: relative; overflow: hidden; background: #000; color: #fff; }
+.scan video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.scanshade { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 50% 44%, transparent 0, transparent 30%, rgba(0, 0, 0, .6) 62%); }
+.scanbox { position: absolute; left: 50%; top: 44%; width: min(68vw, 300px); aspect-ratio: 1; transform: translate(-50%, -50%); pointer-events: none; }
+.scanbox i { position: absolute; width: 36px; height: 36px; border: 4px solid var(--lime); }
+.scanbox i:nth-child(1) { left: 0; top: 0; border-right: 0; border-bottom: 0; border-radius: 16px 0 0 0; }
+.scanbox i:nth-child(2) { right: 0; top: 0; border-left: 0; border-bottom: 0; border-radius: 0 16px 0 0; }
+.scanbox i:nth-child(3) { left: 0; bottom: 0; border-right: 0; border-top: 0; border-radius: 0 0 0 16px; }
+.scanbox i:nth-child(4) { right: 0; bottom: 0; border-left: 0; border-top: 0; border-radius: 0 0 16px 0; }
+.scantop { position: absolute; left: 0; right: 0; top: 0; display: flex; justify-content: space-between; align-items: center; padding: calc(env(safe-area-inset-top) + 16px) 10px 0 22px; }
+.scantop .eyebrow { color: rgba(255, 255, 255, .82); }
+.scanhint { position: absolute; left: 24px; right: 24px; top: calc(44% + min(34vw, 150px) + 22px); text-align: center; font-size: 17px; line-height: 1.3; font-weight: 700; text-shadow: 0 1px 10px rgba(0, 0, 0, .8); }
+.scanbot { position: absolute; left: 16px; right: 16px; bottom: calc(env(safe-area-inset-bottom) + 22px); display: flex; flex-direction: column; gap: 10px; }
+.scanbot .small { color: rgba(255, 255, 255, .85); }
+.okbig { width: 78px; height: 78px; border-radius: 50%; align-self: center; display: flex; align-items: center; justify-content: center; color: #0F1115; background: #3DDBA4; box-shadow: 0 16px 34px -14px #3DDBA4; animation: okpop .5s cubic-bezier(.2, .9, .2, 1) both; }
+@keyframes okpop { from { opacity: 0; transform: scale(.4); } 60% { transform: scale(1.12); } }
 /* Medalhas */
 .medals { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .medal { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 8px; border-radius: 20px; text-align: center; background: var(--card); border: 1px solid var(--edge); }
@@ -590,8 +625,13 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
   MODS.push(['checks', 'Rotinas'], ['diary', 'Diário']);
   MODS.push(['plan', 'Planear e fechar o dia'], ['inbox', 'Caixa de entrada'], ['projs', 'Projetos'], ['tpls', 'Modelos'], ['habits', 'Hábitos'], ['bills', 'Contas a pagar']);
   MODS.push(['magic', 'Caixa que percebe'], ['insights', 'Reparei que…']);
+  var HAS_QR = true;
+  if (HAS_QR) MODS.push(['scan', 'Ler faturas com a câmara']);
+  MODS.push(['now', 'O que faço agora'], ['week', 'Dinheiro da semana'], ['agenda', 'Agenda do mês'], ['wars', 'Garantias'], ['trips', 'Viagens'], ['year', 'O ano'], ['bank', 'Importar do banco']);
+  // O que fica à vista no modo simples.
+  var SIMPLE_KEEP = ['magic', 'shop', 'notes', 'subs'];
   // Blocos do ecrã Hoje, pela ordem em que aparecem se não mexeres.
-  var ORDER = [['card', 'Cartão do mês'], ['tiles', 'Blocos de categorias'], ['todo', 'Devia fazer'], ['notes', 'Avisos'], ['semana', 'Botão da semana']];
+  var ORDER = [['card', 'Cartão do mês'], ['week', 'Dinheiro da semana'], ['tiles', 'Blocos de categorias'], ['todo', 'Devia fazer'], ['notes', 'Avisos'], ['semana', 'Botão da semana']];
   CIC.cam = 'M4 8h3l2-3h6l2 3h3v11H4zM12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z';
   CIC.clock = 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2';
   CIC.up = 'M6 14l6-6 6 6';
@@ -611,7 +651,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
   // ---------- dados ----------
   function blank() {
     return { budget: 0, name: '', theme: '', font: '', corners: '', challenge: 0, hide: false, mute: false, start: '', wage: 0, off: {}, dates: [],
-      bkp: '', since: '', swept: '', incFixed: [], medals: {}, projects: [], tpls: [], inbox: [], bills: [], planned: '', closed: '', weekly: '',
+      bkp: '', since: '', swept: '', incFixed: [], medals: {}, shops: {}, trips: [], simple: false, offSaved: null, projects: [], tpls: [], inbox: [], bills: [], planned: '', closed: '', weekly: '',
       cur: '€', cycle: 1, roundTo: '', wishes: [], checks: [], diary: {}, order: ORDER.map(function (o) { return o[0]; }), expenses: [], incomes: [], tasks: [], fixed: [], goals: [], debts: [], shop: [], notes: [], lists: [], log: [],
       cats: DEFAULT_CATS.map(function (c) { return { id: c.id, label: c.label, color: c.color, icon: c.icon }; }) };
   }
@@ -652,6 +692,10 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     // A ordem guardada, sem repetidos, mais os blocos que entretanto tenham aparecido.
     var ord = arr(d.order).filter(function (x, i, a) { return b.order.indexOf(x) >= 0 && a.indexOf(x) === i; });
     b.order = ord.concat(b.order.filter(function (x) { return ord.indexOf(x) < 0; }));
+    // Quem já tinha a sua ordem recebe o bloco da semana logo a seguir ao cartão, e não no fundo.
+    if (ord.length && ord.indexOf('week') < 0) { b.order.splice(b.order.indexOf('week'), 1); b.order.splice(b.order.indexOf('card') + 1, 0, 'week'); }
+    b.simple = !!d.simple;
+    if (d.offSaved && typeof d.offSaved === 'object') { b.offSaved = {}; MODS.forEach(function (m) { if (d.offSaved[m[0]]) b.offSaved[m[0]] = true; }); }
     b.wishes = arr(d.wishes).filter(function (x) { return x && x.name; }).map(function (x) {
       return { id: String(x.id), name: String(x.name).slice(0, 40), price: cents(x.price), at: DATE.test(x.at) ? x.at : iso(new Date()) };
     });
@@ -694,11 +738,21 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     var ids = {};
     b.cats.forEach(function (c) { ids[c.id] = 1; });
     function cid(x) { return ids[x] ? x : 'outro'; }
+    b.trips = arr(d.trips).filter(function (x) { return x && x.id && x.name && DATE.test(x.start) && DATE.test(x.end); }).map(function (x) {
+      return { id: String(x.id), name: String(x.name).slice(0, 30), start: x.start, end: x.end < x.start ? x.start : x.end, budget: cents(x.budget), inMonth: !!x.inMonth };
+    });
+    var tripIds = {};
+    b.trips.forEach(function (t) { tripIds[t.id] = 1; });
     b.expenses = (Array.isArray(d.expenses) ? d.expenses : []).filter(function (e) {
       return e && e.amount > 0 && DATE.test(e.date);
     }).map(function (e) {
       return { id: String(e.id), amount: Math.round(e.amount), cat: cid(e.cat), desc: String(e.desc || ''), date: e.date, fixed: e.fixed ? String(e.fixed) : '',
-        pay: e.pay === 'c' || e.pay === 'd' ? e.pay : '', kind: e.kind === 'n' || e.kind === 'w' ? e.kind : '', photo: !!e.photo };
+        pay: e.pay === 'c' || e.pay === 'd' ? e.pay : '', kind: e.kind === 'n' || e.kind === 'w' ? e.kind : '', photo: !!e.photo, doc: String(e.doc || '').slice(0, 80),
+        war: DATE.test(e.war) ? e.war : '', ret: DATE.test(e.ret) ? e.ret : '', trip: tripIds[e.trip] ? String(e.trip) : '' };
+    });
+    if (d.shops && typeof d.shops === 'object') Object.keys(d.shops).forEach(function (k) {
+      var sh = d.shops[k];
+      if (/^\d{9}$/.test(k) && sh && sh.name) b.shops[k] = { name: String(sh.name).slice(0, 40), cat: cid(sh.cat) };
     });
     b.projects = arr(d.projects).filter(function (x) { return x && x.id && x.name; }).map(function (x) {
       return { id: String(x.id), name: String(x.name).slice(0, 30) };
@@ -963,7 +1017,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     return { total: total, left: left, gone: total - left + 1, start: r.start, end: r.end };
   }
   function monthExpenses(key) {
-    return S.expenses.filter(function (e) { return pkey(e.date) === key; })
+    return S.expenses.filter(function (e) { return pkey(e.date) === key && !apart(e); })
       .sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : (a.id < b.id ? 1 : -1); });
   }
   function sum(list) { return list.reduce(function (n, e) { return n + e.amount; }, 0); }
@@ -1132,7 +1186,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
 
   // Atalhos lado a lado para os ecrãs secundários: [ecrã, título, linha pequena, desenho, cor].
   function hub(items) {
-    items = items.filter(function (it) { return !S.off[it[0]]; });
+    items = items.filter(function (it) { return !S.off[it[0]] && (it[0] !== 'scan' || HAS_QR); });
     if (!items.length) return '';
     return '<div class="hub">' + items.map(function (it) {
       return '<button class="hubt" data-a="nav" data-v="' + it[0] + '"><span class="hi" style="--c:' + it[4] + '">' + icSvg(it[3], 18) + '</span>' +
@@ -1243,6 +1297,13 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       (mins > 360 ? ' É muito para um dia: adia alguma.' : '') + '</div>' : '';
     // Convites para planear de manhã, fechar à noite e rever ao domingo.
     var prompts = '';
+    // Durante uma viagem: quanto podes gastar hoje.
+    var tripNow = S.off.trips ? null : find(S.trips, tripFor(today));
+    if (tripNow) {
+      var ti = tripInfo(tripNow);
+      prompts += '<button class="note sub" data-a="tripOpen" data-id="' + esc(tripNow.id) + '">' + icSvg('plane', 22) + '<span class="say"><strong>Em viagem: ' + esc(tripNow.name) + '.</strong> ' +
+        (tripNow.budget ? (ti.rest >= 0 ? 'Hoje podes gastar ' + money(ti.perDay) + '. ' : 'Já passaste o previsto. ') + 'Foram ' + money(ti.spent) + ' de ' + money(tripNow.budget) + '.' : 'Já foram ' + money(ti.spent) + '.') + '</span></button>';
+    }
     if (!S.off.plan) {
       if (S.planned !== today && h < 15 && n > 3) prompts += promptNote('plan', 'target', 'Planear o dia.', 'Escolhe as três que contam hoje.');
       if (h >= 19 && S.closed !== today && (doneToday.length || n)) prompts += promptNote('close', 'check', 'Fechar o dia.', 'Vê o que fizeste e arruma o que ficou.');
@@ -1279,6 +1340,13 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       if (daysUntil(b.due) > 3) return;
       note += '<button class="note warn" data-a="nav" data-v="bills">' + icSvg('clock', 22) +
         '<span class="say"><strong>' + esc(b.name) + (bd.late ? ' está por pagar.' : ' é para pagar.') + '</strong> ' + bd.text + (b.amount ? ' · ' + money(b.amount) : '') + '</span></button>';
+    });
+    // Prazos de devolução a três dias do fim e garantias a um mês.
+    if (!S.off.wars) warItems().forEach(function (x) {
+      var left = daysUntil(x.end);
+      if (left < 0 || left > (x.kind === 'w' ? 30 : 3)) return;
+      note += '<button class="note warn" data-a="nav" data-v="wars">' + icSvg(x.kind === 'w' ? 'shield' : 'swap', 22) + '<span class="say"><strong>' + esc(x.e.desc || catOf(x.e.cat).label) + ': ' +
+        (x.kind === 'w' ? 'a garantia' : 'o prazo para devolver') + ' ' + (left === 0 ? 'acaba hoje.' : left === 1 ? 'acaba amanhã.' : 'acaba daqui a ' + left + ' dias.') + '</strong></span></button>';
     });
     // Tarefas esquecidas e coisas por arrumar.
     var stale = staleTasks().length;
@@ -1371,14 +1439,19 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
         '<div class="big" data-n="' + c.spent + '">' + money(c.spent) + '</div>' + c.bar +
         (c.stats ? '<div class="minis">' + c.stats + '</div>' : '') +
         (c.foot ? '<div class="say">' + c.foot + '</div>' : '') + '</button>',
+      week: weekHtml(),
       tiles: S.off.tiles ? '' : catTiles(curKey()),
       todo: '<section class="list"><div class="row-head"><h2 class="h2">Devia fazer</h2>' +
-        '<button class="linkbtn" data-a="nav" data-v="fazer">ver tudo</button></div>' + strip + load + list + (n > 1 ? '<button class="btn plain" data-a="nowOpen">O que faço agora?</button>' : '') + '</section>',
+        '<button class="linkbtn" data-a="nav" data-v="fazer">ver tudo</button></div>' + strip + load + list + (n > 1 && !S.off.now ? '<button class="btn plain" data-a="nowOpen">O que faço agora?</button>' : '') + '</section>',
       notes: note,
-      semana: S.off.semana ? '' : '<button class="btn plain" data-a="nav" data-v="semana">Ver a semana</button>'
+      semana: S.off.semana && S.off.agenda ? '' : '<div class="pair">' +
+        (S.off.semana ? '' : '<button class="btn plain" data-a="nav" data-v="semana" style="flex:1">Ver a semana</button>') +
+        (S.off.agenda ? '' : '<button class="btn plain" data-a="nav" data-v="agenda" style="flex:1">Agenda do mês</button>') + '</div>'
     };
     return '<div class="screen">' + head + '<div class="pad after-hero">' +
-      (S.off.magic ? '' : '<button class="magicbtn" data-a="magicOpen">' + icSvg('spark', 20) + '<span>Escreve qualquer coisa…</span></button>') + prompts +
+      (S.off.magic && noScan() ? '' : '<div class="magicrow">' +
+        (S.off.magic ? '' : '<button class="magicbtn" data-a="magicOpen">' + icSvg('spark', 20) + '<span>Escreve qualquer coisa…</span></button>') +
+        (noScan() ? '' : '<button class="scanbtn" data-a="scanOpen" aria-label="Ler uma fatura com a câmara">' + icSvg('cam', 24) + '</button>') + '</div>') + prompts +
       S.order.map(function (id) { return blocks[id] || ''; }).join('') + '</div></div>' + tabs('hoje');
   }
 
@@ -1447,6 +1520,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
         (incTotal ? mini('Entrou', money(incTotal)) + mini('Saldo do mês', money(saldo), saldo >= 0 ? 'var(--done-text)' : '#FF7A59') : '') +
         (kindN || kindW ? mini('Precisava', money(kindN)) + mini('Quis', money(kindW)) : '') +
         (payC || payD ? mini('Cartão', money(payC)) + mini('Dinheiro', money(payD)) : '') + '</div>' : '') + '</section>' +
+      tripNotes(key) +
       (list.length >= 3 ? '<button class="btn plain" data-a="storyOpen" data-m="' + key + '">' + icSvg('spark', 18) + ' ' + capFirst(MESES[parseInt(p[1], 10) - 1]) + ' em história</button>' : '') +
       (isNow && !S.off.insights ? insightsHtml() : '') +
       paceHtml(key, isNow) +
@@ -1457,6 +1531,9 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
         ['debts', 'A acertar', debtsText(), 'swap', '#FF7A59'],
         ['cal', 'Calendário', 'o mês dia a dia', 'cal', '#5CC8FF'],
         ['wishes', 'Desejos', S.wishes.length ? S.wishes.length + (S.wishes.length === 1 ? ' coisa · ' : ' coisas · ') + money(wishTotal) : 'o que queres comprar', 'spark', '#FF8AD1'],
+        ['scan', 'Fatura', 'lê o QR com a câmara', 'cam', '#FFA94D'],
+        ['wars', 'Garantias', warItems().length ? warItems().filter(function (x) { return x.end >= iso(new Date()); }).length + ' ativas' : 'e prazos de devolução', 'shield', '#3DDBA4'],
+        ['trips', 'Viagens', tripFor(iso(new Date())) ? 'a decorrer' : S.trips.length ? S.trips.length + (S.trips.length === 1 ? ' guardada' : ' guardadas') : 'um orçamento à parte', 'plane', '#5CC8FF'],
         ['year', 'O ano', 'cada dia, um quadrado', 'cal', '#C6F432'],
         ['bank', 'Importar', 'o extrato do banco', 'down', '#3DDBA4']]) +
       '<section class="list"><div class="row-head"><h2 class="h2">Movimentos</h2>' +
@@ -1493,6 +1570,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       '</header>' +
       '<div class="pad">' +
       hub([['now', 'Agora', 'eu escolho por ti', 'clock', '#FFD23F'],
+        ['agenda', 'Agenda', 'o mês com tudo', 'cal', '#5CC8FF'],
         ['inbox', 'Caixa', S.inbox.length ? S.inbox.length + ' por arrumar' : 'aponta sem pensar', 'bag', '#C6F432'],
         ['projs', 'Projetos', S.projects.length ? S.projects.length + (S.projects.length === 1 ? ' a andar' : ' a andar') : 'coisas grandes', 'target', '#5CC8FF'],
         ['habits', 'Hábitos', 'o mês dia a dia', 'star', '#8B7BFF'],
@@ -1620,6 +1698,10 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
         '<button class="chip" data-a="need" data-k="w" aria-pressed="' + (f.kind === 'w') + '">Quis</button>') +
       '<span class="sep" aria-hidden="true"></span>' +
       '<button class="chip" data-a="photo" aria-pressed="' + !!f.photo + '">' + icSvg('cam', 18) + (f.photo ? 'Ver talão' : 'Talão') + '</button>' +
+      (S.off.wars ? '' : '<button class="chip" data-a="warFlag" aria-pressed="' + !!f.war + '">Garantia 3 anos</button>' +
+        '<button class="chip" data-a="retCycle" aria-pressed="' + !!f.ret + '">' + (f.ret ? 'Devolver em ' + f.ret + ' dias' : 'Prazo de devolução') + '</button>') +
+      (f.tripCand && find(S.trips, f.tripCand) ? '<button class="chip" data-a="tripFlag" aria-pressed="' + !!f.trip + '">' + icSvg('plane', 18) + esc(find(S.trips, f.tripCand).name) + '</button>' : '') +
+      (f.mode === 'novo' && !noScan() ? '<button class="chip" data-a="scanOpen">Ler o QR da fatura</button>' : '') +
       '<input class="sr" type="file" id="photoin" accept="image/*" capture="environment" aria-label="Fotografia do talão" tabindex="-1"></div>';
     var saveBtn = '<button class="save" data-a="saveForm"' + (n ? ' style="flex:1;background:' + (inc ? '#3DDBA4' : cat.color) + '"' : ' style="flex:1" disabled') + '>' +
       (editing ? 'Guardar' : inc ? 'Guardar entrada' : 'Guardar em ' + esc(cat.label)) + '</button>';
@@ -1698,6 +1780,10 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       }).join('') + '</div></section>' +
       // Como a app se comporta: onde abre, sons, e o que aparece.
       '<section class="sect"><h2 class="h2">Comportamento</h2>' +
+      '<div class="lbl">Modo simples</div><div class="chips rep" role="group" aria-label="Modo simples">' +
+      '<button class="chip" data-a="simple" data-s="1" aria-pressed="' + !!S.simple + '">Ligado</button>' +
+      '<button class="chip" data-a="simple" data-s="0" aria-pressed="' + !S.simple + '">Desligado</button></div>' +
+      '<div class="small">Esconde de uma vez tudo o que é avançado e deixa os gastos, as tarefas, as compras, as notas e a caixa de escrever. Ao desligar, volta tudo como estava.</div>' +
       '<div class="lbl">Abrir em</div><div class="chips rep" role="group" aria-label="Ecrã inicial">' +
       [['', 'Hoje'], ['gastos', 'Gastos'], ['fazer', 'Fazer'], ['novo', 'Novo gasto']].map(function (o) {
         return '<button class="chip" data-a="startAt" data-s="' + o[0] + '" aria-pressed="' + (S.start === o[0]) + '">' + o[1] + '</button>';
@@ -1875,7 +1961,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
   var ED = { goal: ['goals', 'objetivo', 'Objetivo apagado.'], debt: ['debts', 'conta', 'Conta apagada.'], note: ['notes', 'nota', 'Nota apagada.'],
     list: ['lists', 'lista', 'Lista apagada.'], date: ['dates', 'data', 'Data apagada.'], split: ['debts', 'conta', ''],
     wish: ['wishes', 'desejo', 'Desejo apagado.'], check: ['checks', 'lista', 'Lista apagada.'],
-    proj: ['projects', 'projeto', 'Projeto apagado.'], tpl: ['tpls', 'modelo', 'Modelo apagado.'], bill: ['bills', 'conta', 'Conta apagada.'] };
+    proj: ['projects', 'projeto', 'Projeto apagado.'], tpl: ['tpls', 'modelo', 'Modelo apagado.'], bill: ['bills', 'conta', 'Conta apagada.'], trip: ['trips', 'viagem', 'Viagem apagada.'] };
   // Uma conta dividida: quanto calha a cada um, contando contigo.
   function splitShare(v) {
     var names = v.names.split(',').map(function (s) { return s.trim(); }).filter(Boolean), total = parseMoney(v.total);
@@ -1929,6 +2015,13 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
         }).join('') + '</div>' +
         '<div class="chips rep"><button class="chip" data-a="edFlag" data-f="rep" aria-pressed="' + !!v.rep + '">Todos os meses</button></div>' +
         '<div class="small">Quando a marcares como paga, entra nos gastos nessa categoria.</div>';
+    } else if (e.kind === 'trip') {
+      body = '<h1 class="ask">Para onde vais?</h1>' + inp('name', 'Nome', v.name, false, 'Lisboa, Gerês, festival…') +
+        '<div class="pair"><div class="field" style="flex:1;min-width:0"><label for="ed_start">Começa</label><input class="input" id="ed_start" data-f="start" type="date" value="' + esc(v.start) + '"></div>' +
+        '<div class="field" style="flex:1;min-width:0"><label for="ed_end">Acaba</label><input class="input" id="ed_end" data-f="end" type="date" value="' + esc(v.end) + '"></div></div>' +
+        inp('budget', 'Quanto queres gastar no total (opcional)', v.budget, true, '300') +
+        '<div class="chips rep"><button class="chip" data-a="edFlag" data-f="inMonth" aria-pressed="' + !!v.inMonth + '">Contar no orçamento do mês</button></div>' +
+        '<div class="small">Nesses dias, os gastos que apontares entram sozinhos na viagem. Se não a contares no orçamento do mês, ficam à parte e não estragam as contas do costume.</div>';
     } else if (e.kind === 'date') {
       body = '<h1 class="ask">Que data queres lembrar?</h1>' + inp('name', 'O quê', v.name, false, 'Aniversário da mãe') +
         '<div class="field"><label for="ed_when">Quando (o ano não interessa)</label>' +
@@ -3199,7 +3292,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     var today = iso(new Date()), key, id = uid(), label, inc = null;
     if (u.kind === 'expense') {
       key = 'expenses';
-      S.expenses.push({ id: id, amount: u.amount, cat: u.cat, desc: u.desc, date: u.date, fixed: '', pay: u.pay, kind: '', photo: false });
+      S.expenses.push({ id: id, amount: u.amount, cat: u.cat, desc: u.desc, date: u.date, fixed: '', pay: u.pay, kind: '', photo: false, doc: '', war: '', ret: '', trip: tripFor(u.date) });
       // Arredonda para a unidade seguinte e manda a diferença para o objetivo escolhido.
       var rg = S.roundTo && find(S.goals, S.roundTo), diff = (100 - u.amount % 100) % 100;
       if (rg && diff && rg.saved < rg.target) rg.saved += diff;
@@ -3261,6 +3354,406 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       made.forEach(magicUndo);
       ui.magicLog = (ui.magicLog || []).slice(made.length);
     });
+  }
+
+  // ---------- ler a fatura pelo código QR ----------
+  // As faturas portuguesas trazem um QR com os dados fiscais, em campos separados por "*":
+  // A = NIF de quem vendeu, D = tipo de documento, F = data (AAAAMMDD), G = número, H = código único (ATCUD), O = total com impostos.
+  function parseAtQr(text) {
+    var f = {};
+    String(text).split('*').forEach(function (p) { var i = p.indexOf(':'); if (i > 0) f[p.slice(0, i).trim()] = p.slice(i + 1).trim(); });
+    if (!/^\d{9}$/.test(f.A || '') || !/^\d{8}$/.test(f.F || '') || !f.O) return null;
+    var amount = Math.round(parseFloat(f.O.replace(',', '.')) * 100), mo = parseInt(f.F.slice(4, 6), 10), d = parseInt(f.F.slice(6, 8), 10);
+    if (!(amount > 0) || mo < 1 || mo > 12 || d < 1 || d > 31) return null;
+    return { nif: f.A, date: f.F.slice(0, 4) + '-' + f.F.slice(4, 6) + '-' + f.F.slice(6, 8), amount: amount, type: (f.D || '').toUpperCase(),
+      doc: String(f.H && f.H !== '0' ? f.H : f.G || '').slice(0, 60) };
+  }
+  // O leitor de QR é um ficheiro à parte, que só é carregado quando abres a câmara.
+  function qrLoad(cb) {
+    if (window.jsQR) return cb(true);
+    var s = document.createElement('script');
+    s.src = 'jsqr.js';
+    s.onload = function () { cb(!!window.jsQR); };
+    s.onerror = function () { cb(false); };
+    document.head.appendChild(s);
+  }
+  var qrCanvas = null;
+  // Corta uma zona da imagem (ou do vídeo), reduz se for grande demais e tenta ler um QR lá dentro.
+  function qrFrom(source, sx, sy, sw, sh, max) {
+    var k = Math.min(1, max / Math.max(sw, sh)), w = Math.max(1, Math.round(sw * k)), h = Math.max(1, Math.round(sh * k));
+    var c = qrCanvas || (qrCanvas = document.createElement('canvas'));
+    c.width = w; c.height = h;
+    var x = c.getContext('2d', { willReadFrequently: true });
+    x.drawImage(source, sx, sy, sw, sh, 0, 0, w, h);
+    var r;
+    try { r = window.jsQR(x.getImageData(0, 0, w, h).data, w, h, { inversionAttempts: 'dontInvert' }); } catch (e) { r = null; }
+    return r && r.data ? r.data : '';
+  }
+  // Numa fotografia o QR pode estar em qualquer canto e ser pequeno: tenta a imagem inteira e depois aos bocados que se sobrepõem.
+  function qrFromPhoto(img) {
+    var W = img.naturalWidth || img.width, H = img.naturalHeight || img.height, t = qrFrom(img, 0, 0, W, H, 1400);
+    for (var n = 2; n <= 3 && !t; n++) {
+      var tw = W / n * 1.3, th = H / n * 1.3;
+      for (var i = 0; i < n && !t; i++) for (var j = 0; j < n && !t; j++) t = qrFrom(img, i * (W - tw) / (n - 1), j * (H - th) / (n - 1), tw, th, 1100);
+    }
+    return t;
+  }
+  var cam = { stream: null, timer: 0, tick: 0 };
+  function scanStop() {
+    clearInterval(cam.timer); cam.timer = 0;
+    if (cam.stream) { cam.stream.getTracks().forEach(function (t) { t.stop(); }); cam.stream = null; }
+  }
+  // A imagem que a câmara está a ver, para ficar guardada como talão do gasto.
+  function scanSnap() {
+    var v = document.getElementById('scanvid');
+    if (!v || !v.videoWidth) return '';
+    var k = Math.min(1, 1100 / Math.max(v.videoWidth, v.videoHeight)), c = document.createElement('canvas');
+    c.width = Math.round(v.videoWidth * k); c.height = Math.round(v.videoHeight * k);
+    c.getContext('2d').drawImage(v, 0, 0, c.width, c.height);
+    try { return c.toDataURL('image/jpeg', 0.72); } catch (e) { return ''; }
+  }
+  function scanTick() {
+    var v = document.getElementById('scanvid'), st = ui.scan;
+    if (!v || !st || st.step !== 'cam' || !v.videoWidth) return;
+    var W = v.videoWidth, H = v.videoHeight, side = Math.min(W, H) * 0.72;
+    // Alterna entre o quadrado do meio (onde o QR deve estar) e a imagem toda (para o caso de não estar).
+    var text = cam.tick++ % 3 === 2 ? qrFrom(v, 0, 0, W, H, 1000) : qrFrom(v, (W - side) / 2, (H - side) / 2, side, side, 720);
+    if (!text) return;
+    var q = parseAtQr(text), hint = document.getElementById('scanhint');
+    if (!q) { if (hint) hint.textContent = 'Esse código não é de uma fatura. Procura o QR junto ao total.'; return; }
+    st.q = q; st.photo = scanSnap();
+    blip([880, 1320]);
+    try { if (navigator.vibrate) navigator.vibrate(60); } catch (e) {}
+    scanResolve();
+  }
+  // Liga a câmara ao ecrã de leitura. Corre depois de cada desenho do ecrã, porque o vídeo é recriado.
+  function scanAttach() {
+    var v = document.getElementById('scanvid'), st = ui.scan;
+    if (!v || !st || st.step !== 'cam') { scanStop(); return; }
+    if (cam.stream) { v.srcObject = cam.stream; v.play().catch(function () {}); return; }
+    if (cam.starting) return;
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { st.step = 'nocam'; render(true); return; }
+    cam.starting = true;
+    qrLoad(function (ok) {
+      if (!ok) { cam.starting = false; st.step = 'nolib'; if (ui.view === 'scan') render(true); return; }
+      navigator.mediaDevices.getUserMedia({ audio: false, video: { facingMode: { ideal: 'environment' }, width: { ideal: 1920 }, height: { ideal: 1080 } } }).then(function (stream) {
+        cam.starting = false;
+        if (ui.view !== 'scan' || ui.scan !== st || st.step !== 'cam') { stream.getTracks().forEach(function (t) { t.stop(); }); return; }
+        cam.stream = stream; cam.tick = 0;
+        var vid = document.getElementById('scanvid');
+        if (vid) { vid.srcObject = stream; vid.play().catch(function () {}); }
+        cam.timer = setInterval(scanTick, 220);
+      }).catch(function () {
+        cam.starting = false;
+        st.step = 'nocam';
+        if (ui.view === 'scan') render(true);
+      });
+    });
+  }
+  // Depois de lido o QR: nota de crédito e fatura repetida ficam de fora; loja nova pergunta o nome uma vez; loja conhecida entra sozinha.
+  function scanResolve() {
+    var st = ui.scan, q = st.q;
+    scanStop();
+    if (q.type === 'NC') { st.step = 'msg'; st.msg = 'É uma nota de crédito (uma devolução), não um gasto. Não guardei nada.'; render(); return; }
+    if (q.doc && S.expenses.some(function (e) { return e.doc === q.nif + '|' + q.doc; })) { st.step = 'msg'; st.msg = 'Esta fatura já cá estava. Não a guardei outra vez.'; render(); return; }
+    var shop = S.shops[q.nif];
+    if (!shop) { st.step = 'new'; st.name = ''; st.cat = ''; render(); var i = document.getElementById('scanname'); if (i) i.focus(); return; }
+    scanSave(shop.name, shop.cat);
+  }
+  function scanSave(name, cat) {
+    var st = ui.scan, q = st.q, today = iso(new Date()), id = uid();
+    var e = { id: id, amount: q.amount, cat: find(S.cats, cat) ? cat : guessCat(name), desc: name, date: q.date > today ? today : q.date, fixed: '', pay: '', kind: '', photo: false,
+      doc: q.doc ? q.nif + '|' + q.doc : '', war: '', ret: '', trip: tripFor(q.date > today ? today : q.date) };
+    S.expenses.push(e);
+    // Arredonda para a unidade seguinte e manda a diferença para o objetivo escolhido.
+    var rg = S.roundTo && find(S.goals, S.roundTo), diff = (100 - e.amount % 100) % 100;
+    if (rg && diff && rg.saved < rg.target) rg.saved += diff;
+    if (st.photo) photoPut(id, st.photo, function (ok) { if (ok && find(S.expenses, id)) { e.photo = true; save(); } });
+    st.photo = '';
+    save();
+    st.step = 'done'; st.last = id; st.n = (st.n || 0) + 1; st.sum = (st.sum || 0) + e.amount;
+    render();
+    toast('Guardado.', function () {
+      S.expenses = S.expenses.filter(function (x) { return x.id !== id; });
+      photoDel(id);
+      if (ui.scan === st) { st.n--; st.sum -= e.amount; st.step = 'msg'; st.msg = 'Desfeito. Esse gasto já não está na app.'; }
+    });
+  }
+  // Fotografia em vez de câmara ao vivo: procura o QR na imagem e guarda-a como talão.
+  function scanFile(file) {
+    var st = ui.scan;
+    if (!st) return;
+    st.step = 'busy'; render(true);
+    qrLoad(function (ok) {
+      if (!ok) { st.step = 'nolib'; render(true); return; }
+      shrink(file, function (data) {
+        st.photo = data || '';
+        var url = URL.createObjectURL(file), img = new Image();
+        img.onload = function () {
+          var text = qrFromPhoto(img), q = text ? parseAtQr(text) : null;
+          URL.revokeObjectURL(url);
+          if (ui.scan !== st) return;
+          if (!q) { st.step = 'noqr'; st.msg = text ? 'Encontrei um código, mas não é de uma fatura portuguesa.' : 'Não encontrei o código QR nessa fotografia.'; render(true); return; }
+          st.q = q;
+          blip([880, 1320]);
+          scanResolve();
+        };
+        img.onerror = function () { URL.revokeObjectURL(url); st.step = 'noqr'; st.msg = 'Não consegui abrir essa fotografia.'; render(true); };
+        img.src = url;
+      });
+    });
+  }
+  function viewScan() {
+    var st = ui.scan || (ui.scan = { step: 'cam', n: 0, sum: 0 });
+    var file = '<input class="sr" type="file" id="scanfile" accept="image/*" capture="environment" aria-label="Fotografia da fatura" tabindex="-1">';
+    var tally = st.n ? '<div class="small" style="text-align:center">' + (st.n === 1 ? '1 fatura lida' : st.n + ' faturas lidas') + ' · ' + money(st.sum) + '</div>' : '';
+    function page(eyebrow, title, body) {
+      return '<div class="screen"><header class="head"><div class="eyebrow">' + eyebrow + '</div><h1 class="title">' + title + '</h1></header><div class="pad">' + body + file + '</div></div>' + tabs('gastos');
+    }
+    if (st.step === 'cam') {
+      return '<div class="screen scan"><video id="scanvid" playsinline muted autoplay></video><div class="scanshade"></div>' +
+        '<div class="scanbox" aria-hidden="true"><i></i><i></i><i></i><i></i></div>' +
+        '<div class="scantop"><div class="eyebrow">Fatura com QR</div><button class="close" data-a="scanClose" aria-label="Fechar">' + ICON.close + '</button></div>' +
+        '<div class="scanhint" id="scanhint" aria-live="polite">Aponta para o código QR da fatura</div>' +
+        '<div class="scanbot">' + tally + '<button class="btn plain" data-a="scanPhoto">Tirar fotografia em vez disso</button>' + file + '</div></div>';
+    }
+    if (st.step === 'busy') return page('Um momento', 'A ler a fotografia…', muted('Estou à procura do código QR.'));
+    if (st.step === 'new') {
+      var q = st.q;
+      return page('Loja nova · NIF ' + q.nif, 'Onde foi?', muted('Li <strong style="color:var(--text)">' + money(q.amount) + '</strong>, de ' + whenF(q.date) + '. Diz-me só o nome da loja.') +
+        '<div class="field"><label class="sr" for="scanname">Nome da loja</label><input class="input" id="scanname" type="text" maxlength="40" autocomplete="off" enterkeyhint="done" placeholder="Continente, Galp, café da esquina…" value="' + esc(st.name || '') + '"></div>' +
+        '<div class="chips" role="group" aria-label="Categoria">' + S.cats.map(function (c) {
+          var on = st.cat === c.id;
+          return '<button class="chip" data-a="scanCat" data-id="' + esc(c.id) + '" aria-pressed="' + on + '"' + (on ? ' style="background:' + c.color + ';border-color:' + c.color + '"' : '') + '>' + esc(c.label) + '</button>';
+        }).join('') + '</div>' +
+        '<div class="small">Só pergunto uma vez. Para a próxima, as faturas desta loja entram sozinhas. Se não escolheres categoria, adivinho pelo nome.</div>' +
+        '<div class="msg" id="scanmsg" aria-live="polite" style="color:#FF7A59;min-height:20px"></div>' +
+        '<div class="pair"><button class="btn plain" data-a="scanRetry" style="flex:1">Cancelar</button><button class="btn" data-a="scanShop" style="flex:2">Guardar</button></div>');
+    }
+    if (st.step === 'done') {
+      var e = find(S.expenses, st.last), cat = e ? catOf(e.cat) : null;
+      return page('Fatura lida', 'Guardado', '<div class="okbig">' + icSvg('check', 40) + '</div>' +
+        (e ? '<div class="item mov"><button class="main" data-a="editExp" data-id="' + esc(e.id) + '">' + catIcon(cat) + '<span class="text"><span>' + esc(e.desc || cat.label) + '</span>' +
+          '<span class="small">' + esc(cat.label.toLowerCase()) + ' · ' + when(e.date) + ' · toca para corrigir</span></span><span class="amt">' + money(-e.amount) + '</span></button></div>' : '') +
+        (e && !S.off.wars ? '<button class="btn plain" data-a="scanWar" data-id="' + esc(e.id) + '">' + (e.war ? 'Garantia guardada até ' + longDate(e.war) : 'Isto tem garantia (3 anos)') + '</button>' : '') +
+        tally + '<button class="btn" data-a="scanRetry">Ler outra fatura</button><button class="btn plain" data-a="scanClose">Fechar</button>');
+    }
+    if (st.step === 'msg') return page('Fatura lida', 'Não guardei', muted(esc(st.msg)) + tally + '<button class="btn" data-a="scanRetry">Ler outra fatura</button><button class="btn plain" data-a="scanClose">Fechar</button>');
+    if (st.step === 'noqr') {
+      return page('Sem código', 'Não deu para ler', muted(esc(st.msg) + ' O código costuma estar no fundo da fatura, junto ao total. Faturas estrangeiras ou escritas à mão não o têm.') +
+        '<button class="btn" data-a="scanRetry">Tentar outra vez</button><button class="btn plain" data-a="scanManual">Escrever o valor à mão' + (st.photo ? ', com esta foto' : '') + '</button>');
+    }
+    if (st.step === 'nolib') {
+      return page('Falta uma peça', 'Sem leitor de QR', muted('Não consegui carregar o leitor. Na primeira vez é preciso internet; depois fica guardado no telemóvel.') +
+        '<button class="btn" data-a="scanRetry">Tentar outra vez</button><button class="btn plain" data-a="scanClose">Fechar</button>');
+    }
+    return page('Câmara fechada', 'Não consegui abrir a câmara', muted('O iPhone pede autorização da primeira vez: se disseste que não, muda em Definições do iPhone → Safari → Câmara. Entretanto podes tirar uma fotografia à fatura.') +
+      '<button class="btn" data-a="scanPhoto">Tirar fotografia</button><button class="btn plain" data-a="scanRetry">Tentar a câmara outra vez</button>');
+  }
+
+  // ---------- datas para a frente ----------
+  CIC.shield = 'M12 3l7 3v5c0 5-3.4 8.4-7 10-3.6-1.6-7-5-7-10V6zM9 12l2.2 2.2L15 10.4';
+  function plusDays(dateStr, n) { var d = parseDay(dateStr); d.setDate(d.getDate() + n); return iso(d); }
+  function plusYears(dateStr, n) { var d = parseDay(dateStr); return iso(new Date(d.getFullYear() + n, d.getMonth(), d.getDate())); }
+  function longDate(d) { return shortDate(d) + (d.slice(0, 4) !== String(new Date().getFullYear()) ? ' ' + d.slice(0, 4) : ''); }
+  // "faltam 12 dias", "faltam 2 anos e 3 meses", "acabou há 5 dias"
+  function untilText(dateStr) {
+    var n = daysUntil(dateStr);
+    if (n < 0) return n === -1 ? 'acabou ontem' : n > -60 ? 'acabou há ' + -n + ' dias' : 'já acabou';
+    if (n === 0) return 'acaba hoje';
+    if (n < 60) return n === 1 ? 'falta 1 dia' : 'faltam ' + n + ' dias';
+    var months = Math.round(n / 30.44), y = Math.floor(months / 12), m = months % 12;
+    return ((y === 1 && !m) || (!y && m === 1) ? 'falta ' : 'faltam ') + (y ? y + (y === 1 ? ' ano' : ' anos') + (m ? ' e ' : '') : '') + (m ? m + (m === 1 ? ' mês' : ' meses') : '');
+  }
+  // A câmara das faturas só aparece quando o leitor de QR vier com a app.
+  function noScan() { return !HAS_QR || !!S.off.scan; }
+
+  // ---------- garantias e devoluções ----------
+  function warItems() {
+    var out = [];
+    S.expenses.forEach(function (e) {
+      if (e.war) out.push({ e: e, kind: 'w', end: e.war });
+      if (e.ret) out.push({ e: e, kind: 'r', end: e.ret });
+    });
+    return out.sort(function (a, b) { return a.end < b.end ? -1 : 1; });
+  }
+  function viewWars() {
+    var today = iso(new Date()), all = warItems();
+    var live = all.filter(function (x) { return x.end >= today; }), old = all.filter(function (x) { return x.end < today; }).reverse();
+    function row(x) {
+      var e = x.e, cat = catOf(e.cat), w = x.kind === 'w';
+      return '<div class="item mov' + (x.end < today ? ' off' : '') + '"><button class="main" data-a="editExp" data-id="' + esc(e.id) + '">' + chip(w ? '#3DDBA4' : '#FFA94D', w ? 'shield' : 'swap') +
+        '<span class="text"><span>' + esc(e.desc || cat.label) + '</span><span class="small">' + (w ? 'garantia' : 'devolução') + ' até ' + longDate(x.end) + ' · ' + untilText(x.end) + (e.photo ? ' · com talão' : '') + '</span></span>' +
+        '<span class="amt">' + money(e.amount) + '</span></button></div>';
+    }
+    var wars = live.filter(function (x) { return x.kind === 'w'; });
+    return '<div class="screen"><header class="head"><div class="eyebrow">Para quando alguma coisa avariar</div><h1 class="title">Garantias</h1></header><div class="pad">' +
+      (live.length ? '<section class="panel"><div class="minis">' + mini('Garantias ativas', wars.length) + mini('Valor coberto', money(sum(wars.map(function (x) { return x.e; })))) + '</div>' +
+        '<div class="say">Toca numa para ver o gasto e o talão.</div></section>' : '') +
+      '<section class="list">' + (live.map(row).join('') || '<div class="empty">Quando comprares algo que possa avariar, marca “Garantia 3 anos” no gasto e junta a foto do talão. A app avisa antes de a garantia acabar.</div>') + '</section>' +
+      (old.length ? '<section class="list"><div class="row-head"><h2 class="h2">Já acabaram</h2></div>' + old.slice(0, 20).map(row).join('') + '</section>' : '') +
+      '<div class="small">Em Portugal, a garantia legal de bens novos é de 3 anos. Sem o talão é difícil fazê-la valer: guarda sempre a foto.</div></div></div>' + tabs('gastos');
+  }
+
+  // ---------- viagens: um orçamento à parte ----------
+  function tripFor(dateStr) {
+    for (var i = 0; i < S.trips.length; i++) if (S.trips[i].start <= dateStr && dateStr <= S.trips[i].end) return S.trips[i].id;
+    return '';
+  }
+  // Gastos de uma viagem que não conta para o orçamento do mês.
+  function apart(e) {
+    var t = e.trip && find(S.trips, e.trip);
+    return !!(t && !t.inMonth);
+  }
+  function tripInfo(t) {
+    var today = iso(new Date()), list = S.expenses.filter(function (e) { return e.trip === t.id; }), spent = sum(list);
+    var total = Math.round((parseDay(t.end) - parseDay(t.start)) / 864e5) + 1;
+    var state = today < t.start ? 'pre' : today > t.end ? 'post' : 'on';
+    var left = state === 'on' ? Math.round((parseDay(t.end) - parseDay(today)) / 864e5) + 1 : state === 'pre' ? total : 0;
+    return { list: list, spent: spent, total: total, state: state, left: left, rest: t.budget - spent,
+      perDay: t.budget && left ? Math.max(0, Math.floor((t.budget - spent) / left)) : 0 };
+  }
+  function tripWhen(t, i) {
+    return shortDate(t.start) + ' a ' + longDate(t.end) + ' · ' + (i.state === 'on' ? 'a decorrer' : i.state === 'pre' ? 'começa ' + inDays(daysUntil(t.start)) : 'já passou');
+  }
+  function viewTrips() {
+    var rows = S.trips.slice().sort(function (a, b) { return a.start < b.start ? 1 : -1; }).map(function (t) {
+      var i = tripInfo(t);
+      return '<div class="item mov' + (i.state === 'post' ? ' off' : '') + '"><button class="main" data-a="tripOpen" data-id="' + esc(t.id) + '">' + chip('#5CC8FF', 'plane') +
+        '<span class="text"><span>' + esc(t.name) + '</span><span class="small">' + tripWhen(t, i) + '</span></span>' +
+        '<span class="amt">' + money(i.spent) + (t.budget ? '<span class="small"> de ' + Math.round(t.budget / 100) + '</span>' : '') + '</span></button></div>';
+    }).join('') || '<div class="empty">Umas férias, um fim de semana fora, um festival: dá-lhe datas e um valor, e a app diz-te quanto podes gastar por dia.</div>';
+    return '<div class="screen"><header class="head"><div class="eyebrow">Um orçamento só para esses dias</div><h1 class="title">Viagens</h1></header>' +
+      '<div class="pad"><section class="list">' + rows + '</section><button class="btn" data-a="edOpen" data-k="trip">Nova viagem</button></div></div>' + tabs('gastos');
+  }
+  function viewTrip() {
+    var t = find(S.trips, ui.tripId);
+    if (!t) { ui.view = 'trips'; return viewTrips(); }
+    var i = tripInfo(t), pct = t.budget ? Math.min(100, Math.round(i.spent / t.budget * 100)) : 0, over = t.budget && i.rest < 0;
+    var minis = !t.budget ? mini('Gasto', money(i.spent)) + mini('Média por dia', money(Math.round(i.spent / i.total))) :
+      i.state === 'post' ? mini(over ? 'Acima do previsto' : 'Ficou por gastar', money(Math.abs(i.rest)), over ? '#FF7A59' : 'var(--done-text)') + mini('Média por dia', money(Math.round(i.spent / i.total))) :
+      mini(over ? 'Acima do previsto' : 'Sobram', money(Math.abs(i.rest)), over ? '#FF7A59' : '') + mini(i.state === 'on' ? 'Por dia, daqui em diante' : 'Por dia', money(i.perDay));
+    var cats = catTotals(i.list).slice(0, 4).map(function (c) {
+      return '<div class="wk"><span class="cdot" style="background:' + c.cat.color + '"></span><span>' + esc(c.cat.label) + '</span><span class="amt">' + money(c.v) + '</span></div>';
+    }).join('');
+    var rows = i.list.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }).map(expRow).join('');
+    return '<div class="screen"><header class="head"><div class="eyebrow">' + tripWhen(t, i) + '</div><h1 class="title">' + esc(t.name) + '</h1></header><div class="pad">' +
+      '<section class="panel"><div class="total"><div class="big" data-n="' + i.spent + '">' + money(i.spent) + '</div>' +
+      (t.budget ? '<div class="small" style="padding-bottom:4px">de ' + money(t.budget) + '</div>' : '') + '</div>' +
+      (t.budget ? '<div class="bar"><i style="width:' + pct + '%' + (over ? ';background:#FF7A59' : '') + '"></i></div>' : '') +
+      '<div class="minis">' + minis + '</div>' +
+      '<div class="say">' + (t.inMonth ? 'Estes gastos contam também para o orçamento do mês.' : 'Estes gastos ficam à parte: não mexem no orçamento do mês.') + '</div></section>' +
+      '<button class="btn" data-a="tripAdd">Juntar gasto à viagem</button>' +
+      (cats ? '<section class="wkday"><div class="eyebrow"><b>Para onde foi</b></div>' + cats + '</section>' : '') +
+      '<section class="list"><div class="row-head"><h2 class="h2">Gastos da viagem</h2><span class="small">' + i.list.length + '</span></div>' +
+      (rows || '<div class="empty">Ainda nada. Durante esses dias, os gastos que apontares entram aqui sozinhos.</div>') + '</section>' +
+      '<button class="btn plain" data-a="edOpen" data-k="trip" data-id="' + esc(t.id) + '">Mudar ou apagar</button>' +
+      '<button class="linkbtn" data-a="nav" data-v="trips" style="padding:6px 0">todas as viagens</button></div></div>' + tabs('gastos');
+  }
+  // No ecrã Gastos: o que ficou de fora do mês por pertencer a uma viagem.
+  function tripNotes(key) {
+    return S.trips.map(function (t) {
+      if (t.inMonth) return '';
+      var v = sum(S.expenses.filter(function (e) { return e.trip === t.id && pkey(e.date) === key; }));
+      return v ? '<button class="note sub" data-a="tripOpen" data-id="' + esc(t.id) + '">' + icSvg('plane', 22) + '<span class="say"><strong>' + esc(t.name) + ': ' + money(v) + '.</strong> Está à parte, não conta neste mês.</span></button>' : '';
+    }).join('');
+  }
+
+  // ---------- dinheiro da semana ----------
+  // O que sobra do mês, repartido por igual pelos dias que faltam; a fatia desta semana (segunda a domingo) é o que tens para ela.
+  function weekMoney() {
+    if (!S.budget) return null;
+    var now = new Date(), today = iso(now), r = periodRange(curKey()), mon = (now.getDay() + 6) % 7;
+    var ws = addDays(-mon), we = addDays(6 - mon);
+    if (ws < r.start) ws = r.start;
+    if (we > r.end) we = r.end;
+    var list = monthExpenses(curKey());
+    var before = sum(list.filter(function (e) { return e.date < ws; }));
+    var fixedFrom = sum(list.filter(function (e) { return e.fixed && e.date >= ws; })) + pendingFixed();
+    var daysLeft = Math.round((parseDay(r.end) - parseDay(ws)) / 864e5) + 1, daysWeek = Math.round((parseDay(we) - parseDay(ws)) / 864e5) + 1;
+    var allow = Math.max(0, Math.floor((S.budget - before - fixedFrom) / daysLeft * daysWeek));
+    var spent = sum(list.filter(function (e) { return !e.fixed && e.date >= ws && e.date <= today; }));
+    return { allow: allow, spent: spent, left: allow - spent, we: we, days: daysWeek, toGo: Math.round((parseDay(we) - parseDay(today)) / 864e5) + 1 };
+  }
+  function weekHtml() {
+    var w = S.off.week ? null : weekMoney();
+    if (!w) return '';
+    var over = w.left < 0, pct = w.allow ? Math.min(100, Math.round(w.spent / w.allow * 100)) : 100;
+    var last = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'][parseDay(w.we).getDay()];
+    return '<button class="panel weekp" data-a="nav" data-v="gastos"><span class="eyebrow">Dinheiro da semana · até ' + last + '</span>' +
+      '<span class="wkbig"><b' + (over ? ' style="color:#FF7A59"' : '') + '>' + money(Math.abs(w.left)) + '</b><span class="small">' + (over ? 'acima do que tinhas para a semana' : 'ainda por gastar') + '</span></span>' +
+      '<span class="bar"><i style="width:' + pct + '%' + (over ? ';background:#FF7A59' : '') + '"></i></span>' +
+      '<span class="small">Tinhas ' + money(w.allow) + ' para ' + (w.days === 1 ? 'este dia' : 'estes ' + w.days + ' dias') + ' e já foram ' + money(w.spent) + '.' +
+      (!over && w.toGo > 1 ? ' Dá ' + money(Math.floor(w.left / w.toGo)) + ' por dia.' : '') + '</span></button>';
+  }
+
+  // ---------- agenda do mês ----------
+  // Tudo o que tem data num mês: tarefas com prazo, contas, o que sai e entra na conta, datas importantes, garantias e viagens.
+  function agendaItems(key) {
+    var p = key.split('-'), m = parseInt(p[1], 10), n = new Date(parseInt(p[0], 10), m, 0).getDate(), out = {};
+    function add(day, color, text, right, attrs) {
+      var d = key + '-' + pad(Math.min(day, n));
+      (out[d] = out[d] || []).push({ color: color, text: text, right: right || '', attrs: attrs || '' });
+    }
+    function dayOf(s) { return parseInt(s.slice(8), 10); }
+    S.tasks.forEach(function (t) {
+      if (!t.rep && !t.done && t.due && t.due.slice(0, 7) === key) add(dayOf(t.due), '#C6F432', (t.time ? t.time + ' · ' : '') + t.text, '', 'data-a="editTask" data-id="' + esc(t.id) + '"');
+    });
+    S.bills.forEach(function (b) {
+      var bk = b.due.slice(0, 7);
+      if (bk === key || (b.rep && bk < key)) add(dayOf(b.due), '#FF7A59', b.name, money(b.amount), 'data-a="nav" data-v="bills"');
+    });
+    S.fixed.forEach(function (f) {
+      if (f.period !== 'a' || f.month === m) add(f.day, '#8B7BFF', f.desc || catOf(f.cat).label, money(-f.amount), 'data-a="nav" data-v="' + (isSub(f) ? 'subs' : 'def') + '"');
+    });
+    S.incFixed.forEach(function (f) { add(f.day, '#3DDBA4', f.desc || 'Entrada', '+' + money(f.amount), 'data-a="nav" data-v="gastos"'); });
+    S.dates.forEach(function (x) { if (x.month === m) add(x.day, '#FFD23F', x.name, '', 'data-a="nav" data-v="dates"'); });
+    S.expenses.forEach(function (e) {
+      var name = e.desc || catOf(e.cat).label;
+      if (e.war && e.war.slice(0, 7) === key) add(dayOf(e.war), '#3DDBA4', 'Acaba a garantia: ' + name, '', 'data-a="nav" data-v="wars"');
+      if (e.ret && e.ret.slice(0, 7) === key) add(dayOf(e.ret), '#FFA94D', 'Último dia para devolver: ' + name, '', 'data-a="nav" data-v="wars"');
+    });
+    S.trips.forEach(function (t) {
+      if (t.start.slice(0, 7) === key) add(dayOf(t.start), '#5CC8FF', 'Começa: ' + t.name, '', 'data-a="tripOpen" data-id="' + esc(t.id) + '"');
+      if (t.end.slice(0, 7) === key && t.end !== t.start) add(dayOf(t.end), '#5CC8FF', 'Acaba: ' + t.name, '', 'data-a="tripOpen" data-id="' + esc(t.id) + '"');
+    });
+    return out;
+  }
+  function agendaRow(x) {
+    return '<button class="wk" ' + x.attrs + '><span class="cdot" style="background:' + x.color + '"></span><span>' + esc(x.text) + '</span>' + (x.right ? '<span class="amt">' + x.right + '</span>' : '') + '</button>';
+  }
+  function viewAgenda() {
+    var today = iso(new Date()), key = ui.agMonth || today.slice(0, 7), p = key.split('-'), y = parseInt(p[0], 10), m = parseInt(p[1], 10);
+    var days = new Date(y, m, 0).getDate(), offset = (new Date(y, m - 1, 1).getDay() + 6) % 7, items = agendaItems(key);
+    var sel = ui.agDay && ui.agDay.slice(0, 7) === key ? ui.agDay : today.slice(0, 7) === key ? today : '', cells = '', i, d;
+    for (i = 0; i < offset; i++) cells += '<span></span>';
+    for (d = 1; d <= days; d++) {
+      var ds = key + '-' + pad(d), list = items[ds] || [], seen = {};
+      var dots = list.filter(function (x) { if (seen[x.color]) return false; seen[x.color] = 1; return true; }).slice(0, 4).map(function (x) { return '<u style="background:' + x.color + '"></u>'; }).join('');
+      cells += '<button class="cd' + (ds === today ? ' today' : '') + (ds === sel ? ' sel' : '') + '" data-a="agDay" data-d="' + ds + '" style="--h:0" aria-label="' + d + ' de ' + MESES[m - 1] +
+        (list.length ? ': ' + list.length + (list.length === 1 ? ' coisa' : ' coisas') : '') + '"><b>' + d + '</b><span class="dots">' + dots + '</span></button>';
+    }
+    var detail = '';
+    if (sel) {
+      var here = items[sel] || [];
+      detail = '<section class="wkday"><div class="eyebrow"><b>' + whenF(sel) + '</b></div>' + (here.map(agendaRow).join('') || '<div class="small" style="padding:2px 2px 6px">nada marcado neste dia</div>') + '</section>';
+    }
+    var next = [];
+    Object.keys(items).sort().forEach(function (k) { if (k > (sel || '') && k >= today) items[k].forEach(function (x) { next.push({ d: k, x: x }); }); });
+    var soon = next.slice(0, 6).map(function (o) {
+      return '<button class="wk" ' + o.x.attrs + '><span class="cdot" style="background:' + o.x.color + '"></span><span><b class="tm">' + parseInt(o.d.slice(8), 10) + '</b>' + esc(o.x.text) + '</span>' +
+        (o.x.right ? '<span class="amt">' + o.x.right + '</span>' : '') + '</button>';
+    }).join('');
+    return '<div class="screen"><header class="head"><div class="eyebrow">Tudo o que tem data, num sítio só</div><h1 class="title">Agenda</h1></header><div class="pad">' +
+      '<div class="month"><button data-a="agMove" data-by="-1" aria-label="Mês anterior">' + ICON.prev + '</button><div class="h2">' + MESES[m - 1] + ' ' + y + '</div>' +
+      '<button data-a="agMove" data-by="1" aria-label="Mês seguinte">' + ICON.next + '</button></div>' +
+      '<section class="panel" style="padding:14px"><div class="calg calh" aria-hidden="true">' + DAYS.map(function (x) { return '<span>' + x[1] + '</span>'; }).join('') + '</div>' +
+      '<div class="calg">' + cells + '</div>' +
+      '<div class="legend">' + [['#C6F432', 'tarefas'], ['#FF7A59', 'contas'], ['#8B7BFF', 'sai da conta'], ['#FFD23F', 'datas']].map(function (l) {
+        return '<span><u style="background:' + l[0] + '"></u>' + l[1] + '</span>';
+      }).join('') + '</div></section>' + detail +
+      (soon ? '<section class="wkday"><div class="eyebrow"><b>A seguir neste mês</b></div>' + soon + '</section>' : '') +
+      '</div></div>' + tabs('fazer');
   }
 
   function viewDebts() {
@@ -3424,11 +3917,16 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       sec('O mês em história', ['No ecrã Gastos, o botão “em história” conta o mês em meia dúzia de ecrãs. No fim podes partilhar uma imagem.',
         'Em “Reparei que…” a app mostra padrões que encontrou sozinha nos teus dados.']) +
       sec('Menos trabalho', ['“O que faço agora?” (no ecrã Hoje) escolhe uma tarefa por ti conforme o tempo que tens, e arranca o temporizador.',
+        'O botão da câmara no ecrã Hoje lê o código QR de uma fatura: o valor e a data entram sozinhos e a imagem fica guardada como talão. Da primeira vez em cada loja pergunta o nome; depois já sabe.',
         'Em Gastos → Importar, lês o extrato do banco em CSV de uma vez, com as categorias já adivinhadas.',
         'Na caixa do ecrã Hoje podes apontar várias coisas de uma vez, separadas por ponto e vírgula.']) +
       sec('Ver de longe', ['Em Gastos, “O ritmo do mês” mostra se estás acima ou abaixo do ritmo certo para o orçamento.',
         'Em Gastos → O ano, cada dia do ano é um quadrado. No fundo, o ano em história.',
         'As medalhas estão nas definições. Ganham-se sozinhas, a usar a app.']) +
+      sec('Datas e prazos', ['A Agenda (ecrã Hoje ou Fazer) junta num calendário tudo o que tem data: tarefas, contas, o que sai da conta, aniversários, garantias.',
+        'No gasto, “Garantia 3 anos” e “Prazo de devolução” guardam os prazos. Vês todos em Gastos → Garantias, e a app avisa antes de acabarem.',
+        'Em Gastos → Viagens crias um orçamento só para uns dias fora. Os gastos desses dias entram lá sozinhos.',
+        'O bloco “Dinheiro da semana” no ecrã Hoje diz quanto tens até domingo.']) +
       sec('Organizar o dia', ['De manhã, o ecrã Hoje convida-te a escolher as três tarefas que contam. Ficam só essas à vista até as acabares.',
         'Depois das 19h, “Fechar o dia” mostra o que fizeste e passa para amanhã o que ficou.',
         'Ao domingo aparece a revisão da semana. Também a encontras no fundo de “Ver a semana”.',
@@ -3509,6 +4007,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       '<div class="pad"><form class="pair" id="shopadd"><label class="sr" for="shopin">Juntar à lista</label>' +
       '<input class="input" id="shopin" type="text" placeholder="Falta…" autocomplete="off" enterkeyhint="done"><button class="btn" type="submit">Juntar</button></form>' +
       '<section class="list">' + rows + '</section>' +
+      (S.shop.some(function (x) { return !x.done; }) ? '<button class="btn plain" data-a="shopShare">Partilhar a lista</button>' : '') +
       (S.shop.some(function (x) { return x.done; }) ? '<button class="btn plain" data-a="shopClear">Limpar o que já está</button>' : '') +
       '</div></div>' + tabs('fazer');
   }
@@ -3588,7 +4087,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
   var VIEWS = { hoje: viewHoje, gastos: viewGastos, fazer: viewFazer, form: viewForm, def: viewDef, subs: viewSubs, semana: viewSemana, cat: viewCat, task: viewTask, pin: viewPin,
     goals: viewGoals, debts: viewDebts, shop: viewShop, notes: viewNotes, stats: viewStats, ed: viewEd, hist: viewHist, dates: viewDates,
     wishes: viewWishes, cal: viewCal, checks: viewChecks, check: viewCheck, diary: viewDiary, timer: viewTimer, help: viewHelp, sweep: viewSweep,
-    plan: viewPlan, close: viewClose, review: viewReview, stale: viewStale, projs: viewProjs, proj: viewProj, tpls: viewTpls, habits: viewHabits, inbox: viewInbox, bills: viewBills, magic: viewMagic, story: viewStory, medals: viewMedals, now: viewNow, year: viewYear, bank: viewBank };
+    plan: viewPlan, close: viewClose, review: viewReview, stale: viewStale, projs: viewProjs, proj: viewProj, tpls: viewTpls, habits: viewHabits, inbox: viewInbox, bills: viewBills, magic: viewMagic, story: viewStory, medals: viewMedals, now: viewNow, year: viewYear, bank: viewBank, scan: viewScan, wars: viewWars, trips: viewTrips, trip: viewTrip, agenda: viewAgenda };
   // Cores do tema, e o brilho do topo conforme a hora.
   function applyTheme() {
     var t = THEMES.filter(function (x) { return x[0] === S.theme; })[0] || THEMES[0], h = new Date().getHours();
@@ -3653,6 +4152,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     applyTheme();
     if (!keepScroll && now) { now.classList.add('enter'); countUp(); }
     ui.just = null;
+    if (ui.view === 'scan' && !ui.locked) scanAttach(); else { scanStop(); ui.scan = null; }
   }
 
   // ---------- ações ----------
@@ -3668,11 +4168,15 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       pay: src ? src.pay || '' : ui.lastPay || '',
       kind: src ? src.kind || '' : '',
       every: !!(src && mode === 'incEdit' && src.fixed && find(S.incFixed, src.fixed)),
+      war: !!(src && src.war), ret: src && src.ret ? Math.max(1, Math.round((parseDay(src.ret) - parseDay(src.date)) / 864e5)) : 0,
+      trip: src ? src.trip || '' : ui.tripPick || tripFor(iso(new Date())),
       // Identificador com que a foto do talão fica guardada: o do gasto, ou um novo já reservado.
       pid: src && mode === 'edit' ? src.id : uid(), photo: !!(src && mode === 'edit' && src.photo),
       period: src && src.period === 'a' ? 'a' : 'm',
       month: src && src.month ? src.month : new Date().getMonth() + 1
     };
+    ui.form.tripCand = ui.form.trip || tripFor(ui.form.date);
+    ui.tripPick = '';
     ui.view = 'form'; render();
   }
   function find(list, id) { for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i]; return null; }
@@ -3759,6 +4263,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
         kind === 'debt' ? { who: it ? it.who : '', amount: it ? moneyIn(it.amount) : '', dir: it ? it.dir : 'in', note: it ? it.note : '' } :
         kind === 'list' ? { name: it ? it.name : '' } :
         kind === 'split' ? { total: '', names: '', note: '' } :
+        kind === 'trip' ? { name: it ? it.name : '', start: it ? it.start : iso(new Date()), end: it ? it.end : plusDays(iso(new Date()), 2), budget: it ? moneyIn(it.budget) : '', inMonth: !!(it && it.inMonth) } :
         kind === 'proj' ? { name: it ? it.name : '' } :
         kind === 'tpl' ? { name: it ? it.name : '', items: it ? it.items.join('\n') : '' } :
         kind === 'bill' ? { name: it ? it.name : '', amount: it ? moneyIn(it.amount) : '', when: it ? it.due : '', cat: it ? it.cat : S.cats[0].id, rep: !!(it && it.rep) } :
@@ -3818,6 +4323,10 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
         });
         save(); ui.view = e.back; ui.ed = null; render();
         return;
+      } else if (e.kind === 'trip') {
+        if (!v.name.trim()) return fail('Falta dar-lhe um nome.');
+        if (!DATE.test(v.start) || !DATE.test(v.end)) return fail('Faltam as datas.');
+        data = { name: v.name.trim().slice(0, 30), start: v.start, end: v.end < v.start ? v.start : v.end, budget: parseMoney(v.budget), inMonth: !!v.inMonth };
       } else if (e.kind === 'proj') {
         if (!v.name.trim()) return fail('Falta dar-lhe um nome.');
         data = { name: v.name.trim().slice(0, 30) };
@@ -3843,6 +4352,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       else { data.id = uid(); list.unshift(data); }
       // Uma lista nova abre logo, para lhe juntares os passos.
       if (e.kind === 'check' && !it) { save(); ui.checkId = data.id; ui.view = 'check'; ui.ed = null; render(); return; }
+      if (e.kind === 'trip' && !it) { save(); ui.tripId = data.id; ui.view = 'trip'; ui.ed = null; render(); return; }
       // Só um objetivo recebe os arredondamentos de cada vez.
       if (e.kind === 'goal') {
         var gid = it ? it.id : data.id;
@@ -4062,6 +4572,70 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       var items = magicItems(ui.magic || '');
       if (items.length) magicAfter(items.map(magicCreate));
     },
+    scanOpen: function () { ui.form = null; ui.scan = { step: 'cam', n: 0, sum: 0 }; ui.view = 'scan'; render(); },
+    scanClose: function () { var n = ui.scan ? ui.scan.n : 0; scanStop(); ui.scan = null; ui.view = n ? 'gastos' : 'hoje'; if (n) ui.month = curKey(); render(); },
+    scanRetry: function () { var st = ui.scan; st.step = 'cam'; st.q = null; st.photo = ''; render(); },
+    scanPhoto: function () { var f = document.getElementById('scanfile'); if (f) f.click(); },
+    scanCat: function (el) {
+      var st = ui.scan;
+      st.cat = st.cat === el.dataset.id ? '' : el.dataset.id;
+      Array.prototype.forEach.call(root.querySelectorAll('[data-a="scanCat"]'), function (b) {
+        var on = b.dataset.id === st.cat, c = catOf(b.dataset.id);
+        b.setAttribute('aria-pressed', on);
+        b.style.background = on ? c.color : ''; b.style.borderColor = on ? c.color : '';
+      });
+    },
+    scanShop: function () {
+      var st = ui.scan, input = document.getElementById('scanname'), name = (input ? input.value : st.name || '').trim().slice(0, 40);
+      if (!name) { var m = document.getElementById('scanmsg'); if (m) m.textContent = 'Falta o nome da loja.'; return; }
+      var cat = find(S.cats, st.cat) ? st.cat : guessCat(name);
+      S.shops[st.q.nif] = { name: name, cat: cat };
+      scanSave(name, cat);
+    },
+    scanManual: function () {
+      var photo = ui.scan ? ui.scan.photo : '';
+      openForm('novo', 'gastos');
+      var f = ui.form;
+      if (photo) photoPut(f.pid, photo, function (ok) { if (ok && ui.form === f) { f.photo = true; render(true); } });
+    },
+    warFlag: function (el) { ui.form.war = !ui.form.war; el.setAttribute('aria-pressed', ui.form.war); },
+    retCycle: function (el) {
+      var f = ui.form;
+      f.ret = !f.ret ? 14 : f.ret === 14 ? 30 : 0;
+      el.setAttribute('aria-pressed', !!f.ret);
+      el.textContent = f.ret ? 'Devolver em ' + f.ret + ' dias' : 'Prazo de devolução';
+    },
+    tripFlag: function (el) { var f = ui.form; f.trip = f.trip ? '' : f.tripCand; el.setAttribute('aria-pressed', !!f.trip); },
+    tripOpen: function (el) { ui.tripId = el.dataset.id; ui.view = 'trip'; render(); },
+    tripAdd: function () { ui.tripPick = ui.tripId; openForm('novo', 'trip'); },
+    scanWar: function (el) {
+      var e = find(S.expenses, el.dataset.id);
+      if (!e) return;
+      e.war = e.war ? '' : plusYears(e.date, 3);
+      save(); render(true);
+    },
+    agDay: function (el) { ui.agDay = el.dataset.d; render(true); },
+    agMove: function (el) { ui.agMonth = shiftMonth(ui.agMonth || monthKey(new Date()), parseInt(el.dataset.by, 10)); ui.agDay = ''; render(true); },
+    shopShare: function () {
+      var items = S.shop.filter(function (x) { return !x.done; }).map(function (x) { return '• ' + x.text; });
+      if (!items.length) return;
+      var text = 'Lista de compras:\n' + items.join('\n');
+      try { if (navigator.share) { navigator.share({ text: text }).catch(function () {}); return; } } catch (e) {}
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { toast('Lista copiada. Cola-a numa mensagem.'); }, function () { toast('Não consegui copiar a lista.'); });
+      } else toast('Este aparelho não deixa partilhar daqui.');
+    },
+    // Modo simples: esconde de uma vez o que é avançado, e guarda como estava para poder voltar.
+    simple: function (el) {
+      var on = el.dataset.s === '1';
+      if (on === !!S.simple) return;
+      if (on) {
+        S.offSaved = JSON.parse(JSON.stringify(S.off));
+        MODS.forEach(function (m) { if (SIMPLE_KEEP.indexOf(m[0]) < 0) S.off[m[0]] = true; });
+      } else { S.off = S.offSaved || {}; S.offSaved = null; }
+      S.simple = on;
+      save(); render(true);
+    },
     need: function (el) {
       var f = ui.form;
       f.kind = f.kind === el.dataset.k ? '' : el.dataset.k;
@@ -4266,7 +4840,8 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       var day = Math.min(31, Math.max(1, parseInt(f.day, 10) || 1));
       var desc = f.desc.trim(), item;
       if (f.mode === 'novo') {
-        S.expenses.push({ id: f.pid, amount: n, cat: f.cat, desc: desc, date: date, fixed: '', pay: f.pay, kind: f.kind, photo: f.photo });
+        S.expenses.push({ id: f.pid, amount: n, cat: f.cat, desc: desc, date: date, fixed: '', pay: f.pay, kind: f.kind, photo: f.photo, doc: '',
+          war: f.war ? plusYears(date, 3) : '', ret: f.ret ? plusDays(date, f.ret) : '', trip: f.trip && find(S.trips, f.trip) ? f.trip : '' });
         ui.lastPay = f.pay;
         // Arredonda para a unidade seguinte e manda a diferença para o objetivo escolhido.
         var rg = S.roundTo && find(S.goals, S.roundTo), diff = (100 - n % 100) % 100;
@@ -4280,7 +4855,8 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
         if (item) { item.amount = n; item.desc = desc; item.date = date; everySync(item, f.every); }
       } else if (f.mode === 'edit') {
         item = find(S.expenses, f.id);
-        if (item) { item.amount = n; item.cat = f.cat; item.desc = desc; item.date = date; item.pay = f.pay; item.kind = f.kind; item.photo = f.photo; }
+        if (item) { item.amount = n; item.cat = f.cat; item.desc = desc; item.date = date; item.pay = f.pay; item.kind = f.kind; item.photo = f.photo;
+          item.war = f.war ? plusYears(date, 3) : ''; item.ret = f.ret ? plusDays(date, f.ret) : ''; item.trip = f.trip && find(S.trips, f.trip) ? f.trip : ''; }
       } else if (f.mode === 'fixo' || f.mode === 'sub') {
         S.fixed.push({ id: uid(), desc: desc, amount: n, cat: f.cat, day: day, last: '',
           kind: f.mode === 'sub' ? 'sub' : 'fixo', period: f.mode === 'sub' ? f.period : 'm', month: f.month });
@@ -4295,7 +4871,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       save();
       blip([520, 780]);
       ui.lastCat = f.cat;
-      ui.view = f.back === 'def' || f.back === 'subs' ? f.back : 'gastos';
+      ui.view = f.back === 'def' || f.back === 'subs' || f.back === 'trip' ? f.back : 'gastos';
       if (ui.view === 'gastos') ui.month = pkey(date);
       ui.form = null; render();
     },
@@ -4444,13 +5020,13 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
   // Volta a pedir o código se a app esteve fechada mais de um minuto.
   var hiddenAt = 0;
   document.addEventListener('visibilitychange', function () {
-    if (document.hidden) { hiddenAt = Date.now(); return; }
+    if (document.hidden) { hiddenAt = Date.now(); scanStop(); return; }
     snapDaily();
     applyFixed();
     applyGoals();
     applyIncomes();
     rollTasks();
-    if (!ui.locked && (ui.view === 'hoje' || ui.view === 'fazer')) render(true);
+    if (!ui.locked && (ui.view === 'hoje' || ui.view === 'fazer' || ui.view === 'scan')) render(true);
     if (pinGet() && ui.view !== 'pin' && hiddenAt && Date.now() - hiddenAt > 60000) {
       ui.locked = true; ui.pin = { mode: 'unlock', digits: '', first: '', msg: '' }; render();
     }
@@ -4535,6 +5111,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
 
   root.addEventListener('keydown', function (ev) {
     if (ev.key === 'Enter' && ev.target.id === 'stepin') { ev.preventDefault(); act.stepAdd(); }
+    if (ev.key === 'Enter' && ev.target.id === 'scanname') { ev.preventDefault(); act.scanShop(); }
   });
 
   root.addEventListener('input', function (ev) {
@@ -4543,6 +5120,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     if (id === 'fday' && ui.form) ui.form.day = ev.target.value.replace(/\D/g, '');
     if (id === 'cname' && ui.catForm) ui.catForm.label = ev.target.value;
     if (id === 'tname' && ui.taskForm) ui.taskForm.text = ev.target.value;
+    if (id === 'scanname' && ui.scan) ui.scan.name = ev.target.value;
     if (id === 'magicin') { ui.magic = ev.target.value; ui.magicAs = ''; document.getElementById('magicout').innerHTML = magicOut(); }
     if (id === 'tgoal' && ui.taskForm) ui.taskForm.goal = parseInt(ev.target.value, 10) || 0;
     if (id === 'diaryin') {
@@ -4617,6 +5195,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       };
       br.readAsArrayBuffer(ev.target.files[0]);
     }
+    if (ev.target.id === 'scanfile' && ev.target.files[0]) scanFile(ev.target.files[0]);
     if (ev.target.id === 'fdate' && ui.form) ui.form.date = ev.target.value;
     if (ev.target.id === 'tdue' && ui.taskForm) ui.taskForm.due = ev.target.value;
     if (ev.target.id === 'ttime' && ui.taskForm) ui.taskForm.time = ev.target.value;
