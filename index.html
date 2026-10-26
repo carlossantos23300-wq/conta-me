@@ -6,8 +6,8 @@
 <title>conta-me</title>
 <meta name="description" content="Os meus gastos, o que já fiz e o que devia fazer.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#0B0C10">
-<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0a0d1a">
+<meta name="color-scheme" content="light dark">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -17,41 +17,79 @@
 <link rel="icon" type="image/png" href="icon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..800&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=DM+Mono:wght@400;500&display=swap">
+<script data-boot>try{var d=JSON.parse(localStorage.getItem('contame.v1')||'{}'),t=d.skinV>=2&&d.theme?d.theme:'eletrico';document.documentElement.setAttribute('data-theme',t);document.documentElement.setAttribute('data-tone',/^(premium|neon|sunset|ocean|black)$/.test(t)?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','eletrico');document.documentElement.setAttribute('data-tone','light');}</script>
 <style>
-/* ---------- Cores de base (tema Néon). Os outros temas só trocam estas. ---------- */
-:root {
-  --bg: #0B0C10;
-  --card: #171A21;
-  --card-2: #242834;
-  --line: #2C3040;
-  --edge: rgba(255, 255, 255, .08);     /* contorno fino das superfícies */
-  --text: #FFFFFF;
-  --muted: #9AA0B4;
-  --lime: #C6F432;                      /* cor principal, usada em fundos */
-  --on: #12140A;                        /* texto por cima da cor principal */
-  --accent-text: var(--lime);           /* cor principal usada como texto */
-  --on-cat: #12140A;                    /* texto por cima das cores das categorias */
-  --violet: #8B7BFF;
-  --coral: #FF7A59;
-  --mint: #3DDBA4;
-  --done-bg: #11231C;
-  --done-text: #8FE3C4;
-  --sub-bg: #1A1733;
-  --sub-ic: #A99CFF;
-  --danger-bg: #3A1512;
-  --danger-text: #FF9A85;
-  --ring: #3A3F4E;
-  --tabs-bg: rgba(26, 29, 38, .72);
-  --glow: #8B7BFF;
-  --shadow: 0 18px 34px -24px rgba(0, 0, 0, .95);
-  --display: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
+/* ---------- Cores. A base é a aparência Elétrico, a do Mealheiro; as outras só trocam estas variáveis. ---------- */
+:root, html[data-theme="eletrico"] {
+  --bg: #eceef2;
+  --card: #ffffff;
+  --card-2: #f4f5f8;
+  --line: rgba(15, 23, 42, .14);          /* contorno das caixas de escolha */
+  --line-strong: rgba(15, 23, 42, .48);   /* contorno das caixas de texto (3:1) */
+  --edge: rgba(15, 23, 42, .06);          /* contorno quase invisível dos cartões */
+  --text: #0f172a;
+  --muted: rgba(15, 23, 42, .64);
+  --grad-a: #2563eb;                      /* o destaque é um gradiente: azul-elétrico a puxar para roxo */
+  --grad-b: #7c3aed;
+  --lime: #4f46e5;                        /* destaque sólido (barras, anéis, botões escolhidos) */
+  --on: #ffffff;                          /* texto por cima do destaque */
+  --accent-text: #4338ca;                 /* destaque usado como texto */
+  --accent-soft: #ecebfd;
+  --on-cat: #0f172a;
+  --violet: #4f46e5;
+  --coral: #f26b5b;
+  --mint: #12a26f;
+  --good: #0d7a4c;
+  --bad: #c2342f;
+  --done-bg: #e2f4ea;
+  --done-text: #0d7a4c;
+  --sub-bg: #ecebfd;
+  --sub-ic: #4338ca;
+  --danger-bg: #fde8e7;
+  --danger-text: #c2342f;
+  --ring: rgba(15, 23, 42, .3);
+  --tabs-bg: rgba(255, 255, 255, .74);
+  --card-a: #0a0d1a;                      /* cartão premium do mês, escuro como um cartão de crédito */
+  --card-b: #1b2040;
+  --on-card: #ffffff;
+  --on-card-2: rgba(255, 255, 255, .68);
+  --glass: rgba(255, 255, 255, .08);
+  --glass-line: rgba(255, 255, 255, .12);
+  --sheen: rgba(255, 255, 255, .1);
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, .06);
+  --shadow: 0 1px 2px rgba(15, 23, 42, .04), 0 12px 32px -18px rgba(15, 23, 42, .24);
+  --shadow-lg: 0 30px 60px -24px rgba(15, 23, 42, .45);
+  --app-bg: var(--bg);
+  --grad: linear-gradient(135deg, var(--grad-a), var(--grad-b));
+  --display: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
   --mono: 'DM Mono', ui-monospace, Menlo, monospace;
+  color-scheme: light;
 }
-html[data-theme="sunset"] { --bg: #140D0C; --card: #221715; --card-2: #33231F; --line: #3A2924; --muted: #B5A29B; --lime: #FF8A4C; --on: #1A0B04; --violet: #FF5C8A; --done-bg: #1D2416; --sub-bg: #2A1626; --sub-ic: #FF9CC0; --ring: #4A352F; --tabs-bg: rgba(36, 25, 23, .74); }
-html[data-theme="ocean"] { --bg: #061116; --card: #0E2028; --card-2: #193039; --line: #1E3741; --muted: #8FA9B3; --lime: #3DE0D0; --on: #03201D; --violet: #5C9DFF; --done-bg: #0E2A24; --sub-bg: #122440; --sub-ic: #8FB8FF; --ring: #2B4954; --tabs-bg: rgba(16, 34, 42, .74); }
-html[data-theme="black"] { --bg: #000000; --card: #101114; --card-2: #1C1D22; --line: #1F2024; --muted: #8E93A3; --lime: #D4FF3A; --ring: #2E3038; --tabs-bg: rgba(17, 18, 20, .74); }
-html[data-theme="light"] { color-scheme: light; --bg: #F2F3F8; --card: #FFFFFF; --card-2: #ECEEF4; --line: #D5D8E2; --edge: rgba(18, 20, 26, .07); --text: #12141A; --muted: #5C6378; --lime: #5B45F5; --on: #FFFFFF; --violet: #5B45F5; --accent-text: #5B45F5; --done-bg: #DDF5EA; --done-text: #0B6B4A; --sub-bg: #EAE6FF; --sub-ic: #5B45F5; --danger-bg: #FCE3DE; --danger-text: #B3301A; --ring: #BFC4D2; --tabs-bg: rgba(255, 255, 255, .78); --shadow: 0 14px 28px -20px rgba(18, 20, 26, .35); }
+html[data-theme="menta"] { --grad-a: #047857; --grad-b: #0e7490; --lime: #047857; --violet: #047857; --accent-text: #065f46; --accent-soft: #e1f4ec; --sub-bg: #e1f4ec; --sub-ic: #065f46; }
+html[data-theme="ameixa"] { --grad-a: #7c3aed; --grad-b: #db2777; --lime: #9333ea; --violet: #9333ea; --accent-text: #7e22ce; --accent-soft: #f3e8fd; --sub-bg: #f3e8fd; --sub-ic: #7e22ce; }
+html[data-theme="grafite"] { --grad-a: #111827; --grad-b: #4b5563; --lime: #111827; --violet: #111827; --accent-text: #111827; --accent-soft: #e8eaee; --sub-bg: #e8eaee; --sub-ic: #111827; }
+html[data-theme="light"] { --bg: #F2F3F8; --grad-a: #5B45F5; --grad-b: #8B7BFF; --lime: #5B45F5; --violet: #5B45F5; --accent-text: #4b35e0; --accent-soft: #eae6ff; --sub-bg: #eae6ff; --sub-ic: #4b35e0; }
+
+/* Aparências escuras: o Escuro premium do Mealheiro e as quatro antigas da conta-me. */
+html[data-theme="premium"], html[data-theme="neon"], html[data-theme="sunset"], html[data-theme="ocean"], html[data-theme="black"] {
+  color-scheme: dark;
+  --text: #f1f3f9; --muted: rgba(241, 243, 249, .62);
+  --edge: rgba(255, 255, 255, .07); --line: rgba(255, 255, 255, .12); --line-strong: rgba(241, 243, 249, .42);
+  --on-cat: #12140A; --good: #4fd197; --bad: #ff8a7a; --coral: #FF7A59; --mint: #3DDBA4;
+  --done-bg: #0f2e25; --done-text: #8FE3C4; --danger-bg: #3a1a1b; --danger-text: #ff9a85;
+  --ring: rgba(241, 243, 249, .26); --tabs-bg: rgba(22, 26, 40, .74);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .4);
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 32px -18px rgba(0, 0, 0, .7);
+  --shadow-lg: 0 30px 60px -24px rgba(0, 0, 0, .8);
+  --app-bg: radial-gradient(90% 30% at 12% 0%, color-mix(in srgb, var(--glow, #8B7BFF) 26%, transparent), transparent 70%),
+    radial-gradient(80% 26% at 100% 2%, color-mix(in srgb, var(--grad-a) 12%, transparent), transparent 70%), var(--bg);
+}
+html[data-theme="premium"] { --bg: #07090f; --card: #0f121c; --card-2: #161a27; --grad-a: #2563eb; --grad-b: #7c3aed; --lime: #7c83ff; --on: #ffffff; --violet: #7c83ff; --accent-text: #b4b8ff; --accent-soft: #1d2045; --sub-bg: #1d2045; --sub-ic: #b4b8ff; --card-a: #141a33; --card-b: #2a2f5c; --app-bg: var(--bg); }
+html[data-theme="neon"] { --bg: #0B0C10; --card: #171A21; --card-2: #242834; --text: #FFFFFF; --muted: #9AA0B4; --grad-a: #C6F432; --grad-b: #3DDBA4; --lime: #C6F432; --on: #12140A; --violet: #8B7BFF; --accent-text: #C6F432; --accent-soft: rgba(198, 244, 50, .14); --sub-bg: #1A1733; --sub-ic: #A99CFF; --done-bg: #11231C; --danger-bg: #3A1512; --tabs-bg: rgba(26, 29, 38, .72); --card-a: #0f1117; --card-b: #262b38; }
+html[data-theme="sunset"] { --bg: #140D0C; --card: #221715; --card-2: #33231F; --muted: #B5A29B; --grad-a: #FF8A4C; --grad-b: #FF5C8A; --lime: #FF8A4C; --on: #1A0B04; --violet: #FF5C8A; --accent-text: #FF8A4C; --accent-soft: rgba(255, 138, 76, .16); --sub-bg: #2A1626; --sub-ic: #FF9CC0; --done-bg: #1D2416; --tabs-bg: rgba(36, 25, 23, .74); --card-a: #170e0c; --card-b: #3a2420; }
+html[data-theme="ocean"] { --bg: #061116; --card: #0E2028; --card-2: #193039; --muted: #8FA9B3; --grad-a: #3DE0D0; --grad-b: #5C9DFF; --lime: #3DE0D0; --on: #03201D; --violet: #5C9DFF; --accent-text: #3DE0D0; --accent-soft: rgba(61, 224, 208, .14); --sub-bg: #122440; --sub-ic: #8FB8FF; --done-bg: #0E2A24; --tabs-bg: rgba(16, 34, 42, .74); --card-a: #06141a; --card-b: #17333f; }
+html[data-theme="black"] { --bg: #000000; --card: #101114; --card-2: #1C1D22; --muted: #8E93A3; --grad-a: #D4FF3A; --grad-b: #9BEA4A; --lime: #D4FF3A; --on: #12140A; --violet: #8B7BFF; --accent-text: #D4FF3A; --accent-soft: rgba(212, 255, 58, .13); --sub-bg: #17152b; --sub-ic: #A99CFF; --done-bg: #0d1d17; --tabs-bg: rgba(17, 18, 20, .74); --card-a: #050506; --card-b: #1d1f26; }
 
 /* ---------- Base ---------- */
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -82,14 +120,8 @@ button:focus-visible { outline: 3px solid var(--accent-text); outline-offset: 2p
   position: relative; height: 100%; max-width: 520px; margin: 0 auto; display: flex; flex-direction: column;
   /* Distância da barra ao fundo: encostada à barrinha do iPhone. */
   --dock: max(6px, calc(env(safe-area-inset-bottom) - 28px));
-  /* Dois brilhos de cor no topo, por trás de tudo. */
-  background:
-    radial-gradient(90% 30% at 12% 0%, color-mix(in srgb, var(--glow) 30%, transparent), transparent 70%),
-    radial-gradient(80% 26% at 100% 2%, color-mix(in srgb, var(--accent-text) 13%, transparent), transparent 70%),
-    var(--bg);
+  background: var(--app-bg);
 }
-/* O iPhone escreve as horas a branco; no tema claro uma faixa escura mantém-nas legíveis. */
-html[data-theme="light"] #app::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: env(safe-area-inset-top); background: #12141A; z-index: 6; }
 .screen { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; display: flex; flex-direction: column; }
 .pad { padding: 0 16px calc(var(--dock) + 104px); display: flex; flex-direction: column; gap: 14px; }
 .pad.after-hero { padding-top: 0; }
@@ -538,6 +570,150 @@ html[data-corners="sharp"] .tabs { border-radius: 14px; }
 html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radius: 3px; }
 
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } .confetti { display: none; } }
+
+/* ---------- Estilo Mealheiro ---------- */
+/* Esta letra tem os espaços entre palavras estreitos: alarga-os um pouco. */
+body { word-spacing: var(--ws, .08em); }
+.eyebrow { font-family: inherit; font-size: 14px; font-weight: 600; color: var(--muted); text-transform: none; letter-spacing: 0; }
+.wkday .eyebrow { font-size: 13px; }
+.wkday .eyebrow b { font-weight: 700; }
+.title { font-size: 34px; font-weight: 800; letter-spacing: -0.035em; }
+.h2 { font-size: 19px; font-weight: 800; letter-spacing: -0.02em; }
+.hero .eyebrow { margin-top: 4px; }
+
+/* Cartões: brancos, sem bordas, com sombra suave e um contorno quase invisível. */
+.panel, .item, .goal, .stat, .hubt, .notec, .wk, .sect, .medal, .ym, .tlp {
+  background: var(--card); border: 0; box-shadow: var(--shadow), inset 0 0 0 1px var(--edge);
+}
+.panel, .goal, .sect { border-radius: 24px; }
+.sect .input { background: var(--card-2); }
+.sect .chip, .sect .theme { background: var(--card-2); }
+.sect .item, .sect .wk { background: var(--card-2); box-shadow: none; }
+.row-head > .small, .pill, .gear, .close { background: var(--card); border: 0; box-shadow: var(--shadow-sm), inset 0 0 0 1px var(--edge); }
+.gear { color: var(--text); }
+.logo { color: var(--on); background: var(--grad); box-shadow: 0 8px 18px -10px var(--grad-b); }
+.item.done { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--mint) 18%, transparent); }
+
+/* Cartão do mês: escuro, com dois brilhos nas cores do destaque e um reflexo que passa uma vez. */
+.card {
+  isolation: isolate; color: var(--on-card); border-radius: 28px; padding: 22px 22px 20px;
+  background: linear-gradient(150deg, var(--card-b) 0%, var(--card-a) 58%);
+  box-shadow: var(--shadow-lg), inset 0 1px 0 var(--glass-line), inset 0 0 0 1px var(--glass-line);
+}
+.card::before {
+  content: ''; position: absolute; inset: -30%; z-index: -1; pointer-events: none;
+  background: radial-gradient(38% 34% at 82% 20%, color-mix(in srgb, var(--grad-a) 60%, transparent), transparent 72%),
+    radial-gradient(34% 30% at 14% 96%, color-mix(in srgb, var(--grad-b) 52%, transparent), transparent 72%);
+}
+.card::after {
+  top: 0; right: 0; bottom: 0; left: 0; width: auto; height: auto; border-radius: 0; z-index: -1;
+  background: linear-gradient(115deg, transparent 36%, var(--sheen) 48%, transparent 60%); background-size: 260% 100%; background-position: 60% 0;
+}
+.enter .card::after { animation: sheen 1.5s cubic-bezier(.2, .8, .2, 1) .25s both; }
+@keyframes sheen { from { background-position: 160% 0; } to { background-position: -40% 0; } }
+.card .label { display: flex; align-items: center; gap: 8px; color: var(--on-card-2); }
+.cpill { color: var(--on-card); background: var(--glass); box-shadow: inset 0 0 0 1px var(--glass-line); }
+.card .big { color: var(--on-card); }
+.card .bar { height: 8px; border-radius: 999px; background: var(--glass); box-shadow: inset 0 0 0 1px var(--glass-line); }
+.card .bar > i { border-radius: 999px; background: linear-gradient(90deg, var(--grad-a), var(--grad-b)); }
+.card .mini { background: var(--glass); box-shadow: inset 0 0 0 1px var(--glass-line); }
+.card .mini span, .card .say { color: var(--on-card-2); }
+.card .mini b, .card .say strong { color: var(--on-card); }
+.big { font-weight: 800; letter-spacing: -0.05em; }
+
+/* Destaque em gradiente: botões principais, o + da barra, as barras de progresso. */
+.bar > i { background: var(--grad); }
+.btn { border-radius: 16px; color: var(--on); background: var(--grad); box-shadow: 0 10px 22px -12px var(--grad-b); }
+.btn.plain { background: var(--card); color: var(--text); border: 0; box-shadow: var(--shadow-sm), inset 0 0 0 1px var(--edge); }
+.sect .btn.plain { background: var(--card-2); box-shadow: none; }
+.btn.danger { background: var(--danger-bg); color: var(--danger-text); box-shadow: none; }
+.save { border-radius: 18px; color: var(--on); background: var(--grad); }
+.save:disabled { background: var(--card); color: var(--muted); border: 0; box-shadow: inset 0 0 0 1px var(--edge); }
+.col[aria-current] .cb > i { background: linear-gradient(180deg, var(--grad-a), var(--grad-b)); }
+.dot.on { background: var(--lime); border-color: var(--lime); }
+
+/* Escolhas */
+.chip { background: var(--card); border: 1.5px solid var(--line); }
+.rep .chip[aria-pressed="true"], .seg button[aria-pressed="true"], .day[aria-pressed="true"] { background: var(--lime); border-color: var(--lime); color: var(--on); }
+.seg { background: var(--card); border: 0; box-shadow: var(--shadow-sm), inset 0 0 0 1px var(--edge); }
+.input { border-color: var(--line-strong); border-radius: 16px; }
+.key { background: var(--card); border: 0; border-radius: 18px; box-shadow: var(--shadow-sm), inset 0 0 0 1px var(--edge); }
+.key:active { background: var(--card-2); }
+.theme i { width: 30px; height: 30px; border: 0; }
+.theme { background: var(--card); }
+
+/* Ícones coloridos: o desenho na cor da categoria, sobre um quadrado claro dessa cor. */
+.cic, .hubt .hi, .inc .hi, .medal.on .mi, .medalpop .mi, .sicon, .tool .hi {
+  background: color-mix(in srgb, var(--c) 15%, var(--card)); color: color-mix(in srgb, var(--c) 68%, var(--text)); box-shadow: none;
+}
+.cic { width: 42px; height: 42px; }
+.inc { background: linear-gradient(160deg, color-mix(in srgb, var(--c) 12%, var(--card)), var(--card) 70%); border: 0; box-shadow: var(--shadow), inset 0 0 0 1px var(--edge); }
+
+/* Avisos e convites: cartões brancos com o ícone colorido. */
+.note { color: var(--text); background: var(--card); border: 0; box-shadow: var(--shadow-sm), inset 0 0 0 1px var(--edge); }
+.note > svg, .nmain > svg { flex: none; color: var(--good); }
+.note.sub { background: var(--card); }
+.note.sub > svg, .note.sub .nmain > svg { color: var(--accent-text); }
+.note.warn { background: var(--danger-bg); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--bad) 22%, transparent); }
+.note.warn > svg { color: var(--bad); }
+.nmain { flex: 1; min-width: 0; display: flex; align-items: center; gap: 14px; padding: 0; border: 0; background: none; color: inherit; text-align: left; }
+.note .x { margin: -10px -12px -10px 0; }
+.magicbtn, .scanbtn { background: var(--card); border: 0; box-shadow: var(--shadow), inset 0 0 0 1.5px color-mix(in srgb, var(--lime) 30%, transparent); }
+.medal { opacity: 1; }
+.medal:not(.on) { box-shadow: inset 0 0 0 1px var(--edge); background: var(--card-2); }
+.cd { border: 0; box-shadow: inset 0 0 0 1px var(--edge); }
+.cd.today { box-shadow: inset 0 0 0 2px var(--accent-text); }
+.cd.sel { box-shadow: inset 0 0 0 2px var(--text); }
+.tlp { border: 0; }
+
+/* Sino com o número de avisos */
+.bell { position: relative; }
+.badge { position: absolute; top: -4px; right: -4px; min-width: 19px; height: 19px; padding: 0 5px; border-radius: 999px; display: grid; place-items: center; font-size: 11px; font-weight: 800; font-style: normal; line-height: 1; color: #fff; background: #c2342f; box-shadow: 0 0 0 2px var(--bg); }
+
+/* Barra de baixo: vidro, com o + em gradiente ao meio. */
+.tabs {
+  grid-template-columns: repeat(5, minmax(0, 1fr)); padding: 6px; border: 0; border-radius: 999px; background: var(--tabs-bg);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6); backdrop-filter: blur(18px) saturate(1.6);
+  box-shadow: var(--shadow), inset 0 0 0 1px var(--edge);
+}
+.tab { min-height: 52px; border-radius: 999px; font-size: 11px; font-weight: 700; }
+.tab[aria-current="page"] { color: var(--accent-text); background: var(--accent-soft); }
+.plus { width: 56px; height: 52px; border-radius: 999px; color: var(--on); background: var(--grad); box-shadow: 0 10px 22px -10px var(--grad-b); }
+
+/* Ecrã Tudo */
+.tgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tool { position: relative; min-width: 0; }
+.tmain { width: 100%; height: 100%; min-height: 104px; display: flex; flex-direction: column; align-items: flex-start; gap: 3px; padding: 14px; border: 0; border-radius: 20px; text-align: left; color: var(--text); background: var(--card); box-shadow: var(--shadow), inset 0 0 0 1px var(--edge); }
+.tmain .hi { width: 36px; height: 36px; border-radius: 12px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center; }
+.tmain b { font-size: 15px; font-weight: 800; letter-spacing: -0.01em; }
+.tmain .small { font-size: 12.5px; padding-right: 8px; }
+.tmain:active { transform: scale(.97); }
+.star { position: absolute; top: 4px; right: 4px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: none; color: var(--ring); display: flex; align-items: center; justify-content: center; }
+.star[aria-pressed="true"] { color: #e8970f; }
+.star[aria-pressed="true"] path { fill: currentColor; }
+.star:active { transform: scale(.9); }
+
+/* Resumo do mês: receitas, gastos e poupança lado a lado */
+.sumpanel { padding: 18px 16px; }
+.sum3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.sstat { display: flex; flex-direction: column; gap: 5px; min-width: 0; padding: 2px 10px; }
+.sstat:first-child { padding-left: 0; }
+.sstat:last-child { padding-right: 0; }
+.sstat + .sstat { box-shadow: -1px 0 0 var(--edge); }
+.sicon { width: 32px; height: 32px; border-radius: 11px; display: grid; place-items: center; }
+.stat-k { font-size: 12.5px; font-weight: 650; color: var(--muted); }
+.stat-v { font-size: 15.5px; font-weight: 800; letter-spacing: -0.025em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-variant-numeric: tabular-nums; }
+.delta { display: flex; align-items: center; gap: 2px; font-size: 11.5px; font-weight: 700; line-height: 1.2; }
+.delta.good { color: var(--good); }
+.delta.bad { color: var(--bad); }
+.delta.mute { color: var(--muted); font-weight: 600; }
+
+/* Apagar sem janelas: o botão pede confirmação nele próprio. */
+.armed, .btn.danger.armed { background: var(--bad) !important; color: #fff !important; box-shadow: none !important; }
+
+/* Aparências claras: as horas do iPhone são escritas a branco, por isso fica uma faixa escura só atrás delas. */
+html[data-tone="light"] #app::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: env(safe-area-inset-top); z-index: 6; pointer-events: none; background: linear-gradient(90deg, #0a0d1a, #1b2040); }
+html[data-corners="sharp"] :is(.tmain, .tgrid .hi, .sicon, .tabs, .plus, .tab) { border-radius: 8px; }
 </style>
 </head>
 <body>
@@ -590,13 +766,19 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
   }
   function chip(color, icon) { return '<span class="cic" style="--c:' + color + '">' + icSvg(icon, 20) + '</span>'; }
   function catIcon(cat) { return chip(cat.color, cat.icon); }
-  var THEMES = [['', 'Néon', '#0B0C10', '#C6F432'], ['sunset', 'Poente', '#140D0C', '#FF8A4C'], ['ocean', 'Oceano', '#061116', '#3DE0D0'],
-    ['black', 'Preto', '#000000', '#D4FF3A'], ['light', 'Claro', '#F2F3F8', '#5B45F5']];
+  // Aparências: [id, nome, fundo, cor A do gradiente, cor B, tom]. As cinco primeiras são as do Mealheiro.
+  var THEMES = [['eletrico', 'Elétrico', '#eceef2', '#2563eb', '#7c3aed', 'l'], ['menta', 'Menta', '#eceef2', '#047857', '#0e7490', 'l'],
+    ['ameixa', 'Ameixa', '#eceef2', '#7c3aed', '#db2777', 'l'], ['grafite', 'Grafite', '#eceef2', '#111827', '#4b5563', 'l'],
+    ['premium', 'Escuro premium', '#07090f', '#2563eb', '#7c3aed', 'd'],
+    ['neon', 'Néon', '#0B0C10', '#C6F432', '#3DDBA4', 'd'], ['sunset', 'Poente', '#140D0C', '#FF8A4C', '#FF5C8A', 'd'], ['ocean', 'Oceano', '#061116', '#3DE0D0', '#5C9DFF', 'd'],
+    ['black', 'Preto', '#000000', '#D4FF3A', '#9BEA4A', 'd'], ['light', 'Claro', '#F2F3F8', '#5B45F5', '#8B7BFF', 'l']];
   var DAYS = [[1, 'S'], [2, 'T'], [3, 'Q'], [4, 'Q'], [5, 'S'], [6, 'S'], [0, 'D']];
+  // Letras: [nome, família, espaço entre palavras]. A Normal é a do Mealheiro.
   var FONTS = {
-    '': ['Normal', "'Bricolage Grotesque', system-ui, -apple-system, sans-serif"],
-    round: ['Redonda', "ui-rounded, 'SF Pro Rounded', -apple-system, system-ui, sans-serif"],
-    sys: ['Simples', "-apple-system, 'SF Pro Display', system-ui, sans-serif"]
+    '': ['Normal', "'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif", '.08em'],
+    antiga: ['A antiga', "'Bricolage Grotesque', system-ui, -apple-system, sans-serif", '0'],
+    round: ['Redonda', "ui-rounded, 'SF Pro Rounded', -apple-system, system-ui, sans-serif", '0'],
+    sys: ['Simples', "-apple-system, 'SF Pro Display', system-ui, sans-serif", '0']
   };
   var PHRASES = [
     'Um gasto apontado já não te apanha de surpresa.',
@@ -621,7 +803,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
   // Partes da app que se podem esconder nas definições.
   var MODS = [['subs', 'Subscrições'], ['goals', 'Objetivos'], ['debts', 'A acertar'], ['wishes', 'Desejos'], ['cal', 'Calendário'],
     ['shop', 'Compras'], ['notes', 'Notas'], ['hist', 'Feito'], ['dates', 'Datas'], ['semana', 'Semana'],
-    ['tiles', 'Blocos de categorias'], ['frase', 'Frase do dia'], ['nw', 'Preciso ou quis']];
+    ['frase', 'Frase do dia'], ['nw', 'Preciso ou quis']];
   MODS.push(['checks', 'Rotinas'], ['diary', 'Diário']);
   MODS.push(['plan', 'Planear e fechar o dia'], ['inbox', 'Caixa de entrada'], ['projs', 'Projetos'], ['tpls', 'Modelos'], ['habits', 'Hábitos'], ['bills', 'Contas a pagar']);
   MODS.push(['magic', 'Caixa que percebe'], ['insights', 'Reparei que…']);
@@ -630,6 +812,9 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
   MODS.push(['now', 'O que faço agora'], ['week', 'Dinheiro da semana'], ['agenda', 'Agenda do mês'], ['wars', 'Garantias'], ['trips', 'Viagens'], ['year', 'O ano'], ['bank', 'Importar do banco']);
   // O que fica à vista no modo simples.
   var SIMPLE_KEEP = ['magic', 'shop', 'notes', 'subs'];
+  // As ferramentas que podem ter estrela (filas de atalhos de Gastos e Fazer).
+  var TOOL_IDS = ['subs', 'bills', 'goals', 'debts', 'wishes', 'wars', 'trips', 'scan', 'bank', 'now', 'inbox', 'projs', 'habits', 'checks', 'tpls', 'shop', 'notes',
+    'dates', 'diary', 'agenda', 'cal', 'year', 'semana', 'hist', 'stats', 'medals'];
   // Blocos do ecrã Hoje, pela ordem em que aparecem se não mexeres.
   var ORDER = [['card', 'Cartão do mês'], ['week', 'Dinheiro da semana'], ['tiles', 'Blocos de categorias'], ['todo', 'Devia fazer'], ['notes', 'Avisos'], ['semana', 'Botão da semana']];
   CIC.cam = 'M4 8h3l2-3h6l2 3h3v11H4zM12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z';
@@ -650,7 +835,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
 
   // ---------- dados ----------
   function blank() {
-    return { budget: 0, name: '', theme: '', font: '', corners: '', challenge: 0, hide: false, mute: false, start: '', wage: 0, off: {}, dates: [],
+    return { budget: 0, name: '', theme: 'eletrico', skinV: 2, favs: null, remind: '', font: '', corners: '', challenge: 0, hide: false, mute: false, start: '', wage: 0, off: {}, dates: [],
       bkp: '', since: '', swept: '', incFixed: [], medals: {}, shops: {}, trips: [], simple: false, offSaved: null, projects: [], tpls: [], inbox: [], bills: [], planned: '', closed: '', weekly: '',
       cur: '€', cycle: 1, roundTo: '', wishes: [], checks: [], diary: {}, order: ORDER.map(function (o) { return o[0]; }), expenses: [], incomes: [], tasks: [], fixed: [], goals: [], debts: [], shop: [], notes: [], lists: [], log: [],
       cats: DEFAULT_CATS.map(function (c) { return { id: c.id, label: c.label, color: c.color, icon: c.icon }; }) };
@@ -660,7 +845,12 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     if (!d || typeof d !== 'object') return b;
     b.budget = Math.max(0, parseInt(d.budget, 10) || 0);
     b.name = String(d.name || '').slice(0, 20);
-    b.theme = THEMES.some(function (t) { return t[0] === d.theme; }) ? d.theme : '';
+    // A antiga Néon chamava-se ''. Na mudança para o visual do Mealheiro, toda a gente passa uma vez para o Elétrico.
+    b.theme = THEMES.some(function (t) { return t[0] === d.theme; }) ? d.theme : d.theme === '' ? 'neon' : 'eletrico';
+    b.skinV = parseInt(d.skinV, 10) || 0;
+    if (b.skinV < 2) { b.theme = 'eletrico'; b.skinV = 2; }
+    b.favs = Array.isArray(d.favs) ? d.favs.filter(function (x, i, a) { return TOOL_IDS.indexOf(x) >= 0 && a.indexOf(x) === i; }) : null;
+    b.remind = /^(\d{4}-\d{2}-\d{2}|no)$/.test(d.remind) ? d.remind : '';
     b.font = FONTS[d.font] ? d.font : '';
     function arr(x) { return Array.isArray(x) ? x : []; }
     function cents(x) { return Math.max(0, Math.round(parseFloat(x)) || 0); }
@@ -1034,7 +1224,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
   function dueInfo(t) {
     if (!t.due || t.done) return null;
     var diff = Math.round((parseDay(t.due) - parseDay(iso(new Date()))) / 864e5);
-    if (diff < 0) return { text: 'atrasada ' + (diff === -1 ? '1 dia' : -diff + ' dias'), color: '#FF7A59', late: true };
+    if (diff < 0) return { text: 'atrasada ' + (diff === -1 ? '1 dia' : -diff + ' dias'), color: 'var(--bad)', late: true };
     if (diff === 0) return { text: 'é para hoje', color: 'var(--accent-text)' };
     if (diff === 1) return { text: 'até amanhã', color: 'var(--muted)' };
     return { text: 'até ' + shortDate(t.due), color: 'var(--muted)' };
@@ -1160,7 +1350,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     // Linha pequena por baixo: foco, urgência, prazo, passos e lista.
     var parts = [], list = !ui.list && t.list ? find(S.lists, t.list) : null;
     if (!t.done && t.focus === iso(new Date())) parts.push('<span style="color:var(--accent-text)">foco de hoje</span>');
-    if (t.pri && !t.done) parts.push('<span style="color:#FF7A59">urgente</span>');
+    if (t.pri && !t.done) parts.push('<span style="color:var(--bad)">urgente</span>');
     if (t.time && !t.done) parts.push('<span style="color:var(--text)">às ' + t.time + '</span>');
     if (due) parts.push('<span style="color:' + due.color + '">' + due.text + '</span>');
     if (t.goal > 1 && !t.done) parts.push('<span style="color:var(--text)">' + (t.cday === iso(new Date()) ? t.count : 0) + ' de ' + t.goal + '</span>');
@@ -1171,7 +1361,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     if (list) parts.push(esc(list.name));
     return '<div class="item' + (t.done ? ' done' : '') + (ui.just === t.id ? ' pop' : '') + '">' +
       '<button class="main" data-a="toggle" data-id="' + esc(t.id) + '" aria-pressed="' + t.done + '">' +
-      (t.done ? ICON.done : '<span class="ring"' + (hot ? ' style="border-color:#FF7A59"' : '') + '></span>') +
+      (t.done ? ICON.done : '<span class="ring"' + (hot ? ' style="border-color:var(--bad)"' : '') + '></span>') +
       '<span class="text"><span>' + esc(t.text) + '</span>' +
       (parts.length ? '<span class="small">' + parts.join(' · ') + '</span>' : '') + '</span></button>' +
       (t.done && !t.rep ?
@@ -1184,15 +1374,6 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       '<span style="color:var(--muted);display:flex">' + ICON.next + '</span></button></div>';
   }
 
-  // Atalhos lado a lado para os ecrãs secundários: [ecrã, título, linha pequena, desenho, cor].
-  function hub(items) {
-    items = items.filter(function (it) { return !S.off[it[0]] && (it[0] !== 'scan' || HAS_QR); });
-    if (!items.length) return '';
-    return '<div class="hub">' + items.map(function (it) {
-      return '<button class="hubt" data-a="nav" data-v="' + it[0] + '"><span class="hi" style="--c:' + it[4] + '">' + icSvg(it[3], 18) + '</span>' +
-        '<b>' + it[1] + '</b><span class="small">' + it[2] + '</span></button>';
-    }).join('') + '</div>';
-  }
   function goalsPct() {
     var t = S.goals.reduce(function (n, g) { return n + g.target; }, 0), s = S.goals.reduce(function (n, g) { return n + Math.min(g.saved, g.target); }, 0);
     return t ? Math.round(s / t * 100) : 0;
@@ -1268,6 +1449,8 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
   }
 
   // ---------- ecrãs ----------
+  // O ecrã Hoje, limpo: a caixa e a câmara, os convites à hora certa, o cartão do mês e o dinheiro da semana.
+  // Os avisos estão no sino do topo; as tarefas, no ecrã Fazer.
   function viewHoje() {
     var now = new Date(), h = now.getHours();
     var hi = h < 6 ? 'Boa noite.' : h < 13 ? 'Bom dia.' : h < 20 ? 'Boa tarde.' : 'Boa noite.';
@@ -1281,178 +1464,57 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     var today = iso(now);
     var doneToday = S.tasks.filter(function (t) { return t.done && t.doneAt === today; });
 
-    // Com tarefas em foco, ficam só essas à vista até as acabares.
-    var foc = todo.filter(function (t) { return t.focus === today; });
-    var shown = foc.length ? foc : todo.slice(0, 4), rest = n - shown.length;
-    var list = shown.map(taskRow).join('') || '<div class="empty">Nada pendente. Aproveita o dia.</div>';
-    if (rest > 0) list += '<div class="small" style="padding:0 4px">' + (foc.length ? 'Primeiro estas. Há mais ' + rest + ' à espera.' : 'E mais ' + rest + ' no ecrã Fazer.') + '</div>';
-    // O dia em linha: o que tem hora marcada, por ordem.
-    var nowT = pad(h) + ':' + pad(now.getMinutes());
-    var timed = todayTodo().filter(function (t) { return t.time; }).sort(function (a, b) { return a.time < b.time ? -1 : 1; });
-    var strip = timed.length ? '<div class="chips rowx tline" aria-label="O dia por horas">' + timed.map(function (t) {
-      return '<span class="tlp' + (t.time < nowT ? ' past' : '') + '"><b>' + t.time + '</b>' + esc(t.text) + '</span>';
-    }).join('') + '</div>' : '';
-    var mins = estToday();
-    var load = mins ? '<div class="small" style="padding:0 4px' + (mins > 360 ? ';color:#FF7A59' : '') + '">Cerca de ' + estText(mins) + ' de coisas para hoje.' +
-      (mins > 360 ? ' É muito para um dia: adia alguma.' : '') + '</div>' : '';
-    // Convites para planear de manhã, fechar à noite e rever ao domingo.
+    // Convites: só aparecem à hora em que fazem sentido.
     var prompts = '';
-    // Durante uma viagem: quanto podes gastar hoje.
     var tripNow = S.off.trips ? null : find(S.trips, tripFor(today));
     if (tripNow) {
       var ti = tripInfo(tripNow);
       prompts += '<button class="note sub" data-a="tripOpen" data-id="' + esc(tripNow.id) + '">' + icSvg('plane', 22) + '<span class="say"><strong>Em viagem: ' + esc(tripNow.name) + '.</strong> ' +
         (tripNow.budget ? (ti.rest >= 0 ? 'Hoje podes gastar ' + money(ti.perDay) + '. ' : 'Já passaste o previsto. ') + 'Foram ' + money(ti.spent) + ' de ' + money(tripNow.budget) + '.' : 'Já foram ' + money(ti.spent) + '.') + '</span></button>';
     }
+    if (ui.timer && (ui.timer.end || ui.timer.done)) {
+      prompts += '<button class="note sub" data-a="nav" data-v="timer">' + icSvg('clock', 22) +
+        '<span class="say"><strong>' + (ui.timer.done ? 'Acabou o tempo de foco.' : 'A focar.') + '</strong> ' + esc(ui.timer.text) + '</span></button>';
+    }
     if (!S.off.plan) {
       if (S.planned !== today && h < 15 && n > 3) prompts += promptNote('plan', 'target', 'Planear o dia.', 'Escolhe as três que contam hoje.');
       if (h >= 19 && S.closed !== today && (doneToday.length || n)) prompts += promptNote('close', 'check', 'Fechar o dia.', 'Vê o que fizeste e arruma o que ficou.');
       if (now.getDay() === 0 && S.weekly !== today) prompts += promptNote('review', 'cal', 'Revisão da semana.', 'Dois minutos para ver como correu.');
     }
-
-    var note = '';
-    if (doneToday.length) {
-      var names = doneToday.slice(0, 2).map(function (t) { return esc(t.text); }).join(' e ');
-      note = '<button class="note" data-a="nav" data-v="fazer">' + ICON.done +
-        '<span class="say"><strong>Já fizeste ' + (NUM[doneToday.length] || doneToday.length) + ' hoje.</strong> ' +
-        names + (doneToday.length > 2 ? ' e mais.' : '.') + '</span></button>';
+    // Uma vez só: o lembrete das 9h no calendário do iPhone.
+    if (!S.remind) {
+      prompts += '<div class="note sub"><button class="nmain" data-a="remindSet">' + icSvg('bell', 22) +
+        '<span class="say"><strong>Queres um lembrete às 9h?</strong> Toca e a app põe um aviso diário no calendário do iPhone.</span></button>' +
+        '<button class="x" data-a="remindNo" aria-label="Não quero lembrete">' + ICON.x + '</button></div>';
     }
 
-    // Temporizador de foco a correr ou acabado.
-    if (ui.timer && (ui.timer.end || ui.timer.done)) {
-      note += '<button class="note sub" data-a="nav" data-v="timer">' + icSvg('clock', 22) +
-        '<span class="say"><strong>' + (ui.timer.done ? 'Acabou o tempo de foco.' : 'A focar.') + '</strong> ' + esc(ui.timer.text) + '</span></button>';
-    }
-    // Rotinas diárias por acabar.
-    if (!S.off.checks) S.checks.forEach(function (ck) {
-      var dn = ck.items.filter(function (i) { return i.done; }).length;
-      if (ck.mode !== 'd' || !ck.items.length || dn === ck.items.length) return;
-      note += '<button class="note sub" data-a="checkOpen" data-id="' + esc(ck.id) + '">' + icSvg('repeat', 22) +
-        '<span class="say"><strong>' + esc(ck.name) + '.</strong> ' + dn + ' de ' + ck.items.length + ' feitas.</span></button>';
-    });
-    // Ao fim do dia, a linha do diário.
-    if (!S.off.diary && h >= 18 && !S.diary[today] && Object.keys(S.diary).length) {
-      note += '<button class="note sub" data-a="nav" data-v="diary">' + icSvg('book', 22) + '<span class="say"><strong>Como correu o dia?</strong> Escreve uma linha.</span></button>';
-    }
-    // Contas a pagar atrasadas ou a três dias do limite.
-    if (!S.off.bills) S.bills.forEach(function (b) {
-      var bd = billText(b);
-      if (daysUntil(b.due) > 3) return;
-      note += '<button class="note warn" data-a="nav" data-v="bills">' + icSvg('clock', 22) +
-        '<span class="say"><strong>' + esc(b.name) + (bd.late ? ' está por pagar.' : ' é para pagar.') + '</strong> ' + bd.text + (b.amount ? ' · ' + money(b.amount) : '') + '</span></button>';
-    });
-    // Prazos de devolução a três dias do fim e garantias a um mês.
-    if (!S.off.wars) warItems().forEach(function (x) {
-      var left = daysUntil(x.end);
-      if (left < 0 || left > (x.kind === 'w' ? 30 : 3)) return;
-      note += '<button class="note warn" data-a="nav" data-v="wars">' + icSvg(x.kind === 'w' ? 'shield' : 'swap', 22) + '<span class="say"><strong>' + esc(x.e.desc || catOf(x.e.cat).label) + ': ' +
-        (x.kind === 'w' ? 'a garantia' : 'o prazo para devolver') + ' ' + (left === 0 ? 'acaba hoje.' : left === 1 ? 'acaba amanhã.' : 'acaba daqui a ' + left + ' dias.') + '</strong></span></button>';
-    });
-    // Tarefas esquecidas e coisas por arrumar.
-    var stale = staleTasks().length;
-    if (stale) note += promptNote('stale', 'clock', stale === 1 ? 'Uma tarefa parada há mais de duas semanas.' : stale + ' tarefas paradas há mais de duas semanas.', 'Ainda fazem sentido?');
-    if (!S.off.inbox && S.inbox.length) note += promptNote('inbox', 'note', S.inbox.length === 1 ? 'Uma coisa por arrumar.' : S.inbox.length + ' coisas por arrumar.', 'Estão na caixa de entrada.');
-    // Datas importantes na próxima semana.
-    if (!S.off.dates) S.dates.forEach(function (x) {
-      var n = daysUntil(nextDate(x));
-      if (n > 7) return;
-      note += '<button class="note sub" data-a="nav" data-v="dates">' + icSvg('gift', 22) +
-        '<span class="say"><strong>' + esc(x.name) + '</strong> ' + (n <= 0 ? 'é hoje.' : n === 1 ? 'é amanhã.' : 'é daqui a ' + n + ' dias.') + '</span></button>';
-    });
-    // Subscrições que saem nos próximos 3 dias.
-    if (!S.off.subs) S.fixed.filter(isSub).forEach(function (f) {
-      var nx = nextCharge(f), n = nx ? daysUntil(nx) : 99;
-      if (n > 3) return;
-      note += '<button class="note sub" data-a="nav" data-v="subs">' + ICON.repeat.replace(/14/g, '22') +
-        '<span class="say"><strong>' + (n <= 0 ? 'Hoje sai ' : n === 1 ? 'Amanhã sai ' : 'Daqui a ' + n + ' dias sai ') + esc(f.desc || catOf(f.cat).label) + '.</strong> ' + money(f.amount) + '</span></button>';
-    });
-    // Categorias perto ou acima do limite do mês.
-    var monthNow = monthExpenses(curKey());
-    S.cats.forEach(function (cat) {
-      if (!cat.limit) return;
-      var v = sum(monthNow.filter(function (e) { return e.cat === cat.id; }));
-      if (v < cat.limit * 0.9) return;
-      note += '<button class="note warn" data-a="nav" data-v="gastos">' + catIcon(cat) +
-        '<span class="say"><strong>' + esc(cat.label) + (v > cat.limit ? ' passou o limite.' : ' quase no limite.') + '</strong> ' + money(v) + ' de ' + money(cat.limit) + '</span></button>';
-    });
-    // Nos primeiros dias do mês, como fechou o anterior.
-    if (periodDays().gone <= 5) {
-      var pk = shiftMonth(curKey(), -1), pv = sum(monthExpenses(pk)), ppv = sum(monthExpenses(shiftMonth(pk, -1)));
-      var pname = MESES[parseInt(pk.split('-')[1], 10) - 1];
-      if (pv) {
-        note += '<button class="note sub" data-a="storyOpen" data-m="' + pk + '">' + icSvg('spark', 22) +
-          '<span class="say"><strong>' + pname.charAt(0).toUpperCase() + pname.slice(1) + ' fechou em ' + money(pv) + '.</strong>' +
-          (ppv ? ' ' + (pv > ppv ? 'Mais ' : 'Menos ') + money(Math.abs(pv - ppv)) + ' que no mês antes.' : '') + ' Toca para ver o mês em história.</span></button>';
-      }
-    }
-    // O que sobrou do mês passado pode ir para um objetivo.
-    var lo = leftover();
-    if (lo) {
-      note += '<button class="note" data-a="nav" data-v="sweep">' + icSvg('gift', 22) +
-        '<span class="say"><strong>Sobraram ' + money(lo.amount) + ' em ' + lo.name + '.</strong> Queres pôr num objetivo?</span></button>';
-    }
-    // Os dados só vivem no iPhone: de vez em quando, uma cópia para fora.
-    var age = backupAge();
-    if (age) {
-      note += '<button class="note warn" data-a="export">' + icSvg('clock', 22) +
-        '<span class="say"><strong>' + (S.bkp ? 'Há ' + age + ' dias que não guardas uma cópia.' : 'Ainda não guardaste nenhuma cópia.') +
-        '</strong> Toca para guardar o ficheiro.</span></button>';
-    }
-    // Uma coisa em que a app reparou, a rodar de dia para dia.
-    var seen = S.off.insights ? [] : insights();
-    if (seen.length) {
-      var one = seen[Math.floor(parseDay(today) / 864e5) % seen.length];
-      note += '<button class="note sub" data-a="nav" data-v="' + one.view + '">' + icSvg(one.icon, 22) +
-        '<span class="say"><strong>' + one.strong + '</strong> ' + one.text + '</span></button>';
-    }
-    // Desafio: dias deste mês em que não gastaste nada (os fixos não contam).
-    if (S.challenge) {
-      var spentDays = {}, quiet = 0;
-      monthNow.forEach(function (e) { if (!e.fixed) spentDays[e.date] = 1; });
-      // Só conta desde o dia em que o desafio foi criado.
-      var pstart = periodDays().start, dt = parseDay(S.chalFrom && S.chalFrom > pstart ? S.chalFrom : pstart);
-      for (; iso(dt) <= today; dt.setDate(dt.getDate() + 1)) if (!spentDays[iso(dt)]) quiet++;
-      var won = quiet >= S.challenge;
-      note += '<button class="note' + (won ? '' : ' sub') + '" data-a="nav" data-v="gastos">' + icSvg(won ? 'check' : 'star', 22) +
-        '<span class="say"><strong>Desafio: ' + S.challenge + ' dias sem gastar.</strong> ' +
-        (won ? 'Conseguido este mês, com ' + quiet + '.' : 'Vais em ' + quiet + '. Faltam ' + (S.challenge - quiet) + '.') + '</span></button>';
-    }
-    var phrase = PHRASES[Math.floor(parseDay(iso(now)) / 864e5) % PHRASES.length];
+    var phrase = PHRASES[Math.floor(parseDay(today) / 864e5) % PHRASES.length];
     var fresh = !S.budget && !S.expenses.length && !S.tasks.length && !S.fixed.length;
+    var dateTxt = capFirst(['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'][now.getDay()]) + ', ' + now.getDate() + ' ' + MES3[now.getMonth()];
     var head = '<header class="hero"><div class="top"><div class="brand">' + LOGO + 'conta-me</div>' +
-      '<div class="right"><div class="pill">' + DIAS3[now.getDay()] + ', ' + now.getDate() + ' ' + MES3[now.getMonth()] + '</div>' + eyeBtn() + GEAR + '</div></div>' +
+      '<div class="right">' + bellBtn() + eyeBtn() + GEAR + '</div></div>' +
+      '<div class="eyebrow">' + dateTxt + '</div>' +
       '<h1 class="title"><span style="color:var(--accent-text)">' + (S.name ? hi.slice(0, -1) + ', ' + esc(S.name) + '.' : hi) + '</span><br>' + (fresh ? 'Vamos pôr isto a andar.' : line) + '</h1>' +
       (fresh || S.off.frase ? '' : '<div class="say" style="color:var(--muted)">' + phrase + '</div>') + '</header>';
     // App vazia: três passos para começar.
     if (fresh) {
       return '<div class="screen">' + head + '<div class="pad after-hero"><div class="say" style="color:var(--muted)">Três passos para isto ficar teu:</div><div class="list">' +
-        step('data-a="nav" data-v="def"', '#C6F432', 'target', 'Define o teu orçamento', 'quanto queres gastar por mês') +
+        step('data-a="nav" data-v="def"', '#4f46e5', 'target', 'Define o teu orçamento', 'quanto queres gastar por mês') +
         step('data-a="newExp"', '#8B7BFF', 'wallet', 'Regista o primeiro gasto', 'o último café também conta') +
-        step('data-a="nav" data-v="fazer"', '#3DDBA4', 'check', 'Escreve o que andas a adiar', 'uma coisa chega para começar') +
+        step('data-a="nav" data-v="fazer"', '#12a26f', 'check', 'Escreve o que andas a adiar', 'uma coisa chega para começar') +
         '</div></div></div>' + tabs('hoje');
     }
-    // Os blocos do ecrã, montados pela ordem escolhida nas definições.
-    var blocks = {
-      card: '<button class="card" data-a="nav" data-v="gastos">' +
-        '<div class="row-head" style="min-height:0"><span class="label">Este mês já saíram</span>' +
-        (S.budget ? '<span class="cpill">' + c.pct + '% de ' + money(S.budget).replace(',00', '') + '</span>' : '') + '</div>' +
-        '<div class="big" data-n="' + c.spent + '">' + money(c.spent) + '</div>' + c.bar +
-        (c.stats ? '<div class="minis">' + c.stats + '</div>' : '') +
-        (c.foot ? '<div class="say">' + c.foot + '</div>' : '') + '</button>',
-      week: weekHtml(),
-      tiles: S.off.tiles ? '' : catTiles(curKey()),
-      todo: '<section class="list"><div class="row-head"><h2 class="h2">Devia fazer</h2>' +
-        '<button class="linkbtn" data-a="nav" data-v="fazer">ver tudo</button></div>' + strip + load + list + (n > 1 && !S.off.now ? '<button class="btn plain" data-a="nowOpen">O que faço agora?</button>' : '') + '</section>',
-      notes: note,
-      semana: S.off.semana && S.off.agenda ? '' : '<div class="pair">' +
-        (S.off.semana ? '' : '<button class="btn plain" data-a="nav" data-v="semana" style="flex:1">Ver a semana</button>') +
-        (S.off.agenda ? '' : '<button class="btn plain" data-a="nav" data-v="agenda" style="flex:1">Agenda do mês</button>') + '</div>'
-    };
+    var card = '<button class="card" data-a="nav" data-v="gastos">' +
+      '<div class="row-head" style="min-height:0"><span class="label">' + icSvg('wallet', 18) + 'Este mês já saíram</span>' +
+      (S.budget ? '<span class="cpill">' + c.pct + '% de ' + money(S.budget).replace(',00', '') + '</span>' : '') + '</div>' +
+      '<div class="big" data-n="' + c.spent + '">' + money(c.spent) + '</div>' + c.bar +
+      (c.stats ? '<div class="minis">' + c.stats + '</div>' : '') +
+      (c.foot ? '<div class="say">' + c.foot + '</div>' : '') + '</button>';
     return '<div class="screen">' + head + '<div class="pad after-hero">' +
       (S.off.magic && noScan() ? '' : '<div class="magicrow">' +
         (S.off.magic ? '' : '<button class="magicbtn" data-a="magicOpen">' + icSvg('spark', 20) + '<span>Escreve qualquer coisa…</span></button>') +
-        (noScan() ? '' : '<button class="scanbtn" data-a="scanOpen" aria-label="Ler uma fatura com a câmara">' + icSvg('cam', 24) + '</button>') + '</div>') + prompts +
-      S.order.map(function (id) { return blocks[id] || ''; }).join('') + '</div></div>' + tabs('hoje');
+        (noScan() ? '' : '<button class="scanbtn" data-a="scanOpen" aria-label="Ler uma fatura com a câmara">' + icSvg('cam', 24) + '</button>') + '</div>') +
+      prompts + card + weekHtml() + '</div></div>' + tabs('hoje');
   }
 
   function viewGastos() {
@@ -1466,12 +1528,12 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     var cats = totals.map(function (t) {
       // Diferença para o mesmo sítio no mês anterior.
       var d = prev.length ? t.v - sum(prev.filter(function (e) { return e.cat === t.cat.id; })) : 0;
-      var delta = !d ? '' : '<small style="color:' + (d > 0 ? '#FF7A59' : 'var(--done-text)') + '">' + (d > 0 ? '+' : '−') + Math.round(Math.abs(d) / 100) + ' ' + S.cur + '</small>';
+      var delta = !d ? '' : '<small style="color:' + (d > 0 ? 'var(--bad)' : 'var(--done-text)') + '">' + (d > 0 ? '+' : '−') + Math.round(Math.abs(d) / 100) + ' ' + S.cur + '</small>';
       return '<button class="cat" data-a="filter" data-id="' + esc(t.cat.id) + '" aria-pressed="' + (ui.filter === t.cat.id) + '"><span class="name">' + esc(t.cat.label) + delta + '</span>' +
         // Com limite, a barra mede o caminho até ele.
         '<span class="track"><i style="width:' + (t.cat.limit ? Math.min(100, Math.round(t.v / t.cat.limit * 100)) : Math.round(t.v / max * 100)) + '%;background:' + t.cat.color + '"></i></span>' +
         '<span class="val">' + bare(money(t.v)) +
-        (t.cat.limit ? '<small style="color:' + (t.v > t.cat.limit ? '#FF7A59' : 'var(--muted)') + '">de ' + Math.round(t.cat.limit / 100) + '</small>' : '') + '</span></button>';
+        (t.cat.limit ? '<small style="color:' + (t.v > t.cat.limit ? 'var(--bad)' : 'var(--muted)') + '">de ' + Math.round(t.cat.limit / 100) + '</small>' : '') + '</span></button>';
     }).join('');
     var shown = ui.filter ? list.filter(function (e) { return e.cat === ui.filter; }) : list;
     var nSubs = S.fixed.filter(isSub).length;
@@ -1512,12 +1574,12 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       '<div class="month"><button data-a="prevMonth" aria-label="Mês anterior">' + ICON.prev + '</button>' +
       '<div class="h2">' + MESES[parseInt(p[1], 10) - 1] + ' ' + p[0] + '</div>' +
       '<button data-a="nextMonth" aria-label="Mês seguinte"' + (isNow ? ' disabled' : '') + '>' + ICON.next + '</button></div>' + range +
+      summaryHtml(key) + (isNow ? challengeNote() : '') +
       '<section class="panel">' + (totals.length ? donutHtml(totals, c.spent) : '<div class="total"><div class="big">' + money(0) + '</div></div>') +
       (cats ? '<div class="cats">' + cats + '</div>' : '') +
       '<div class="say">' + insight + '</div>' +
-      (payC || payD || incTotal || proj || kindN || kindW ? '<div class="minis">' +
-        (proj ? mini('Previsão do mês', money(proj), S.budget && proj > S.budget ? '#FF7A59' : '') + mini('Vai em', Math.round(c.spent / proj * 100) + '%') : '') +
-        (incTotal ? mini('Entrou', money(incTotal)) + mini('Saldo do mês', money(saldo), saldo >= 0 ? 'var(--done-text)' : '#FF7A59') : '') +
+      (payC || payD || proj || kindN || kindW ? '<div class="minis">' +
+        (proj ? mini('Previsão do mês', money(proj), S.budget && proj > S.budget ? 'var(--bad)' : '') + mini('Vai em', Math.round(c.spent / proj * 100) + '%') : '') +
         (kindN || kindW ? mini('Precisava', money(kindN)) + mini('Quis', money(kindW)) : '') +
         (payC || payD ? mini('Cartão', money(payC)) + mini('Dinheiro', money(payD)) : '') + '</div>' : '') + '</section>' +
       tripNotes(key) +
@@ -1525,17 +1587,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       (isNow && !S.off.insights ? insightsHtml() : '') +
       paceHtml(key, isNow) +
       chartHtml() +
-      hub([['subs', 'Subscrições', nSubs ? money(subsMonthly()) + ' por mês' : 'o que pagas sempre', 'repeat', '#8B7BFF'],
-        ['bills', 'Contas', S.bills.length ? S.bills.length + ' por pagar' : 'luz, água, IUC', 'note', '#FFA94D'],
-        ['goals', 'Objetivos', S.goals.length ? goalsPct() + '% do caminho' : 'para o que poupas', 'target', '#C6F432'],
-        ['debts', 'A acertar', debtsText(), 'swap', '#FF7A59'],
-        ['cal', 'Calendário', 'o mês dia a dia', 'cal', '#5CC8FF'],
-        ['wishes', 'Desejos', S.wishes.length ? S.wishes.length + (S.wishes.length === 1 ? ' coisa · ' : ' coisas · ') + money(wishTotal) : 'o que queres comprar', 'spark', '#FF8AD1'],
-        ['scan', 'Fatura', 'lê o QR com a câmara', 'cam', '#FFA94D'],
-        ['wars', 'Garantias', warItems().length ? warItems().filter(function (x) { return x.end >= iso(new Date()); }).length + ' ativas' : 'e prazos de devolução', 'shield', '#3DDBA4'],
-        ['trips', 'Viagens', tripFor(iso(new Date())) ? 'a decorrer' : S.trips.length ? S.trips.length + (S.trips.length === 1 ? ' guardada' : ' guardadas') : 'um orçamento à parte', 'plane', '#5CC8FF'],
-        ['year', 'O ano', 'cada dia, um quadrado', 'cal', '#C6F432'],
-        ['bank', 'Importar', 'o extrato do banco', 'down', '#3DDBA4']]) +
+      hub('gastos') +
       '<section class="list"><div class="row-head"><h2 class="h2">Movimentos</h2>' +
       '<button class="linkbtn" data-a="newExp">+ novo</button></div>' +
       (ui.filter ? '<div><button class="chip" data-a="filter" data-id="" style="border-color:' + catOf(ui.filter).color + '"><span class="cdot" style="background:' + catOf(ui.filter).color + '"></span>Só ' + esc(catOf(ui.filter).label) + ' · ver tudo</button></div>' : '') +
@@ -1569,18 +1621,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       (S.tasks.length ? '<div class="bar" style="margin-top:10px" aria-hidden="true"><i style="width:' + Math.round(done.length / S.tasks.length * 100) + '%;background:#3DDBA4"></i></div>' : '') +
       '</header>' +
       '<div class="pad">' +
-      hub([['now', 'Agora', 'eu escolho por ti', 'clock', '#FFD23F'],
-        ['agenda', 'Agenda', 'o mês com tudo', 'cal', '#5CC8FF'],
-        ['inbox', 'Caixa', S.inbox.length ? S.inbox.length + ' por arrumar' : 'aponta sem pensar', 'bag', '#C6F432'],
-        ['projs', 'Projetos', S.projects.length ? S.projects.length + (S.projects.length === 1 ? ' a andar' : ' a andar') : 'coisas grandes', 'target', '#5CC8FF'],
-        ['habits', 'Hábitos', 'o mês dia a dia', 'star', '#8B7BFF'],
-        ['tpls', 'Modelos', S.tpls.length ? S.tpls.length + (S.tpls.length === 1 ? ' guardado' : ' guardados') : 'tarefas de uma vez', 'spark', '#FF8AD1'],
-        ['shop', 'Compras', shopLeft ? shopLeft + ' por comprar' : 'lista vazia', 'cart', '#5CC8FF'],
-        ['notes', 'Notas', S.notes.length ? S.notes.length + (S.notes.length === 1 ? ' nota' : ' notas') : 'apontamentos soltos', 'pen', '#FF8AD1'],
-        ['hist', 'Feito', doneToday ? doneToday + ' hoje' : 'o que já riscaste', 'check', '#3DDBA4'],
-        ['dates', 'Datas', nextD ? 'próxima ' + inDays(daysUntil(nextD)) : 'aniversários e afins', 'gift', '#FFD23F'],
-        ['checks', 'Rotinas', S.checks.length ? S.checks.length + (S.checks.length === 1 ? ' lista' : ' listas') : 'manhã, mala de viagem', 'repeat', '#8B7BFF'],
-        ['diary', 'Diário', S.diary[todayIso] ? 'hoje já está' : 'uma linha por dia', 'book', '#FFA94D']]) +
+      hub('fazer') + fazerNotes() +
       listChips +
       '<form class="field" id="add"><div class="pair"><label class="sr" for="nova">Acrescentar uma coisa</label>' +
       '<input class="input" id="nova" type="text" placeholder="Devia…" autocomplete="off" enterkeyhint="done">' +
@@ -1594,7 +1635,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       '<div class="pair" id="duerow"' + (ui.newRep ? ' hidden' : '') + '><label class="small duel" for="ndue">Prazo (opcional)</label>' +
       '<input class="input" id="ndue" type="date" min="' + iso(new Date()) + '"></div></div></form>' +
       '<section class="list"><div class="row-head"><h2 class="h2">Devia fazer</h2>' +
-      '<span class="small">' + todo.length + ' por fazer</span></div>' +
+      '<span class="small">' + todo.length + ' por fazer</span></div>' + fazerDay(todo) +
       (todo.map(taskRow).join('') || '<div class="empty">' + (S.tasks.length ? 'Não deves nada a ninguém. Aproveita o dia.' : 'Escreve lá em cima a primeira coisa que andas a adiar.') + '</div>') +
       '</section>' +
       '<section class="list"><div class="row-head"><h2 class="h2">Já fiz</h2>' +
@@ -1628,8 +1669,8 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
         if (t.done && (!t.rep || i === 0)) return;
         var late = i === 0 && !t.rep && t.due && t.due < todayIso;
         if (t.rep ? !activeOn(t, d) : !(t.due === di || late)) return;
-        rows += '<div class="wk"><span class="ring" style="width:18px;height:18px' + (late || t.pri ? ';border-color:#FF7A59' : '') + '"></span><span>' + (t.time ? '<b class="tm">' + t.time + '</b>' : '') + esc(t.text) + '</span>' +
-          (late ? '<span class="amt" style="color:#FF7A59">atrasada</span>' : t.rep ? '<span class="amt" style="color:var(--sub-ic)">repete</span>' : '') + '</div>';
+        rows += '<div class="wk"><span class="ring" style="width:18px;height:18px' + (late || t.pri ? ';border-color:var(--bad)' : '') + '"></span><span>' + (t.time ? '<b class="tm">' + t.time + '</b>' : '') + esc(t.text) + '</span>' +
+          (late ? '<span class="amt" style="color:var(--bad)">atrasada</span>' : t.rep ? '<span class="amt" style="color:var(--sub-ic)">repete</span>' : '') + '</div>';
       });
       S.fixed.forEach(function (f) {
         if (nextCharge(f) !== di) return;
@@ -1688,7 +1729,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     // Dia do mês nos fixos; data nos gastos e nas entradas.
     var extra = fixed ?
       '<label class="sr" for="fday">Dia do mês</label><input class="input" id="fday" inputmode="numeric" maxlength="2" placeholder="Dia" value="' + esc(f.day) + '" style="flex:0 0 84px">' :
-      '<label class="sr" for="fdate">Data</label><input class="input" id="fdate" type="date" max="' + iso(new Date()) + '" value="' + esc(f.date) + '" style="flex:0 0 146px">';
+      '<label class="sr" for="fdate">Data</label><input class="input" id="fdate" type="date" max="' + iso(new Date()) + '" value="' + esc(f.date) + '" style="flex:0 0 160px;font-size:16px;padding:0 12px">';
     // Como pagaste e se era preciso ou vontade: uma fila só, que desliza para o lado.
     var payRow = inc || fixed ? '' : '<div class="chips rep rowx payrow" role="group" aria-label="Como pagaste">' +
       '<button class="chip" data-a="pay" data-p="c" aria-pressed="' + (f.pay === 'c') + '">Cartão</button>' +
@@ -1784,6 +1825,8 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       '<button class="chip" data-a="simple" data-s="1" aria-pressed="' + !!S.simple + '">Ligado</button>' +
       '<button class="chip" data-a="simple" data-s="0" aria-pressed="' + !S.simple + '">Desligado</button></div>' +
       '<div class="small">Esconde de uma vez tudo o que é avançado e deixa os gastos, as tarefas, as compras, as notas e a caixa de escrever. Ao desligar, volta tudo como estava.</div>' +
+      '<div class="lbl">Lembrete diário às 9h</div><button class="btn plain" data-a="remindSet">' + icSvg('bell', 18) + ' ' + (S.remind && S.remind !== 'no' ? 'Pôr outra vez no calendário' : 'Pôr no calendário do iPhone') + '</button>' +
+      '<div class="small">Um aviso todos os dias às 9h, no calendário do iPhone, para abrires a app.</div>' +
       '<div class="lbl">Abrir em</div><div class="chips rep" role="group" aria-label="Ecrã inicial">' +
       [['', 'Hoje'], ['gastos', 'Gastos'], ['fazer', 'Fazer'], ['novo', 'Novo gasto']].map(function (o) {
         return '<button class="chip" data-a="startAt" data-s="' + o[0] + '" aria-pressed="' + (S.start === o[0]) + '">' + o[1] + '</button>';
@@ -1795,15 +1838,10 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       MODS.map(function (m) {
         return '<button class="chip" data-a="mod" data-m="' + m[0] + '" aria-pressed="' + !S.off[m[0]] + '">' + m[1] + '</button>';
       }).join('') + '</div>' +
-      '<div class="lbl">Ordem do ecrã Hoje</div><div class="list">' + S.order.map(function (id, i) {
-        var label = ORDER.filter(function (o) { return o[0] === id; })[0][1];
-        return '<div class="item ord"><span class="text" style="padding:0 0 0 16px">' + label + '</span>' +
-          '<button class="x" data-a="orderMove" data-id="' + id + '" data-by="-1" aria-label="Subir ' + label + '"' + (i === 0 ? ' disabled' : '') + '>' + icSvg('up', 20) + '</button>' +
-          '<button class="x" data-a="orderMove" data-id="' + id + '" data-by="1" aria-label="Descer ' + label + '"' + (i === S.order.length - 1 ? ' disabled' : '') + '>' + icSvg('down', 20) + '</button></div>';
-      }).join('') + '</div></section>' +
+      '</section>' +
       // Aspeto: tema, letra e cantos.
       '<section class="sect"><h2 class="h2">Aspeto</h2><div class="themes" role="group" aria-label="Tema">' + THEMES.map(function (t) {
-        return '<button class="theme" data-a="theme" data-t="' + t[0] + '" aria-pressed="' + (S.theme === t[0]) + '"><i style="background:' + t[2] + ';border-color:' + t[3] + '"></i>' + t[1] + '</button>';
+        return '<button class="theme" data-a="theme" data-t="' + t[0] + '" aria-pressed="' + (S.theme === t[0]) + '"><i style="background:linear-gradient(135deg,' + t[3] + ',' + t[4] + ');box-shadow:inset 0 0 0 4px ' + t[2] + ',0 0 0 1px rgba(127,127,127,.35)"></i>' + t[1] + '</button>';
       }).join('') + '</div>' +
       '<div class="lbl">Letra</div><div class="chips rep" role="group" aria-label="Letra">' + Object.keys(FONTS).map(function (k) {
         return '<button class="chip" data-a="font" data-f="' + k + '" aria-pressed="' + (S.font === k) + '">' + FONTS[k][0] + '</button>';
@@ -1847,7 +1885,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       }).join('') + '</div>' +
       '<div class="field"><label class="ask" for="climit" style="font-size:22px">Limite por mês?</label>' +
       '<input class="input" id="climit" type="text" inputmode="decimal" autocomplete="off" placeholder="Em euros (opcional)" value="' + esc(f.limit) + '"></div>' +
-      '<div class="msg" aria-live="polite" style="color:#FF7A59;min-height:20px">' + esc(f.msg || '') + '</div>' +
+      '<div class="msg" aria-live="polite" style="color:var(--bad);min-height:20px">' + esc(f.msg || '') + '</div>' +
       (canDel ? '<div class="small">Se a apagares, os gastos dela passam para “Outro”.</div>' : '') +
       '<div class="grow"></div>' +
       '<div class="pair">' + (canDel ? '<button class="btn danger" data-a="catDel" style="height:58px">Apagar</button>' : '') +
@@ -1868,7 +1906,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
         return '<button class="chip" data-a="taskRep" data-r="' + r[0] + '" aria-pressed="' + (f.rep === r[0]) + '">' + r[1] + '</button>';
       }).join('') + '</div>' +
       '<div id="taskdays"' + (f.rep === 'w' ? '' : ' hidden') + '>' + daysRow('dayTask', f.days) + '</div>' +
-      '<div class="chips"><button class="chip" data-a="taskPri" aria-pressed="' + !!f.pri + '"' + (f.pri ? ' style="background:#FF7A59;border-color:#FF7A59"' : '') + '>Urgente</button>' +
+      '<div class="chips"><button class="chip" data-a="taskPri" aria-pressed="' + !!f.pri + '"' + (f.pri ? ' style="background:#FF7A59;border-color:var(--bad)"' : '') + '>Urgente</button>' +
       '<span class="rep"><button class="chip" data-a="taskFocus" aria-pressed="' + !!f.focus + '">Foco de hoje</button></span></div>' +
       (f.rep ? '' : '<h2 class="ask">Adiar</h2><div class="chips">' +
         '<button class="chip" data-a="taskSnooze" data-k="t">Amanhã</button>' +
@@ -1898,7 +1936,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       '<h2 class="ask" id="tdueh"' + (f.rep ? ' hidden' : '') + '>Até quando?</h2>' +
       '<div class="pair" id="tduerow"' + (f.rep ? ' hidden' : '') + '><label class="sr" for="tdue">Prazo</label><input class="input" id="tdue" type="date" value="' + esc(f.due) + '">' +
       '<button class="btn plain" data-a="taskNoDue">Sem prazo</button></div>' +
-      '<div class="msg" aria-live="polite" style="color:#FF7A59;min-height:20px">' + esc(f.msg || '') + '</div>' +
+      '<div class="msg" aria-live="polite" style="color:var(--bad);min-height:20px">' + esc(f.msg || '') + '</div>' +
       '<div class="grow"></div>' +
       '<div class="pair"><button class="btn danger" data-a="taskDel" style="height:58px">Apagar</button>' +
       '<button class="save" data-a="taskSave" style="flex:1">Guardar</button></div>' +
@@ -2031,7 +2069,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       body = '<label class="sr" for="ed_text">Nota</label><textarea class="input" id="ed_text" data-f="text" placeholder="Escreve aqui…">' + esc(v.text) + '</textarea>';
     }
     return sheet(e.kind === 'split' ? 'Dividir uma conta' : (e.id ? 'Mudar ' : /^(goal|wish|proj|tpl)$/.test(e.kind) ? 'Novo ' : 'Nova ') + ED[e.kind][1], 'edClose', body +
-      '<div class="msg" aria-live="polite" style="color:#FF7A59;min-height:20px">' + esc(e.msg || '') + '</div><div class="grow"></div>' +
+      '<div class="msg" aria-live="polite" style="color:var(--bad);min-height:20px">' + esc(e.msg || '') + '</div><div class="grow"></div>' +
       '<div class="pair">' + (e.id ? '<button class="btn danger" data-a="edDel" style="height:58px">Apagar</button>' : '') +
       '<button class="save" data-a="edSave" style="flex:1">Guardar</button></div>');
   }
@@ -2169,7 +2207,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     var stuck = S.tasks.filter(function (t) { return !t.done && !t.rep && t.list !== 'later' && t.touch <= d0; })
       .sort(function (a, b) { return a.touch < b.touch ? -1 : 1; }).slice(0, 3).map(function (t) {
         return '<div class="wk"><span class="ring" style="width:18px;height:18px"></span><span>' + esc(t.text) + '</span>' +
-          '<span class="amt" style="color:#FF7A59">' + -daysUntil(t.touch) + ' dias</span></div>';
+          '<span class="amt" style="color:var(--bad)">' + -daysUntil(t.touch) + ' dias</span></div>';
       }).join('');
     var due = S.tasks.filter(function (t) { return !t.done && !t.rep && t.due > today && t.due <= d7; }).length;
     var out = sum(S.fixed.filter(function (f) { var nx = nextCharge(f); return nx && nx > today && nx <= d7; })) +
@@ -2298,13 +2336,13 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     var rows = list.map(function (b) {
       var cat = catOf(b.cat), d = billText(b);
       return '<div class="item mov"><button class="main" data-a="edOpen" data-k="bill" data-id="' + esc(b.id) + '" style="padding-right:0">' + catIcon(cat) +
-        '<span class="text"><span>' + esc(b.name) + '</span><span class="small"' + (d.late ? ' style="color:#FF7A59"' : '') + '>' + d.text + (b.rep ? ' · todos os meses' : '') + '</span></span>' +
+        '<span class="text"><span>' + esc(b.name) + '</span><span class="small"' + (d.late ? ' style="color:var(--bad)"' : '') + '>' + d.text + (b.rep ? ' · todos os meses' : '') + '</span></span>' +
         '<span class="amt">' + money(b.amount) + '</span></button>' +
         '<button class="x" data-a="billPaid" data-id="' + esc(b.id) + '" aria-label="Paguei ' + esc(b.name) + '">' + icSvg('check', 22) + '</button></div>';
     }).join('') || '<div class="empty">Luz, água, IUC, seguro: aponta a conta e o dia limite. A app avisa uns dias antes.</div>';
     return '<div class="screen"><header class="head"><div class="eyebrow">Para não pagar multas</div><h1 class="title">Contas a pagar</h1></header>' +
       '<div class="pad">' + (list.length ? '<section class="panel"><div class="minis">' + mini('Por pagar', money(sum(list))) +
-        mini('Próxima', shortDate(list[0].due), daysUntil(list[0].due) < 0 ? '#FF7A59' : '') + '</div>' +
+        mini('Próxima', shortDate(list[0].due), daysUntil(list[0].due) < 0 ? 'var(--bad)' : '') + '</div>' +
         '<div class="say">Toca no visto quando pagares: fica registada como gasto.</div></section>' : '') +
       '<section class="list">' + rows + '</section>' +
       '<button class="btn" data-a="edOpen" data-k="bill">Nova conta</button></div></div>' + tabs('gastos');
@@ -2580,7 +2618,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     if (u.due) parts.push(whenF(u.due));
     if (u.time) parts.push('às ' + u.time);
     if (u.est) parts.push(estText(u.est));
-    if (u.pri) parts.push('<span style="color:#FF7A59">urgente</span>');
+    if (u.pri) parts.push('<span style="color:var(--bad)">urgente</span>');
     return { chip: chip('#3DDBA4', 'check'), title: u.text, sub: parts.join(' · '), right: '', btn: 'Guardar tarefa' };
   }
   // Procura em tudo o que já está na app.
@@ -2825,7 +2863,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
   }
   // O resumo do mês desenhado numa imagem, para partilhar.
   function storyImage(key, cb) {
-    var d = storySlides(key), s = d.stats, W = 1080, H = 1350, F = '"Bricolage Grotesque", system-ui, sans-serif';
+    var d = storySlides(key), s = d.stats, W = 1080, H = 1350, F = '"Plus Jakarta Sans", system-ui, sans-serif';
     var c = document.createElement('canvas');
     c.width = W; c.height = H;
     var x = c.getContext('2d');
@@ -2860,7 +2898,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       x.fillStyle = '#C6F432'; x.font = '700 58px ' + F; x.fillText(s.verdict, 80, H - 90, W - 160);
       c.toBlob(function (b) { cb(b ? new File([b], 'conta-me-' + key + '.png', { type: 'image/png' }) : null); }, 'image/png');
     }
-    if (document.fonts && document.fonts.load) Promise.all([document.fonts.load('800 150px "Bricolage Grotesque"'), document.fonts.load('500 30px "DM Mono"')]).then(draw, draw);
+    if (document.fonts && document.fonts.load) Promise.all([document.fonts.load('800 150px "Plus Jakarta Sans"'), document.fonts.load('500 30px "DM Mono"')]).then(draw, draw);
     else draw();
   }
 
@@ -3014,7 +3052,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     if (S.budget && isNow) {
       var diff = cum - Math.round(S.budget * (last + 1) / total);
       say = diff <= 0 ? 'Estás <strong style="color:var(--done-text)">' + money(-diff) + ' abaixo</strong> do ritmo certo para hoje.' :
-        'Estás <strong style="color:#FF7A59">' + money(diff) + ' acima</strong> do ritmo certo para hoje.';
+        'Estás <strong style="color:var(--bad)">' + money(diff) + ' acima</strong> do ritmo certo para hoje.';
     } else if (S.budget) say = cum <= S.budget ? 'Acabou ' + money(S.budget - cum) + ' abaixo do orçamento.' : 'Acabou ' + money(cum - S.budget) + ' acima do orçamento.';
     return '<section class="panel"><h2 class="h2">O ritmo do mês</h2>' + svg + '<div class="say">' + say + '</div>' +
       (S.budget ? '<div class="small">Linha cheia: o que gastaste. Tracejado: o ritmo certo.' + (proj && last < total - 1 ? ' Pontos: para onde vais.' : '') + '</div>' : '') + '</section>';
@@ -3262,7 +3300,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       var cat = r.inc ? null : catOf(r.cat);
       return '<div class="item mov' + (r.on ? '' : ' off') + '"><button class="main" data-a="bankToggle" data-i="' + i + '" aria-pressed="' + r.on + '" style="padding-right:0">' +
         (r.on ? ICON.done : '<span class="ring"></span>') + '<span class="text"><span>' + esc(r.desc || 'Sem nome') + '</span><span class="small">' + shortDate(r.date) + ' · ' +
-        (r.inc ? 'entrada' : esc(cat.label.toLowerCase())) + (r.dup ? ' · <span style="color:#FF7A59">já cá está?</span>' : '') + '</span></span>' +
+        (r.inc ? 'entrada' : esc(cat.label.toLowerCase())) + (r.dup ? ' · <span style="color:var(--bad)">já cá está?</span>' : '') + '</span></span>' +
         '<span class="amt"' + (r.inc ? ' style="color:var(--done-text)"' : '') + '>' + (r.inc ? '+' : '−') + bare(money(r.amount)) + '</span></button>' +
         (r.inc ? '<span style="width:14px"></span>' : '<button class="x" data-a="bankCat" data-i="' + i + '" aria-label="Mudar a categoria de ' + esc(r.desc) + '"><span class="cdot" style="width:16px;height:16px;background:' + cat.color + '"></span></button>') + '</div>';
     }).join('');
@@ -3527,7 +3565,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
           return '<button class="chip" data-a="scanCat" data-id="' + esc(c.id) + '" aria-pressed="' + on + '"' + (on ? ' style="background:' + c.color + ';border-color:' + c.color + '"' : '') + '>' + esc(c.label) + '</button>';
         }).join('') + '</div>' +
         '<div class="small">Só pergunto uma vez. Para a próxima, as faturas desta loja entram sozinhas. Se não escolheres categoria, adivinho pelo nome.</div>' +
-        '<div class="msg" id="scanmsg" aria-live="polite" style="color:#FF7A59;min-height:20px"></div>' +
+        '<div class="msg" id="scanmsg" aria-live="polite" style="color:var(--bad);min-height:20px"></div>' +
         '<div class="pair"><button class="btn plain" data-a="scanRetry" style="flex:1">Cancelar</button><button class="btn" data-a="scanShop" style="flex:2">Guardar</button></div>');
     }
     if (st.step === 'done') {
@@ -3631,8 +3669,8 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     if (!t) { ui.view = 'trips'; return viewTrips(); }
     var i = tripInfo(t), pct = t.budget ? Math.min(100, Math.round(i.spent / t.budget * 100)) : 0, over = t.budget && i.rest < 0;
     var minis = !t.budget ? mini('Gasto', money(i.spent)) + mini('Média por dia', money(Math.round(i.spent / i.total))) :
-      i.state === 'post' ? mini(over ? 'Acima do previsto' : 'Ficou por gastar', money(Math.abs(i.rest)), over ? '#FF7A59' : 'var(--done-text)') + mini('Média por dia', money(Math.round(i.spent / i.total))) :
-      mini(over ? 'Acima do previsto' : 'Sobram', money(Math.abs(i.rest)), over ? '#FF7A59' : '') + mini(i.state === 'on' ? 'Por dia, daqui em diante' : 'Por dia', money(i.perDay));
+      i.state === 'post' ? mini(over ? 'Acima do previsto' : 'Ficou por gastar', money(Math.abs(i.rest)), over ? 'var(--bad)' : 'var(--done-text)') + mini('Média por dia', money(Math.round(i.spent / i.total))) :
+      mini(over ? 'Acima do previsto' : 'Sobram', money(Math.abs(i.rest)), over ? 'var(--bad)' : '') + mini(i.state === 'on' ? 'Por dia, daqui em diante' : 'Por dia', money(i.perDay));
     var cats = catTotals(i.list).slice(0, 4).map(function (c) {
       return '<div class="wk"><span class="cdot" style="background:' + c.cat.color + '"></span><span>' + esc(c.cat.label) + '</span><span class="amt">' + money(c.v) + '</span></div>';
     }).join('');
@@ -3681,7 +3719,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     var over = w.left < 0, pct = w.allow ? Math.min(100, Math.round(w.spent / w.allow * 100)) : 100;
     var last = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'][parseDay(w.we).getDay()];
     return '<button class="panel weekp" data-a="nav" data-v="gastos"><span class="eyebrow">Dinheiro da semana · até ' + last + '</span>' +
-      '<span class="wkbig"><b' + (over ? ' style="color:#FF7A59"' : '') + '>' + money(Math.abs(w.left)) + '</b><span class="small">' + (over ? 'acima do que tinhas para a semana' : 'ainda por gastar') + '</span></span>' +
+      '<span class="wkbig"><b' + (over ? ' style="color:var(--bad)"' : '') + '>' + money(Math.abs(w.left)) + '</b><span class="small">' + (over ? 'acima do que tinhas para a semana' : 'ainda por gastar') + '</span></span>' +
       '<span class="bar"><i style="width:' + pct + '%' + (over ? ';background:#FF7A59' : '') + '"></i></span>' +
       '<span class="small">Tinhas ' + money(w.allow) + ' para ' + (w.days === 1 ? 'este dia' : 'estes ' + w.days + ' dias') + ' e já foram ' + money(w.spent) + '.' +
       (!over && w.toGo > 1 ? ' Dá ' + money(Math.floor(w.left / w.toGo)) + ' por dia.' : '') + '</span></button>';
@@ -3756,6 +3794,212 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       '</div></div>' + tabs('fazer');
   }
 
+  // ---------- todas as ferramentas (ecrã Tudo e filas de atalhos) ----------
+  CIC.grid = 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z';
+  CIC.bell = 'M6 9a6 6 0 0 1 12 0c0 6.5 2.5 8 2.5 8h-17S6 15.5 6 9zM10 20.5a2.2 2.2 0 0 0 4 0';
+  CIC.sliders = 'M4 7h9M19 7h1M4 17h1M11 17h9M18.5 7a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM10.5 17a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z';
+  var GROUPS = [['money', 'Dinheiro'], ['org', 'Organizar'], ['far', 'Ver de longe'], ['app', 'A app']];
+  // Os atalhos com que começas nas filas de Gastos e de Fazer, até escolheres os teus com a estrela.
+  var DEFAULT_FAVS = ['subs', 'bills', 'goals', 'trips', 'now', 'shop', 'agenda', 'habits'];
+  function favs() { return S.favs || DEFAULT_FAVS; }
+  // Cada ferramenta: [ecrã, nome, linha pequena, desenho, cor, grupo, fila onde pode ficar, ação em vez de abrir o ecrã].
+  function tools() {
+    var today = iso(new Date()), nSubs = S.fixed.filter(isSub).length;
+    var shopLeft = S.shop.filter(function (x) { return !x.done; }).length, nextD = S.dates.map(nextDate).sort()[0];
+    var doneToday = S.log.filter(function (x) { return x.date === today; }).length;
+    var wishTotal = S.wishes.reduce(function (n, w) { return n + w.price; }, 0);
+    var liveWars = warItems().filter(function (x) { return x.end >= today; }).length;
+    var won = Object.keys(S.medals).length;
+    return [
+      ['subs', 'Subscrições', nSubs ? money(subsMonthly()) + ' por mês' : 'o que pagas sempre', 'repeat', '#8B7BFF', 'money', 'gastos'],
+      ['bills', 'Contas', S.bills.length ? S.bills.length + ' por pagar' : 'luz, água, IUC', 'note', '#FFA94D', 'money', 'gastos'],
+      ['goals', 'Objetivos', S.goals.length ? goalsPct() + '% do caminho' : 'para o que poupas', 'target', '#4f46e5', 'money', 'gastos'],
+      ['debts', 'A acertar', debtsText(), 'swap', '#FF7A59', 'money', 'gastos'],
+      ['wishes', 'Desejos', S.wishes.length ? S.wishes.length + (S.wishes.length === 1 ? ' coisa · ' : ' coisas · ') + money(wishTotal) : 'o que queres comprar', 'spark', '#FF8AD1', 'money', 'gastos'],
+      ['wars', 'Garantias', liveWars ? liveWars + (liveWars === 1 ? ' ativa' : ' ativas') : 'e prazos de devolução', 'shield', '#12a26f', 'money', 'gastos'],
+      ['trips', 'Viagens', tripFor(today) ? 'a decorrer' : S.trips.length ? S.trips.length + (S.trips.length === 1 ? ' guardada' : ' guardadas') : 'um orçamento à parte', 'plane', '#5CC8FF', 'money', 'gastos'],
+      ['scan', 'Fatura', 'lê o QR com a câmara', 'cam', '#FFA94D', 'money', 'gastos', 'scanOpen'],
+      ['bank', 'Importar', 'o extrato do banco', 'down', '#12a26f', 'money', 'gastos'],
+      ['now', 'Agora', 'eu escolho por ti', 'clock', '#e8970f', 'org', 'fazer', 'nowOpen'],
+      ['inbox', 'Caixa', S.inbox.length ? S.inbox.length + ' por arrumar' : 'aponta sem pensar', 'bag', '#7c3aed', 'org', 'fazer'],
+      ['projs', 'Projetos', S.projects.length ? S.projects.length + ' a andar' : 'coisas grandes', 'target', '#5CC8FF', 'org', 'fazer'],
+      ['habits', 'Hábitos', 'o mês dia a dia', 'star', '#8B7BFF', 'org', 'fazer'],
+      ['checks', 'Rotinas', S.checks.length ? S.checks.length + (S.checks.length === 1 ? ' lista' : ' listas') : 'manhã, mala de viagem', 'repeat', '#8B7BFF', 'org', 'fazer'],
+      ['tpls', 'Modelos', S.tpls.length ? S.tpls.length + (S.tpls.length === 1 ? ' guardado' : ' guardados') : 'tarefas de uma vez', 'spark', '#FF8AD1', 'org', 'fazer'],
+      ['shop', 'Compras', shopLeft ? shopLeft + ' por comprar' : 'lista vazia', 'cart', '#2563eb', 'org', 'fazer'],
+      ['notes', 'Notas', S.notes.length ? S.notes.length + (S.notes.length === 1 ? ' nota' : ' notas') : 'apontamentos soltos', 'pen', '#FF8AD1', 'org', 'fazer'],
+      ['dates', 'Datas', nextD ? 'próxima ' + inDays(daysUntil(nextD)) : 'aniversários e afins', 'gift', '#e8970f', 'org', 'fazer'],
+      ['diary', 'Diário', S.diary[today] ? 'hoje já está' : 'uma linha por dia', 'book', '#FFA94D', 'org', 'fazer'],
+      ['agenda', 'Agenda', 'tudo o que tem data', 'cal', '#2563eb', 'far', 'fazer'],
+      ['cal', 'Calendário', 'os gastos dia a dia', 'cal', '#FF7A59', 'far', 'gastos'],
+      ['year', 'O ano', 'cada dia, um quadrado', 'cal', '#12a26f', 'far', 'gastos'],
+      ['semana', 'A semana', 'os próximos 7 dias', 'cal', '#8B7BFF', 'far', 'fazer'],
+      ['hist', 'Feito', doneToday ? doneToday + ' hoje' : 'o que já riscaste', 'check', '#12a26f', 'far', 'fazer'],
+      ['stats', 'Números', 'totais, médias, sequências', 'star', '#5CC8FF', 'far', 'gastos'],
+      ['medals', 'Medalhas', won + ' de ' + medalList().length + ' ganhas', 'gift', '#e8970f', 'far', 'fazer'],
+      ['def', 'Definições', 'tema, orçamento, dados', 'sliders', '#64748b', 'app', ''],
+      ['help', 'Ajuda', 'onde está cada coisa', 'book', '#4f46e5', 'app', '']
+    ].filter(function (it) { return !S.off[it[0]] && (it[0] !== 'scan' || HAS_QR); });
+  }
+  function toolAttrs(it) { return it[7] ? 'data-a="' + it[7] + '"' : 'data-a="nav" data-v="' + it[0] + '"'; }
+  // A fila de atalhos de Gastos ou de Fazer: só as ferramentas com estrela.
+  function hub(home) {
+    var f = favs(), items = tools().filter(function (it) { return it[6] === home && f.indexOf(it[0]) >= 0; });
+    if (!items.length) return '';
+    return '<div class="hub">' + items.map(function (it) {
+      return '<button class="hubt" ' + toolAttrs(it) + '><span class="hi" style="--c:' + it[4] + '">' + icSvg(it[3], 18) + '</span>' +
+        '<b>' + it[1] + '</b><span class="small">' + it[2] + '</span></button>';
+    }).join('') + '</div>';
+  }
+  function viewTudo() {
+    var all = tools(), f = favs();
+    var body = GROUPS.map(function (g) {
+      var items = all.filter(function (it) { return it[5] === g[0]; });
+      if (!items.length) return '';
+      return '<section class="list"><div class="row-head"><h2 class="h2">' + g[1] + '</h2></div><div class="tgrid">' + items.map(function (it) {
+        var on = f.indexOf(it[0]) >= 0, row = it[6] === 'gastos' ? 'Gastos' : 'Fazer';
+        return '<div class="tool"><button class="tmain" ' + toolAttrs(it) + '><span class="hi" style="--c:' + it[4] + '">' + icSvg(it[3], 20) + '</span>' +
+          '<b>' + it[1] + '</b><span class="small">' + it[2] + '</span></button>' +
+          (it[6] ? '<button class="star" data-a="favToggle" data-id="' + it[0] + '" aria-pressed="' + on + '" aria-label="' + (on ? 'Tirar ' + it[1] + ' da fila de ' : 'Pôr ' + it[1] + ' na fila de ') + row + '">' + icSvg('star', 18) + '</button>' : '') + '</div>';
+      }).join('') + '</div></section>';
+    }).join('');
+    return '<div class="screen"><header class="head"><div class="eyebrow">Todas as ferramentas da app</div><h1 class="title">Tudo</h1></header>' +
+      '<div class="pad">' + muted('A estrela põe a ferramenta na fila de atalhos de Gastos ou de Fazer, até 5 em cada.') + body + '</div></div>' + tabs('tudo');
+  }
+
+  // ---------- o sino: avisos que pedem uma ação ----------
+  function alertList() {
+    var out = [];
+    if (!S.off.bills) S.bills.forEach(function (b) {
+      var bd = billText(b);
+      if (daysUntil(b.due) > 3) return;
+      out.push('<button class="note warn" data-a="nav" data-v="bills">' + icSvg('clock', 22) +
+        '<span class="say"><strong>' + esc(b.name) + (bd.late ? ' está por pagar.' : ' é para pagar.') + '</strong> ' + bd.text + (b.amount ? ' · ' + money(b.amount) : '') + '</span></button>');
+    });
+    if (!S.off.wars) warItems().forEach(function (x) {
+      var left = daysUntil(x.end);
+      if (left < 0 || left > (x.kind === 'w' ? 30 : 3)) return;
+      out.push('<button class="note warn" data-a="nav" data-v="wars">' + icSvg(x.kind === 'w' ? 'shield' : 'swap', 22) + '<span class="say"><strong>' + esc(x.e.desc || catOf(x.e.cat).label) + ': ' +
+        (x.kind === 'w' ? 'a garantia' : 'o prazo para devolver') + ' ' + (left === 0 ? 'acaba hoje.' : left === 1 ? 'acaba amanhã.' : 'acaba daqui a ' + left + ' dias.') + '</strong></span></button>');
+    });
+    if (!S.off.subs) S.fixed.filter(isSub).forEach(function (f) {
+      var nx = nextCharge(f), n = nx ? daysUntil(nx) : 99;
+      if (n > 3) return;
+      out.push('<button class="note sub" data-a="nav" data-v="subs">' + icSvg('repeat', 22) +
+        '<span class="say"><strong>' + (n <= 0 ? 'Hoje sai ' : n === 1 ? 'Amanhã sai ' : 'Daqui a ' + n + ' dias sai ') + esc(f.desc || catOf(f.cat).label) + '.</strong> ' + money(f.amount) + '</span></button>');
+    });
+    if (!S.off.dates) S.dates.forEach(function (x) {
+      var n = daysUntil(nextDate(x));
+      if (n > 7) return;
+      out.push('<button class="note sub" data-a="nav" data-v="dates">' + icSvg('gift', 22) +
+        '<span class="say"><strong>' + esc(x.name) + '</strong> ' + (n <= 0 ? 'é hoje.' : n === 1 ? 'é amanhã.' : 'é daqui a ' + n + ' dias.') + '</span></button>');
+    });
+    var lo = leftover();
+    if (lo) out.push('<button class="note" data-a="nav" data-v="sweep">' + icSvg('gift', 22) +
+      '<span class="say"><strong>Sobraram ' + money(lo.amount) + ' em ' + lo.name + '.</strong> Queres pôr num objetivo?</span></button>');
+    var age = backupAge();
+    if (age) out.push('<button class="note warn" data-a="export">' + icSvg('note', 22) +
+      '<span class="say"><strong>' + (S.bkp ? 'Há ' + age + ' dias que não guardas uma cópia.' : 'Ainda não guardaste nenhuma cópia.') + '</strong> Toca para guardar o ficheiro.</span></button>');
+    return out;
+  }
+  function bellBtn() {
+    var n = alertList().length;
+    return '<button class="gear bell" data-a="nav" data-v="alerts" aria-label="Avisos' + (n ? ', ' + n + ' por ver' : '') + '">' + icSvg('bell', 21) +
+      (n ? '<b class="badge" aria-hidden="true">' + (n > 9 ? '9+' : n) + '</b>' : '') + '</button>';
+  }
+  function viewAlerts() {
+    var list = alertList(), seen = S.off.insights ? [] : insights();
+    return '<div class="screen"><header class="head"><div class="eyebrow">O que precisa de ti</div><h1 class="title">Avisos</h1></header><div class="pad">' +
+      '<section class="list">' + (list.join('') || '<div class="empty">Está tudo em dia. Quando houver uma conta a pagar, um prazo a acabar ou uma subscrição a sair, aparece aqui.</div>') + '</section>' +
+      (seen.length ? '<section class="list"><div class="row-head"><h2 class="h2">Reparei que…</h2></div>' + seen.map(function (x) {
+        return '<button class="note sub" data-a="nav" data-v="' + x.view + '">' + icSvg(x.icon, 22) + '<span class="say"><strong>' + x.strong + '</strong> ' + x.text + '</span></button>';
+      }).join('') + '</section>' : '') + '</div></div>' + tabs('hoje');
+  }
+
+  // ---------- resumo do mês, como no Mealheiro ----------
+  // Receitas, gastos e o que ficou, cada um comparado com o mês anterior.
+  function summaryHtml(key) {
+    var pk = shiftMonth(key, -1), pname = MES3[parseInt(pk.slice(5), 10) - 1];
+    function incIn(k) { return sum(S.incomes.filter(function (e) { return pkey(e.date) === k; })); }
+    var r = incIn(key), g = sum(monthExpenses(key)), pr = incIn(pk), pg = sum(monthExpenses(pk));
+    if (!r && !g) return '';
+    function delta(v, pv, upGood) {
+      if (!pv) return '<span class="delta mute">sem comparação</span>';
+      var d = v - pv, pct = Math.round(Math.abs(d) / Math.abs(pv) * 100);
+      if (!pct) return '<span class="delta mute">igual a ' + pname + '</span>';
+      return '<span class="delta ' + ((upGood ? d > 0 : d < 0) ? 'good' : 'bad') + '">' + icSvg(d > 0 ? 'up' : 'down', 12) + pct + '% vs ' + pname + '</span>';
+    }
+    function stat(label, v, color, icon, extra) {
+      return '<div class="sstat"><span class="sicon" style="--c:' + color + '">' + icSvg(icon, 17) + '</span><span class="stat-k">' + label + '</span>' +
+        '<b class="stat-v"' + (v < 0 ? ' style="color:var(--bad)"' : '') + '>' + money(v) + '</b>' + extra + '</div>';
+    }
+    return '<section class="panel sumpanel"><div class="sum3">' +
+      stat('Receitas', r, '#12a26f', 'plus', delta(r, pr, true)) +
+      stat('Gastos', g, '#f26b5b', 'minus', delta(g, pg, false)) +
+      stat('Poupança', r - g, 'var(--lime)', 'target', r || pr ? delta(r - g, pr - pg, true) : '<span class="delta mute">sem receitas</span>') + '</div></section>';
+  }
+  // O desafio de dias sem gastar (os fixos não contam), agora no ecrã Gastos.
+  function challengeNote() {
+    if (!S.challenge) return '';
+    var today = iso(new Date()), spentDays = {}, quiet = 0;
+    monthExpenses(curKey()).forEach(function (e) { if (!e.fixed) spentDays[e.date] = 1; });
+    var pstart = periodDays().start, dt = parseDay(S.chalFrom && S.chalFrom > pstart ? S.chalFrom : pstart);
+    for (; iso(dt) <= today; dt.setDate(dt.getDate() + 1)) if (!spentDays[iso(dt)]) quiet++;
+    var won = quiet >= S.challenge;
+    return '<div class="note' + (won ? '' : ' sub') + '">' + icSvg(won ? 'check' : 'star', 22) + '<span class="say"><strong>Desafio: ' + S.challenge + ' dias sem gastar.</strong> ' +
+      (won ? 'Conseguido este mês, com ' + quiet + '.' : 'Vais em ' + quiet + '. Faltam ' + (S.challenge - quiet) + '.') + '</span></div>';
+  }
+
+  // ---------- apagar sem janelas ----------
+  // O primeiro toque transforma o botão em "Sim, apagar" durante 4 segundos; só o segundo apaga.
+  function armed(el, label) {
+    if (!el || !el.dataset) return true;
+    if (el.dataset.armed === '1') return true;
+    var old = el.innerHTML;
+    el.dataset.armed = '1';
+    el.textContent = label || 'Sim, apagar';
+    el.classList.add('armed');
+    setTimeout(function () {
+      if (el.isConnected && el.dataset.armed === '1') { el.dataset.armed = ''; el.innerHTML = old; el.classList.remove('armed'); }
+    }, 4000);
+    return false;
+  }
+
+  // ---------- lembrete diário no calendário do iPhone ----------
+  // Abre um ficheiro de calendário com um aviso todos os dias às 9h; o iPhone pergunta se o queres juntar.
+  function remindOpen() {
+    S.remind = iso(new Date()); save();
+    var w = null;
+    try { w = window.open('lembrete-9h.ics', '_blank'); } catch (e) {}
+    if (!w) { var a = document.createElement('a'); a.href = 'lembrete-9h.ics'; a.target = '_blank'; a.rel = 'noopener'; document.body.appendChild(a); a.click(); a.remove(); }
+  }
+
+  // No ecrã Fazer: tarefas paradas, coisas por arrumar e rotinas do dia por acabar (antes estavam no Hoje).
+  function fazerNotes() {
+    var out = '', stale = staleTasks().length;
+    if (stale) out += promptNote('stale', 'clock', stale === 1 ? 'Uma tarefa parada há mais de duas semanas.' : stale + ' tarefas paradas há mais de duas semanas.', 'Ainda fazem sentido?');
+    if (!S.off.inbox && S.inbox.length) out += promptNote('inbox', 'note', S.inbox.length === 1 ? 'Uma coisa por arrumar.' : S.inbox.length + ' coisas por arrumar.', 'Estão na caixa de entrada.');
+    if (!S.off.checks) S.checks.forEach(function (ck) {
+      var dn = ck.items.filter(function (i) { return i.done; }).length;
+      if (ck.mode !== 'd' || !ck.items.length || dn === ck.items.length) return;
+      out += '<button class="note sub" data-a="checkOpen" data-id="' + esc(ck.id) + '">' + icSvg('repeat', 22) +
+        '<span class="say"><strong>' + esc(ck.name) + '.</strong> ' + dn + ' de ' + ck.items.length + ' feitas.</span></button>';
+    });
+    return out;
+  }
+  // O dia por horas, quanto tempo levam as tarefas de hoje, e o botão que escolhe por ti.
+  function fazerDay(todo) {
+    var now = new Date(), nowT = pad(now.getHours()) + ':' + pad(now.getMinutes());
+    var timed = todayTodo().filter(function (t) { return t.time; }).sort(function (a, b) { return a.time < b.time ? -1 : 1; });
+    var mins = estToday();
+    return (timed.length ? '<div class="chips rowx tline" aria-label="O dia por horas">' + timed.map(function (t) {
+        return '<span class="tlp' + (t.time < nowT ? ' past' : '') + '"><b>' + t.time + '</b>' + esc(t.text) + '</span>';
+      }).join('') + '</div>' : '') +
+      (mins ? '<div class="small" style="padding:0 4px' + (mins > 360 ? ';color:var(--bad)' : '') + '">Cerca de ' + estText(mins) + ' de coisas para hoje.' +
+        (mins > 360 ? ' É muito para um dia: adia alguma.' : '') + '</div>' : '') +
+      (todo.length > 1 && !S.off.now ? '<button class="btn plain" data-a="nowOpen">' + icSvg('clock', 18) + ' O que faço agora?</button>' : '');
+  }
+
   function viewDebts() {
     var inn = sum(S.debts.filter(function (x) { return x.dir === 'in'; })), out = sum(S.debts.filter(function (x) { return x.dir === 'out'; }));
     var rows = S.debts.map(function (x) {
@@ -3763,11 +4007,11 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       return '<div class="item mov"><button class="main" data-a="edOpen" data-k="debt" data-id="' + esc(x.id) + '" style="padding-right:0">' +
         chip(mine ? '#3DDBA4' : '#FF7A59', mine ? 'plus' : 'minus') +
         '<span class="text"><span>' + esc(x.who) + '</span><span class="small">' + (mine ? 'deve-te' : 'deves-lhe') + (x.note ? ' · ' + esc(x.note) : '') + '</span></span>' +
-        '<span class="amt" style="color:' + (mine ? 'var(--done-text)' : '#FF7A59') + '">' + money(x.amount) + '</span></button>' +
+        '<span class="amt" style="color:' + (mine ? 'var(--done-text)' : 'var(--bad)') + '">' + money(x.amount) + '</span></button>' +
         '<button class="x" data-a="debtDone" data-id="' + esc(x.id) + '" aria-label="Acertado com ' + esc(x.who) + '">' + icSvg('check', 22) + '</button></div>';
     }).join('') || '<div class="empty">Ninguém deve nada a ninguém. Assim é que é.</div>';
     return '<div class="screen"><header class="head"><div class="eyebrow">Contas certas, amigos certos</div><h1 class="title">A acertar</h1></header>' +
-      '<div class="pad">' + (S.debts.length ? '<section class="panel"><div class="minis">' + mini('Devem-te', money(inn), 'var(--done-text)') + mini('Tu deves', money(out), '#FF7A59') + '</div>' +
+      '<div class="pad">' + (S.debts.length ? '<section class="panel"><div class="minis">' + mini('Devem-te', money(inn), 'var(--done-text)') + mini('Tu deves', money(out), 'var(--bad)') + '</div>' +
         '<div class="small">Toca no visto quando a conta ficar acertada.</div></section>' : '') +
       '<section class="list">' + rows + '</section><button class="btn" data-a="edOpen" data-k="debt">Juntar conta</button>' +
       '<button class="btn plain" data-a="edOpen" data-k="split">Dividir uma conta</button></div></div>' + tabs('gastos');
@@ -3902,7 +4146,8 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     return '<div class="screen"><header class="head"><div class="eyebrow">Onde está cada coisa</div><h1 class="title">Como usar a app</h1></header>' +
       '<div class="pad">' +
       sec('Hoje', ['O cartão grande mostra quanto já saiu este mês, quanto sobra e quanto podes gastar por dia.',
-        'Por baixo estão as tarefas mais importantes e os avisos: prazos, subscrições, datas, limites.',
+        'Os avisos (contas a pagar, prazos, subscrições a sair, aniversários) estão no sino do topo. As tarefas estão no ecrã Fazer.',
+        'O botão Tudo, na barra de baixo, tem todas as ferramentas. A estrela escolhe as que ficam à mão nas filas de Gastos e Fazer.',
         'O olho no topo esconde os valores. O botão ao lado abre as definições.']) +
       sec('Gastos', ['O gráfico mostra para onde foi o dinheiro. Toca numa categoria para ver só os gastos dela.',
         'Toca num gasto para o corrigir ou apagar.',
@@ -4078,25 +4323,27 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     function tab(v, label, icon) {
       return '<button class="tab" data-a="nav" data-v="' + v + '"' + (cur === v ? ' aria-current="page"' : '') + '>' + icon + label + '</button>';
     }
-    return '<div class="fade" aria-hidden="true"></div><nav class="tabs" aria-label="Navegação">' + tab('hoje', 'Hoje', ICON.sun, '#C6F432') + tab('gastos', 'Gastos', ICON.card, '#8B7BFF') +
-      tab('fazer', 'Fazer', ICON.check, '#3DDBA4') +
-      '<button class="plus" data-a="newExp" aria-label="Novo gasto">' + ICON.plus + '</button></nav>';
+    return '<div class="fade" aria-hidden="true"></div><nav class="tabs" aria-label="Navegação">' + tab('hoje', 'Hoje', ICON.sun) + tab('gastos', 'Gastos', ICON.card) +
+      '<button class="plus" data-a="newExp" aria-label="Novo gasto">' + ICON.plus + '</button>' +
+      tab('fazer', 'Fazer', ICON.check) + tab('tudo', 'Tudo', icSvg('grid', 24)) + '</nav>';
   }
 
   var root = document.getElementById('app');
   var VIEWS = { hoje: viewHoje, gastos: viewGastos, fazer: viewFazer, form: viewForm, def: viewDef, subs: viewSubs, semana: viewSemana, cat: viewCat, task: viewTask, pin: viewPin,
     goals: viewGoals, debts: viewDebts, shop: viewShop, notes: viewNotes, stats: viewStats, ed: viewEd, hist: viewHist, dates: viewDates,
     wishes: viewWishes, cal: viewCal, checks: viewChecks, check: viewCheck, diary: viewDiary, timer: viewTimer, help: viewHelp, sweep: viewSweep,
-    plan: viewPlan, close: viewClose, review: viewReview, stale: viewStale, projs: viewProjs, proj: viewProj, tpls: viewTpls, habits: viewHabits, inbox: viewInbox, bills: viewBills, magic: viewMagic, story: viewStory, medals: viewMedals, now: viewNow, year: viewYear, bank: viewBank, scan: viewScan, wars: viewWars, trips: viewTrips, trip: viewTrip, agenda: viewAgenda };
+    plan: viewPlan, close: viewClose, review: viewReview, stale: viewStale, projs: viewProjs, proj: viewProj, tpls: viewTpls, habits: viewHabits, inbox: viewInbox, bills: viewBills, magic: viewMagic, story: viewStory, medals: viewMedals, now: viewNow, year: viewYear, bank: viewBank, scan: viewScan, wars: viewWars, trips: viewTrips, trip: viewTrip, agenda: viewAgenda, tudo: viewTudo, alerts: viewAlerts };
   // Cores do tema, e o brilho do topo conforme a hora.
   function applyTheme() {
-    var t = THEMES.filter(function (x) { return x[0] === S.theme; })[0] || THEMES[0], h = new Date().getHours();
-    document.documentElement.setAttribute('data-theme', t[0]);
-    document.documentElement.setAttribute('data-corners', S.corners);
-    document.documentElement.style.setProperty('--display', (FONTS[S.font] || FONTS[''])[1]);
-    document.documentElement.style.setProperty('--glow', h < 6 ? '#8B7BFF' : h < 13 ? '#FFB84C' : h < 20 ? '#FF7A59' : '#8B7BFF');
+    var t = THEMES.filter(function (x) { return x[0] === S.theme; })[0] || THEMES[0], h = new Date().getHours(), f = FONTS[S.font] || FONTS[''], de = document.documentElement;
+    de.setAttribute('data-theme', t[0]);
+    de.setAttribute('data-tone', t[5] === 'l' ? 'light' : 'dark');
+    de.setAttribute('data-corners', S.corners);
+    de.style.setProperty('--display', f[1]);
+    de.style.setProperty('--ws', f[2]);
+    de.style.setProperty('--glow', h < 6 ? '#8B7BFF' : h < 13 ? '#FFB84C' : h < 20 ? '#FF7A59' : '#8B7BFF');
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', t[2]);
+    if (meta) meta.setAttribute('content', t[5] === 'l' ? '#0a0d1a' : t[2]);
   }
   // Os valores grandes sobem a contar ao entrar no ecrã.
   function countUp() {
@@ -4125,9 +4372,9 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     setTimeout(function () { box.remove(); }, 2300);
   }
   var toastTimer;
-  // Aviso com "Desfazer" durante 5 segundos depois de apagar.
+  // Aviso com "Anular" durante 5 segundos depois de apagar.
   function toastHtml() {
-    return '<div class="toast" role="status"><span>' + esc(ui.toast.text) + '</span>' + (ui.toast.undo ? '<button data-a="undo">Desfazer</button>' : '') + '</div>';
+    return '<div class="toast" role="status"><span>' + esc(ui.toast.text) + '</span>' + (ui.toast.undo ? '<button data-a="undo">Anular</button>' : '') + '</div>';
   }
   function toast(text, undo) {
     ui.toast = { text: text, undo: undo };
@@ -4636,6 +4883,19 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       S.simple = on;
       save(); render(true);
     },
+    favToggle: function (el) {
+      var id = el.dataset.id, f = favs().slice(), i = f.indexOf(id), all = tools(), it = all.filter(function (x) { return x[0] === id; })[0];
+      if (!it) return;
+      if (i >= 0) f.splice(i, 1);
+      else {
+        var same = f.filter(function (x) { var o = all.filter(function (y) { return y[0] === x; })[0]; return o && o[6] === it[6]; }).length;
+        if (same >= 5) { toast('Já tens 5 na fila de ' + (it[6] === 'gastos' ? 'Gastos' : 'Fazer') + '. Tira uma estrela primeiro.'); return; }
+        f.push(id);
+      }
+      S.favs = f; save(); render(true);
+    },
+    remindSet: function () { remindOpen(); render(true); toast('No calendário, toca em “Adicionar” para ficar com o aviso das 9h.'); },
+    remindNo: function () { S.remind = 'no'; save(); render(true); },
     need: function (el) {
       var f = ui.form;
       f.kind = f.kind === el.dataset.k ? '' : el.dataset.k;
@@ -4703,7 +4963,8 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
     calDay: function (el) { ui.calDay = el.dataset.d; render(true); },
     calMove: function (el) { ui.calMonth = shiftMonth(ui.calMonth || monthKey(new Date()), parseInt(el.dataset.by, 10)); ui.calDay = ''; render(true); },
     corners: function (el) { S.corners = el.dataset.c; save(); render(true); },
-    edDel: function () {
+    edDel: function (el) {
+      if (!armed(el)) return;
       var e = ui.ed;
       if (e.kind === 'list') {
         S.tasks.forEach(function (t) { if (t.list === e.id) t.list = ''; });
@@ -4789,7 +5050,8 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       }
       save(); ui.view = f.back; ui.taskForm = null; render();
     },
-    taskDel: function () {
+    taskDel: function (el) {
+      if (!armed(el)) return;
       var f = ui.taskForm;
       removeWithUndo('tasks', f.id, 'Tarefa apagada.');
       save(); ui.view = f.back; ui.taskForm = null; render();
@@ -4875,7 +5137,8 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       if (ui.view === 'gastos') ui.month = pkey(date);
       ui.form = null; render();
     },
-    delForm: function () {
+    delForm: function (el) {
+      if (!armed(el)) return;
       var f = ui.form;
       if (f.mode === 'edit') {
         removeWithUndo('expenses', f.id, 'Gasto apagado.');
@@ -4884,8 +5147,7 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
         if (gone && gone.fixed && find(S.incFixed, gone.fixed) && confirm('Esta entrada repete-se todos os meses. Parar também a repetição?')) everySync(gone, false);
         removeWithUndo('incomes', f.id, 'Entrada apagada.');
       } else {
-        if (!confirm((f.mode === 'subEdit' ? 'Apagar esta subscrição?' : 'Apagar este gasto fixo?') + ' Os gastos que já entraram nos meses anteriores ficam.')) return;
-        S.fixed = S.fixed.filter(function (x) { return x.id !== f.id; });
+        removeWithUndo('fixed', f.id, f.mode === 'subEdit' ? 'Subscrição apagada. Os gastos que já entraram ficam.' : 'Gasto fixo apagado. Os gastos que já entraram ficam.');
       }
       save(); ui.view = f.back; ui.form = null; render();
     },
@@ -4967,12 +5229,13 @@ html[data-corners="sharp"] :is(.bar, .bar > i, .track, .track > i) { border-radi
       else S.cats.splice(Math.max(0, S.cats.length - 1), 0, { id: uid(), label: label, color: f.color, icon: f.icon, limit: limit });
       save(); ui.view = 'def'; ui.catForm = null; render();
     },
-    catDel: function () {
-      var id = ui.catForm.id;
-      if (!confirm('Apagar esta categoria? Os gastos dela passam para “Outro”.')) return;
+    catDel: function (el) {
+      if (!armed(el)) return;
+      var id = ui.catForm.id, before = S.cats.slice(), moved = [];
       S.cats = S.cats.filter(function (c) { return c.id !== id; });
-      S.expenses.concat(S.fixed).forEach(function (e) { if (e.cat === id) e.cat = 'outro'; });
+      S.expenses.concat(S.fixed).forEach(function (e) { if (e.cat === id) { e.cat = 'outro'; moved.push(e); } });
       save(); ui.view = 'def'; ui.catForm = null; render();
+      toast('Categoria apagada. Os gastos dela passaram para Outro.', function () { S.cats = before; moved.forEach(function (e) { e.cat = id; }); });
     },
     pinSet: function () { ui.view = 'pin'; ui.pin = { mode: 'new', digits: '', first: '', msg: '' }; render(); },
     pinCancel: function () { ui.view = 'def'; render(); },

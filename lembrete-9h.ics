@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//conta-me//lembrete//PT
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:conta-me-lembrete-9h@carlossantos23300-wq.github.io
+DTSTAMP:20261026T220000Z
+DTSTART:20261027T090000
+DTEND:20261027T091000
+RRULE:FREQ=DAILY
+SUMMARY:conta-me: planeia o dia e aponta os gastos
+DESCRIPTION:Abre a conta-me e escolhe as três coisas de hoje.
+URL:https://carlossantos23300-wq.github.io/conta-me/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Abre a conta-me
+TRIGGER:PT0M
+END:VALARM
+END:VEVENT
+END:VCALENDAR
